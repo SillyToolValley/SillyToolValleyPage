@@ -1,13 +1,13 @@
 {
-  "id": "unity-dots-manual",
-  "title": "Unity DOTS Manual",
+  "id": "unity-dots-introduction",
+  "title": "Unity DOTS Introduction",
   "defaultLanguage": "en",
   "languages": [
     "en"
   ],
   "paths": {
     "reader": "reader.html",
-    "html": "en/unity-dots-manual.html",
-    "pdf": "en/unity-dots-manual.pdf"
+    "html": "en/unity-dots-introduction.html",
+    "pdf": "en/unity-dots-introduction.pdf"
   }
 }

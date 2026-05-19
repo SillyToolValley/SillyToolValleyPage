@@ -8,10 +8,10 @@
     <meta name="tdm-reservation" content="1">
     <meta name="ai-training" content="disallow">
     <meta name="ai-policy" content="Public reading and citation are allowed. Automated scraping, dataset inclusion, AI training, and AI answer ingestion are not permitted without written permission.">
-    <meta property="og:title" content="Unity DOTS Manual">
+    <meta property="og:title" content="Unity DOTS Introduction">
     <meta property="og:description" content="A field guide to Entities 6.5, Netcode for Entities, ECS workflows, optimization, and migration.">
-    <meta property="og:image" content="../../images/ebooks/unity-dots-manual-cover.png">
-    <title>Unity DOTS Manual</title>
+    <meta property="og:image" content="../../images/ebooks/unity-dots-introduction-cover.png">
+    <title>Unity DOTS Introduction</title>
     <style>
       @page {
         size: A4;
@@ -604,17 +604,17 @@
   <body>
     <nav class="language-switcher" aria-label="Book links">
       <a href="../reader.html?lang=en">Reader</a>
-      <a href="./unity-dots-manual.pdf">PDF</a>
-      <a href="https://github.com/luke-youngmin-cho/unity-dots-manual" target="_blank" rel="noopener">Source</a>
+      <a href="./unity-dots-introduction.pdf">PDF</a>
+      <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction" target="_blank" rel="noopener">Source</a>
     </nav>
-    <main><!-- markdownlint-disable --><div class="book-cover"><img src="../assets/images/unity-dots-manual-cover.png" alt="Unity DOTS Manual cover"></div><section class="copyright-page">
-<p class="copyright-page__title">Unity DOTS Manual</p>
+    <main><!-- markdownlint-disable --><div class="book-cover"><img src="../assets/images/unity-dots-introduction-cover.png" alt="Unity DOTS Introduction cover"></div><section class="copyright-page">
+<p class="copyright-page__title">Unity DOTS Introduction</p>
 <p>A field guide to Entities 6.5, Netcode for Entities, ECS workflows, optimization, and migration.</p>
-<p>English edition generated from the Unity DOTS Manual repository on 2026-05-19.</p>
+<p>English edition generated from the Unity DOTS Introduction repository on 2026-05-19.</p>
 <p>Author: Youngmin Cho (SillyToolValley)</p>
 <p>Unity, Entities, Netcode for Entities, and related package names are trademarks or product names of Unity Technologies. This book is a community learning summary and is not official Unity documentation.</p>
 <p>Public reading and citation are allowed. Automated scraping, dataset inclusion, AI training, and AI answer ingestion are not permitted without written permission.</p>
-</section><h1>Unity DOTS Manual</h1>
+</section><h1>Unity DOTS Introduction</h1>
 <p>A field guide to Entities 6.5, Netcode for Entities, ECS workflows, optimization, and migration.</p>
 <p>This book packages the Unity DOTS guideline repository into a single reading flow. It keeps the source material practical: setup, SubScene and Baker workflows, ECS component and system patterns, job scheduling, structural-change safety, EntityCommandBuffer usage, Netcode for Entities, optimization, debugging, migration, and glossary references.</p>
 <p>The target stack is Unity 6000.5+, Entities 6.5.0, Netcode for Entities 6.5.0, and the DOTS core packages bundled with the editor.</p>
@@ -891,7 +891,7 @@
 <li>Press <strong>Play</strong>. Open <strong>Window → Entities → Hierarchy</strong> — you should see a <code>Cube</code> entity. The smoke test passes.</li>
 </ol>
 <blockquote>
-<p>A SubScene is the authoring entry point: its GameObjects are baked to Entities on save and at build. The remaining tutorial in <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Getting%20Started/03_Hello%20DOTS%20%E2%80%94%20First%20Entity.md"><code>03_Hello DOTS — First Entity.md</code></a> builds on this.</p>
+<p>A SubScene is the authoring entry point: its GameObjects are baked to Entities on save and at build. The remaining tutorial in <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Getting%20Started/03_Hello%20DOTS%20%E2%80%94%20First%20Entity.md"><code>03_Hello DOTS — First Entity.md</code></a> builds on this.</p>
 </blockquote>
 <hr>
 <h3>6. Troubleshooting</h3>
@@ -920,7 +920,7 @@
 </tr>
 <tr>
 <td>Build error: <code>com.unity.entities not found</code></td>
-<td>Your <code>manifest.json</code> still has a leftover <code>com.unity.entities</code> entry from a 1.x project — delete it. See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Migration/02_Package%20Manager%20%E2%86%92%20Core%20Package.md"><code>Migration/02_Package Manager → Core Package.md</code></a>.</td>
+<td>Your <code>manifest.json</code> still has a leftover <code>com.unity.entities</code> entry from a 1.x project — delete it. See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/02_Package%20Manager%20%E2%86%92%20Core%20Package.md"><code>Migration/02_Package Manager → Core Package.md</code></a>.</td>
 </tr>
 </tbody></table>
 <div class="page-break"></div><h2>Chapter 2. Core Packages Explained</h2>
@@ -1058,11 +1058,11 @@
 </tr>
 </tbody></table>
 <p>The old 1.x line still exists for projects that cannot yet move to 6000.4+. The two tracks are separate; you upgrade to 6.x by upgrading the Editor.</p>
-<p>See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Changelog/Entities%201.4%20%E2%86%92%206.5%20Key%20Changes.md"><code>Changelog/Entities 1.4 → 6.5 Key Changes.md</code></a> for Entities transition notes and <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Changelog/Netcode%20for%20Entities%201.4%20%E2%86%92%206.5%20Key%20Changes.md"><code>Changelog/Netcode for Entities 1.4 → 6.5 Key Changes.md</code></a> for Netcode-specific changes.</p>
+<p>See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Changelog/Entities%201.4%20%E2%86%92%206.5%20Key%20Changes.md"><code>Changelog/Entities 1.4 → 6.5 Key Changes.md</code></a> for Entities transition notes and <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Changelog/Netcode%20for%20Entities%201.4%20%E2%86%92%206.5%20Key%20Changes.md"><code>Changelog/Netcode for Entities 1.4 → 6.5 Key Changes.md</code></a> for Netcode-specific changes.</p>
 <hr>
 <h3>5. Effect on your project files</h3>
 <h4><code>manifest.json</code></h4>
-<p>No <code>com.unity.entities</code>, <code>com.unity.collections</code>, <code>com.unity.mathematics</code>, or <code>com.unity.entities.graphics</code> entries are needed. If you upgrade a 1.x project, you remove them — see <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Migration/02_Package%20Manager%20%E2%86%92%20Core%20Package.md"><code>Migration/02_Package Manager → Core Package.md</code></a>.</p>
+<p>No <code>com.unity.entities</code>, <code>com.unity.collections</code>, <code>com.unity.mathematics</code>, or <code>com.unity.entities.graphics</code> entries are needed. If you upgrade a 1.x project, you remove them — see <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/02_Package%20Manager%20%E2%86%92%20Core%20Package.md"><code>Migration/02_Package Manager → Core Package.md</code></a>.</p>
 <h4><code>packages-lock.json</code></h4>
 <p>Core Packages appear with <code>&quot;source&quot;: &quot;builtin&quot;</code> instead of a version URL.</p>
 <h4>Assembly definitions (.asmdef)</h4>
@@ -1272,19 +1272,19 @@ public partial struct RotationSystem : ISystem
 </thead>
 <tbody><tr>
 <td>Learn how authoring maps to entities in detail</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/01_Baker%20Pattern%20&%20SubScene.md"><code>DOTS Workflows/01_Baker Pattern &amp; SubScene.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/01_Baker%20Pattern%20&%20SubScene.md"><code>DOTS Workflows/01_Baker Pattern &amp; SubScene.md</code></a></td>
 </tr>
 <tr>
 <td>Spawn many entities at runtime</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/02_Spawner%20Example.md"><code>DOTS Workflows/02_Spawner Example.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/02_Spawner%20Example.md"><code>DOTS Workflows/02_Spawner Example.md</code></a></td>
 </tr>
 <tr>
 <td>Understand Entity / Component / Chunk</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/03_ECS%20Core%20Concepts.md"><code>DOTS Workflows/03_ECS Core Concepts.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/03_ECS%20Core%20Concepts.md"><code>DOTS Workflows/03_ECS Core Concepts.md</code></a></td>
 </tr>
 <tr>
 <td>Choose between <code>ISystem</code> and <code>SystemBase</code></td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/08_System%20%E2%80%94%20ISystem%20vs%20SystemBase.md"><code>DOTS Workflows/08_System — ISystem vs SystemBase.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/08_System%20%E2%80%94%20ISystem%20vs%20SystemBase.md"><code>DOTS Workflows/08_System — ISystem vs SystemBase.md</code></a></td>
 </tr>
 </tbody></table>
 <hr>
@@ -1527,7 +1527,7 @@ public struct ProjectileSpawner : IComponentData
     public float TimeLeft;
 }
 </code></pre>
-<p>A runtime system can then instantiate <code>Prefab</code> on a timer. See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/02_Spawner%20Example.md"><code>02_Spawner Example.md</code></a>.</p>
+<p>A runtime system can then instantiate <code>Prefab</code> on a timer. See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/02_Spawner%20Example.md"><code>02_Spawner Example.md</code></a>.</p>
 <hr>
 <h3>7. Troubleshooting</h3>
 <table>
@@ -1570,7 +1570,7 @@ public struct ProjectileSpawner : IComponentData
 <li>Storing a <strong>prefab entity</strong> reference (baked from a GameObject prefab).</li>
 <li>Instantiating it at runtime through an <strong>EntityCommandBuffer</strong> so structural changes happen safely.</li>
 </ul>
-<p>Reading <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/01_Baker%20Pattern%20&%20SubScene.md"><code>01_Baker Pattern &amp; SubScene.md</code></a> first will make this easier.</p>
+<p>Reading <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/01_Baker%20Pattern%20&%20SubScene.md"><code>01_Baker Pattern &amp; SubScene.md</code></a> first will make this easier.</p>
 <hr>
 <h3>2. Data model</h3>
 <pre><code class="language-csharp">using Unity.Entities;
@@ -1674,7 +1674,7 @@ public partial struct SpawnerSystem : ISystem
 <ul>
 <li><code>RequireForUpdate&lt;Spawner&gt;()</code> skips the system entirely when no spawner exists.</li>
 <li>The <code>EndSimulationEntityCommandBufferSystem</code> singleton provides a shared ECB that flushes at end-of-frame — safer than mutating through <code>EntityManager</code> mid-loop.</li>
-<li><code>ecb.Instantiate(prefab)</code> creates a <strong>deferred entity</strong>; <code>ecb.SetComponent(instance, …)</code> schedules component writes on it. The <code>instance</code> handle is only valid inside this ECB&#39;s playback. See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/14_EntityCommandBuffer%20%C2%B7%20Deferred%20Entity.md"><code>14_EntityCommandBuffer · Deferred Entity.md</code></a>.</li>
+<li><code>ecb.Instantiate(prefab)</code> creates a <strong>deferred entity</strong>; <code>ecb.SetComponent(instance, …)</code> schedules component writes on it. The <code>instance</code> handle is only valid inside this ECB&#39;s playback. See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/14_EntityCommandBuffer%20%C2%B7%20Deferred%20Entity.md"><code>14_EntityCommandBuffer · Deferred Entity.md</code></a>.</li>
 </ul>
 <hr>
 <h3>5. Scaling up — parallel spawner</h3>
@@ -1715,7 +1715,7 @@ public partial struct SpawnJob : IJobEntity
 new SpawnJob { DeltaTime = SystemAPI.Time.DeltaTime, ECB = ecb }
     .ScheduleParallel();
 </code></pre>
-<p>The <code>chunkIndex</code> sort key is what keeps parallel playback deterministic. See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/15_ParallelWriter%20%C2%B7%20Deterministic%20Playback.md"><code>15_ParallelWriter · Deterministic Playback.md</code></a>.</p>
+<p>The <code>chunkIndex</code> sort key is what keeps parallel playback deterministic. See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/15_ParallelWriter%20%C2%B7%20Deterministic%20Playback.md"><code>15_ParallelWriter · Deterministic Playback.md</code></a>.</p>
 <hr>
 <h3>6. Troubleshooting</h3>
 <table>
@@ -1773,7 +1773,7 @@ state.EntityManager.DestroyEntity(e);            // handle becomes stale
     public float Max;
 }
 </code></pre>
-<p>There are several component variants (unmanaged, managed, buffer, shared, cleanup, tag, chunk, enableable). See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/05_Component%20Types.md"><code>05_Component Types.md</code></a>.</p>
+<p>There are several component variants (unmanaged, managed, buffer, shared, cleanup, tag, chunk, enableable). See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/05_Component%20Types.md"><code>05_Component Types.md</code></a>.</p>
 <hr>
 <h3>4. Archetype</h3>
 <p>An <strong>archetype</strong> is a unique set of component types that some entities share.</p>
@@ -1781,7 +1781,7 @@ state.EntityManager.DestroyEntity(e);            // handle becomes stale
 <li>An entity with <code>{ LocalTransform, Health, Enemy }</code> belongs to archetype A.</li>
 <li>An entity with <code>{ LocalTransform, Health, Enemy, Burning }</code> belongs to archetype B — a different one, because adding <code>Burning</code> changed the component set.</li>
 </ul>
-<p>Moving between archetypes (adding/removing a component) is a <strong>structural change</strong> and physically moves the entity to a new chunk. See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/13_Structural%20Change%20&%20Safety.md"><code>13_Structural Change &amp; Safety.md</code></a>.</p>
+<p>Moving between archetypes (adding/removing a component) is a <strong>structural change</strong> and physically moves the entity to a new chunk. See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/13_Structural%20Change%20&%20Safety.md"><code>13_Structural Change &amp; Safety.md</code></a>.</p>
 <hr>
 <h3>5. Chunk</h3>
 <p>Entities in the same archetype are packed into <strong>16 KB chunks</strong>. Within a chunk, each component type forms a contiguous array — great for cache locality.</p>
@@ -1828,7 +1828,7 @@ public partial struct HealthRegenSystem : ISystem
     }
 }
 </code></pre>
-<p>Systems are registered automatically and live inside a <strong>SystemGroup</strong>. See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/08_System%20%E2%80%94%20ISystem%20vs%20SystemBase.md"><code>08_System — ISystem vs SystemBase.md</code></a> and <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/09_System%20Group%20&%20Update%20Order.md"><code>09_System Group &amp; Update Order.md</code></a>.</p>
+<p>Systems are registered automatically and live inside a <strong>SystemGroup</strong>. See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/08_System%20%E2%80%94%20ISystem%20vs%20SystemBase.md"><code>08_System — ISystem vs SystemBase.md</code></a> and <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/09_System%20Group%20&%20Update%20Order.md"><code>09_System Group &amp; Update Order.md</code></a>.</p>
 <hr>
 <h3>7. World</h3>
 <p>A <strong>World</strong> is a container that owns:</p>
@@ -1837,7 +1837,7 @@ public partial struct HealthRegenSystem : ISystem
 <li>A set of <strong>systems</strong> and their SystemGroups.</li>
 <li>The chunks themselves (via the EntityManager).</li>
 </ul>
-<p>The default runtime world is <code>DefaultGameObjectInjectionWorld</code>. Most games have one world in production; multi-world setups show up in Netcode (server / client) or in editor tooling. See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>16_Netcode Client-Server World &amp; Bootstrap.md</code></a> for the Netcode world split.</p>
+<p>The default runtime world is <code>DefaultGameObjectInjectionWorld</code>. Most games have one world in production; multi-world setups show up in Netcode (server / client) or in editor tooling. See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>16_Netcode Client-Server World &amp; Bootstrap.md</code></a> for the Netcode world split.</p>
 <pre><code class="language-csharp">World world = World.DefaultGameObjectInjectionWorld;
 EntityManager em = world.EntityManager;
 
@@ -1847,7 +1847,7 @@ em.SetComponentData(e, new Health { Value = 100, Max = 100 });
 <hr>
 <h3>8. EntityManager</h3>
 <p>The <code>EntityManager</code> is the main-thread API for structural changes: create, destroy, add/remove components, instantiate prefab-entities, copy worlds, etc. Structural changes through <code>EntityManager</code> are immediate and can invalidate any in-flight query iterators or job references.</p>
-<p>For deferred structural changes from jobs or mid-iteration, use an <strong>EntityCommandBuffer</strong> — see <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/14_EntityCommandBuffer%20%C2%B7%20Deferred%20Entity.md"><code>14_EntityCommandBuffer · Deferred Entity.md</code></a>.</p>
+<p>For deferred structural changes from jobs or mid-iteration, use an <strong>EntityCommandBuffer</strong> — see <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/14_EntityCommandBuffer%20%C2%B7%20Deferred%20Entity.md"><code>14_EntityCommandBuffer · Deferred Entity.md</code></a>.</p>
 <hr>
 <h3>9. Putting it together</h3>
 <pre><code class="language-text">World
@@ -2255,7 +2255,7 @@ buffer.Add(new Waypoint { Position = new float3(1, 0, 0) });
 <p>Typical use: precomputed data that applies to all entities in the chunk (bounds, region ID, partition key). Mutating a chunk component causes a structural change.</p>
 <hr>
 <h3>9. Enableable components (<code>IEnableableComponent</code>)</h3>
-<p>See the dedicated page <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/06_Enableable%20Component.md"><code>06_Enableable Component.md</code></a> for depth. Summary here: a component that can be toggled on/off per entity <strong>without</strong> a structural change, via a per-chunk bitmask.</p>
+<p>See the dedicated page <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/06_Enableable%20Component.md"><code>06_Enableable Component.md</code></a> for depth. Summary here: a component that can be toggled on/off per entity <strong>without</strong> a structural change, via a per-chunk bitmask.</p>
 <pre><code class="language-csharp">public struct Stunned : IComponentData, IEnableableComponent
 {
     public float Duration;
@@ -2409,7 +2409,7 @@ public partial struct StunTickJob : IJobEntity
     }
 }
 </code></pre>
-<p>Playback happens at the next ECB boundary (e.g. <code>EndSimulationECBS</code>) — see <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/14_EntityCommandBuffer%20%C2%B7%20Deferred%20Entity.md"><code>14_EntityCommandBuffer · Deferred Entity.md</code></a>. No structural change; just a bitmask flip at a known point.</p>
+<p>Playback happens at the next ECB boundary (e.g. <code>EndSimulationECBS</code>) — see <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/14_EntityCommandBuffer%20%C2%B7%20Deferred%20Entity.md"><code>14_EntityCommandBuffer · Deferred Entity.md</code></a>. No structural change; just a bitmask flip at a known point.</p>
 <h4>5.2 Toggle the enabled bit directly when you do not need the component value</h4>
 <pre><code class="language-csharp">[BurstCompile]
 public partial struct StunDisableJob : IJobEntity
@@ -2954,7 +2954,7 @@ public partial struct PlayerMoveSystem : ISystem
 <td>Ordered ECB playback (late)</td>
 </tr>
 </tbody></table>
-<p>Netcode for Entities adds more (<code>PredictedSimulationSystemGroup</code>, <code>GhostSendSystem</code>, etc.) — they nest inside the ones above. See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>16_Netcode Client-Server World &amp; Bootstrap.md</code></a> and <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>19_Netcode Prediction &amp; Rollback.md</code></a>.</p>
+<p>Netcode for Entities adds more (<code>PredictedSimulationSystemGroup</code>, <code>GhostSendSystem</code>, etc.) — they nest inside the ones above. See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>16_Netcode Client-Server World &amp; Bootstrap.md</code></a> and <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>19_Netcode Prediction &amp; Rollback.md</code></a>.</p>
 <hr>
 <h3>3. Placing a system in a group</h3>
 <pre><code class="language-csharp">using Unity.Entities;
@@ -3497,7 +3497,7 @@ public partial struct HealthRegenSystem : ISystem
 <pre><code class="language-csharp">void Execute(Entity entity, ref Health health) { /* ... */ }
 </code></pre>
 <h4>Chunk index / <code>[ChunkIndexInQuery]</code></h4>
-<p>Useful when pairing with a <code>ParallelWriter</code> ECB for deterministic playback — pass the chunk index as the <code>sortKey</code>. See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/15_ParallelWriter%20%C2%B7%20Deterministic%20Playback.md"><code>15_ParallelWriter · Deterministic Playback.md</code></a>.</p>
+<p>Useful when pairing with a <code>ParallelWriter</code> ECB for deterministic playback — pass the chunk index as the <code>sortKey</code>. See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/15_ParallelWriter%20%C2%B7%20Deterministic%20Playback.md"><code>15_ParallelWriter · Deterministic Playback.md</code></a>.</p>
 <pre><code class="language-csharp">void Execute([ChunkIndexInQuery] int chunkIndex, in Health health, Entity entity)
 {
     if (health.Value &lt;= 0)
@@ -3523,7 +3523,7 @@ public partial struct HealthRegenSystem : ISystem
 </tr>
 <tr>
 <td>Per-chunk work (bounds, sums, spatial partitioning)</td>
-<td><strong><code>IJobChunk</code></strong> — see <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/12_IJobEntity%20vs%20IJobChunk.md"><code>12_IJobEntity vs IJobChunk.md</code></a></td>
+<td><strong><code>IJobChunk</code></strong> — see <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/12_IJobEntity%20vs%20IJobChunk.md"><code>12_IJobEntity vs IJobChunk.md</code></a></td>
 </tr>
 <tr>
 <td>Need managed API inside the loop</td>
@@ -3531,7 +3531,7 @@ public partial struct HealthRegenSystem : ISystem
 </tr>
 <tr>
 <td>Need deferred structural changes</td>
-<td>Either form, but write via <code>EntityCommandBuffer.ParallelWriter</code> — see <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/14_EntityCommandBuffer%20%C2%B7%20Deferred%20Entity.md"><code>14_EntityCommandBuffer · Deferred Entity.md</code></a></td>
+<td>Either form, but write via <code>EntityCommandBuffer.ParallelWriter</code> — see <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/14_EntityCommandBuffer%20%C2%B7%20Deferred%20Entity.md"><code>14_EntityCommandBuffer · Deferred Entity.md</code></a></td>
 </tr>
 </tbody></table>
 <hr>
@@ -3825,7 +3825,7 @@ state.Dependency = act;
 </blockquote>
 <p>Two compliant patterns, in order of preference:</p>
 <ol>
-<li><strong>Use an <code>EntityCommandBuffer</code>.</strong> Record the operation during iteration, play it back after. See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/14_EntityCommandBuffer%20%C2%B7%20Deferred%20Entity.md"><code>14_EntityCommandBuffer · Deferred Entity.md</code></a>.</li>
+<li><strong>Use an <code>EntityCommandBuffer</code>.</strong> Record the operation during iteration, play it back after. See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/14_EntityCommandBuffer%20%C2%B7%20Deferred%20Entity.md"><code>14_EntityCommandBuffer · Deferred Entity.md</code></a>.</li>
 <li><strong>Iterate into a <code>NativeList&lt;Entity&gt;</code>, then mutate after the loop.</strong> Simpler for small cases; no ECB overhead.</li>
 </ol>
 <p>Example of pattern 2:</p>
@@ -3843,7 +3843,7 @@ state.EntityManager.DestroyEntity(toKill.AsArray());
 </code></pre>
 <hr>
 <h3>4. Enableable components — the escape hatch</h3>
-<p>If you find yourself adding and removing a component every frame, it should almost certainly be an <strong>enableable component</strong> instead — toggling the enable bit is <strong>not</strong> structural. See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/06_Enableable%20Component.md"><code>06_Enableable Component.md</code></a>.</p>
+<p>If you find yourself adding and removing a component every frame, it should almost certainly be an <strong>enableable component</strong> instead — toggling the enable bit is <strong>not</strong> structural. See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/06_Enableable%20Component.md"><code>06_Enableable Component.md</code></a>.</p>
 <hr>
 <h3>5. Jobs and structural changes</h3>
 <p>Structural changes are <strong>main-thread operations</strong>. You cannot perform them inside a job.</p>
@@ -3929,7 +3929,7 @@ Per-frame add + remove pattern         pathological
 </tr>
 <tr>
 <td><code>RemoveComponent</code> triggers &quot;cleanup component present&quot; error</td>
-<td>The entity has a cleanup component. Handle cleanup first (see <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/05_Component%20Types.md"><code>05_Component Types.md</code></a>).</td>
+<td>The entity has a cleanup component. Handle cleanup first (see <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/05_Component%20Types.md"><code>05_Component Types.md</code></a>).</td>
 </tr>
 <tr>
 <td>Shared component value set explodes (hundreds of distinct values)</td>
@@ -3944,7 +3944,7 @@ Per-frame add + remove pattern         pathological
 <li>A job (where main-thread structural changes aren&#39;t allowed).</li>
 <li>A parallel job across many chunks (via <code>ParallelWriter</code>).</li>
 </ul>
-<p>See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/13_Structural%20Change%20&%20Safety.md"><code>13_Structural Change &amp; Safety.md</code></a> for the &quot;why this is dangerous&quot; background.</p>
+<p>See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/13_Structural%20Change%20&%20Safety.md"><code>13_Structural Change &amp; Safety.md</code></a> for the &quot;why this is dangerous&quot; background.</p>
 <hr>
 <h3>2. The ECB lifecycle</h3>
 <p><img src="../assets/diagrams/ecb-lifecycle.svg" alt="EntityCommandBuffer Lifecycle"></p>
@@ -4001,7 +4001,7 @@ Per-frame add + remove pattern         pathological
     .CreateCommandBuffer(state.WorldUnmanaged)
     .AsParallelWriter();
 </code></pre>
-<p>See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/15_ParallelWriter%20%C2%B7%20Deterministic%20Playback.md"><code>15_ParallelWriter · Deterministic Playback.md</code></a> for the parallel playback contract.</p>
+<p>See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/15_ParallelWriter%20%C2%B7%20Deterministic%20Playback.md"><code>15_ParallelWriter · Deterministic Playback.md</code></a> for the parallel playback contract.</p>
 <hr>
 <h3>5. Recording — entity creation</h3>
 <pre><code class="language-csharp">Entity e = ecb.CreateEntity();
@@ -4074,7 +4074,7 @@ ecb.Dispose();
 <p>Use this for self-contained, one-off mutation patterns. For anything that crosses system boundaries or runs in a job, use the built-in ECBS above.</p>
 <hr>
 <h3>10. Determinism</h3>
-<p>ECB commands play back in <strong>record order</strong> on single-writer ECBs. On a <code>ParallelWriter</code>, playback order depends on the <code>sortKey</code> you provide — see <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/15_ParallelWriter%20%C2%B7%20Deterministic%20Playback.md"><code>15_ParallelWriter · Deterministic Playback.md</code></a>.</p>
+<p>ECB commands play back in <strong>record order</strong> on single-writer ECBs. On a <code>ParallelWriter</code>, playback order depends on the <code>sortKey</code> you provide — see <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/15_ParallelWriter%20%C2%B7%20Deterministic%20Playback.md"><code>15_ParallelWriter · Deterministic Playback.md</code></a>.</p>
 <p>For Netcode / replay systems, deterministic playback is non-negotiable. Always pass a stable sort key (chunk index, entity-in-query index) and avoid recording in main-thread code paths that run in nondeterministic order.</p>
 <hr>
 <h3>11. Troubleshooting</h3>
@@ -4525,9 +4525,9 @@ public World MigrateServerWorld(World sourceWorld)
 <hr>
 <h3>7. Related docs</h3>
 <ul>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/03_ECS%20Core%20Concepts.md"><code>03_ECS Core Concepts.md</code></a> — World, EntityManager, archetype, and chunk basics.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/09_System%20Group%20&%20Update%20Order.md"><code>09_System Group &amp; Update Order.md</code></a> — base ECS system groups that Netcode extends.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>17_Netcode Network Connection &amp; Approval.md</code></a> — listen, connect, approve, and enter in-game state.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/03_ECS%20Core%20Concepts.md"><code>03_ECS Core Concepts.md</code></a> — World, EntityManager, archetype, and chunk basics.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/09_System%20Group%20&%20Update%20Order.md"><code>09_System Group &amp; Update Order.md</code></a> — base ECS system groups that Netcode extends.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>17_Netcode Network Connection &amp; Approval.md</code></a> — listen, connect, approve, and enter in-game state.</li>
 </ul>
 <hr>
 <h3>8. Troubleshooting</h3>
@@ -4924,9 +4924,9 @@ public partial struct ClientGoInGameSystem : ISystem
 <hr>
 <h3>9. Related docs</h3>
 <ul>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>16_Netcode Client-Server World &amp; Bootstrap.md</code></a> — how Netcode worlds are created.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a> — why <code>NetworkStreamInGame</code> gates snapshot exchange.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/21_Netcode%20RPC.md"><code>21_Netcode RPC.md</code></a> — normal RPCs and approval RPCs.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>16_Netcode Client-Server World &amp; Bootstrap.md</code></a> — how Netcode worlds are created.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a> — why <code>NetworkStreamInGame</code> gates snapshot exchange.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/21_Netcode%20RPC.md"><code>21_Netcode RPC.md</code></a> — normal RPCs and approval RPCs.</li>
 </ul>
 <hr>
 <h3>10. Troubleshooting</h3>
@@ -5265,9 +5265,9 @@ Tick 3: GhostSendSystem sends a snapshot
 <hr>
 <h3>10. Related docs</h3>
 <ul>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a> — bandwidth, relevancy, and send-rate controls.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>19_Netcode Prediction &amp; Rollback.md</code></a> — predicted Ghost simulation.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Changelog/Netcode%20for%20Entities%201.4%20%E2%86%92%206.5%20Key%20Changes.md"><code>../Changelog/Netcode for Entities 1.4 → 6.5 Key Changes.md</code></a> — Ghost serialization changes across versions.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a> — bandwidth, relevancy, and send-rate controls.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>19_Netcode Prediction &amp; Rollback.md</code></a> — predicted Ghost simulation.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Changelog/Netcode%20for%20Entities%201.4%20%E2%86%92%206.5%20Key%20Changes.md"><code>../Changelog/Netcode for Entities 1.4 → 6.5 Key Changes.md</code></a> — Ghost serialization changes across versions.</li>
 </ul>
 <hr>
 <h3>11. Troubleshooting</h3>
@@ -5506,9 +5506,9 @@ switchQueues.ConvertToInterpolatedQueue.Enqueue(new ConvertPredictionEntry
 <hr>
 <h3>9. Related docs</h3>
 <ul>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/20_Netcode%20Command%20Stream%20&%20Input.md"><code>20_Netcode Command Stream &amp; Input.md</code></a> — input data used by prediction systems.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a> — prediction switching as an optimization strategy.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/23_Netcode%20Physics%20Integration%20&%20Lag%20Compensation.md"><code>23_Netcode Physics Integration &amp; Lag Compensation.md</code></a> — predicted physics behavior.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/20_Netcode%20Command%20Stream%20&%20Input.md"><code>20_Netcode Command Stream &amp; Input.md</code></a> — input data used by prediction systems.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a> — prediction switching as an optimization strategy.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/23_Netcode%20Physics%20Integration%20&%20Lag%20Compensation.md"><code>23_Netcode Physics Integration &amp; Lag Compensation.md</code></a> — predicted physics behavior.</li>
 </ul>
 <hr>
 <h3>10. Troubleshooting</h3>
@@ -5815,9 +5815,9 @@ var serverTick = SystemAPI.GetSingleton&lt;NetworkTime&gt;().ServerTick;
 <hr>
 <h3>9. Related docs</h3>
 <ul>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>19_Netcode Prediction &amp; Rollback.md</code></a> — prediction systems that consume input.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>17_Netcode Network Connection &amp; Approval.md</code></a> — <code>NetworkStreamInGame</code> and connection entities.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/21_Netcode%20RPC.md"><code>21_Netcode RPC.md</code></a> — reliable one-shot messages, not continuous input.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>19_Netcode Prediction &amp; Rollback.md</code></a> — prediction systems that consume input.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>17_Netcode Network Connection &amp; Approval.md</code></a> — <code>NetworkStreamInGame</code> and connection entities.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/21_Netcode%20RPC.md"><code>21_Netcode RPC.md</code></a> — reliable one-shot messages, not continuous input.</li>
 </ul>
 <hr>
 <h3>10. Troubleshooting</h3>
@@ -6061,7 +6061,7 @@ public struct LoginApproval : IApprovalRpcCommand
     public FixedString512Bytes AuthToken;
 }
 </code></pre>
-<p>See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>17_Netcode Network Connection &amp; Approval.md</code></a> for the full approval flow.</p>
+<p>See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>17_Netcode Network Connection &amp; Approval.md</code></a> for the full approval flow.</p>
 <hr>
 <h3>9. Common patterns</h3>
 <table>
@@ -6095,9 +6095,9 @@ public struct LoginApproval : IApprovalRpcCommand
 <hr>
 <h3>10. Related docs</h3>
 <ul>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a> — Ghost replication for state.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/20_Netcode%20Command%20Stream%20&%20Input.md"><code>20_Netcode Command Stream &amp; Input.md</code></a> — command streams for input.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>17_Netcode Network Connection &amp; Approval.md</code></a> — approval RPCs.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a> — Ghost replication for state.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/20_Netcode%20Command%20Stream%20&%20Input.md"><code>20_Netcode Command Stream &amp; Input.md</code></a> — command streams for input.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>17_Netcode Network Connection &amp; Approval.md</code></a> — approval RPCs.</li>
 </ul>
 <hr>
 <h3>11. Troubleshooting</h3>
@@ -6400,9 +6400,9 @@ if (distance &gt; predictionRange)
 <hr>
 <h3>11. Related docs</h3>
 <ul>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a> — Ghost serialization and snapshot flow.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>19_Netcode Prediction &amp; Rollback.md</code></a> — prediction switching behavior.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/24_Netcode%20Profiler%20&%20Debugging.md"><code>24_Netcode Profiler &amp; Debugging.md</code></a> — profiling bandwidth and prediction cost.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a> — Ghost serialization and snapshot flow.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>19_Netcode Prediction &amp; Rollback.md</code></a> — prediction switching behavior.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/24_Netcode%20Profiler%20&%20Debugging.md"><code>24_Netcode Profiler &amp; Debugging.md</code></a> — profiling bandwidth and prediction cost.</li>
 </ul>
 <hr>
 <h3>12. Troubleshooting</h3>
@@ -6649,9 +6649,9 @@ public partial struct DisablePredictedPhysics : ISystem
 <hr>
 <h3>9. Related docs</h3>
 <ul>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>19_Netcode Prediction &amp; Rollback.md</code></a> — prediction loop behavior.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a> — switching Ghosts away from prediction.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/24_Netcode%20Profiler%20&%20Debugging.md"><code>24_Netcode Profiler &amp; Debugging.md</code></a> — profiling predicted physics.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>19_Netcode Prediction &amp; Rollback.md</code></a> — prediction loop behavior.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a> — switching Ghosts away from prediction.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/24_Netcode%20Profiler%20&%20Debugging.md"><code>24_Netcode Profiler &amp; Debugging.md</code></a> — profiling predicted physics.</li>
 </ul>
 <hr>
 <h3>10. Troubleshooting</h3>
@@ -6889,9 +6889,9 @@ public partial struct DisablePredictedPhysics : ISystem
 <hr>
 <h3>11. Related docs</h3>
 <ul>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Optimizations%20and%20Debugging/03_Profiler%20%C2%B7%20Bottleneck%20Analysis.md"><code>Optimizations and Debugging/03_Profiler · Bottleneck Analysis.md</code></a> — general DOTS profiling workflow.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a> — bandwidth controls.</li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/23_Netcode%20Physics%20Integration%20&%20Lag%20Compensation.md"><code>23_Netcode Physics Integration &amp; Lag Compensation.md</code></a> — predicted physics costs.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Optimizations%20and%20Debugging/03_Profiler%20%C2%B7%20Bottleneck%20Analysis.md"><code>Optimizations and Debugging/03_Profiler · Bottleneck Analysis.md</code></a> — general DOTS profiling workflow.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a> — bandwidth controls.</li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/23_Netcode%20Physics%20Integration%20&%20Lag%20Compensation.md"><code>23_Netcode Physics Integration &amp; Lag Compensation.md</code></a> — predicted physics costs.</li>
 </ul>
 <hr>
 <h3>12. Troubleshooting</h3>
@@ -7011,7 +7011,7 @@ public partial struct DisablePredictedPhysics : ISystem
 <li><strong>Keep unmanaged structs unmanaged.</strong> A single managed <code>IComponentData</code> forces side-table storage per entity and breaks Burst.</li>
 <li><strong>Don&#39;t pad your structs.</strong> Put <code>float3</code> before <code>float</code>, not after — alignment holes inflate <code>SizeInChunk</code>.</li>
 <li><strong>Split cold fields off.</strong> If only one system reads a field, move it to a sibling component. Unused columns still cost bytes per entity.</li>
-<li><strong>Prefer enableable components over per-frame add/remove.</strong> See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/13_Structural%20Change%20&%20Safety.md"><code>13_Structural Change &amp; Safety.md</code></a> — toggling a bit beats reshaping the archetype.</li>
+<li><strong>Prefer enableable components over per-frame add/remove.</strong> See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/13_Structural%20Change%20&%20Safety.md"><code>13_Structural Change &amp; Safety.md</code></a> — toggling a bit beats reshaping the archetype.</li>
 <li><strong>Limit shared component value sets.</strong> Each new value spawns a new chunk bucket.</li>
 <li><strong>Tag components cost zero bytes but still add an archetype.</strong> Don&#39;t tag every entity with a unique marker.</li>
 </ol>
@@ -7135,7 +7135,7 @@ state.Dependency = new UpdateHealthBarJob { /* ... */ }
 <td>&quot;Given a component set, which entities match? Which systems query it?&quot;</td>
 </tr>
 </tbody></table>
-<p>A fourth, <strong>Archetypes</strong> (<code>Window → Entities → Archetypes</code>), is covered in <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Optimizations%20and%20Debugging/01_Chunk%20Layout%20&%20TypeManager.md"><code>01_Chunk Layout &amp; TypeManager.md</code></a>.</p>
+<p>A fourth, <strong>Archetypes</strong> (<code>Window → Entities → Archetypes</code>), is covered in <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Optimizations%20and%20Debugging/01_Chunk%20Layout%20&%20TypeManager.md"><code>01_Chunk Layout &amp; TypeManager.md</code></a>.</p>
 <hr>
 <h3>2. Entities Hierarchy</h3>
 <p>Acts as the live Hierarchy but for entities rather than GameObjects.</p>
@@ -7344,7 +7344,7 @@ state.Dependency = new UpdateHealthBarJob { /* ... */ }
 <h4>4.3 <code>EntityManager</code> hotspots</h4>
 <p>Look for markers named:</p>
 <ul>
-<li><code>EntityManager.SetArchetype</code> / <code>Move Entity</code> — structural change churn. See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/13_Structural%20Change%20&%20Safety.md"><code>13_Structural Change &amp; Safety.md</code></a>.</li>
+<li><code>EntityManager.SetArchetype</code> / <code>Move Entity</code> — structural change churn. See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/13_Structural%20Change%20&%20Safety.md"><code>13_Structural Change &amp; Safety.md</code></a>.</li>
 <li><code>EntityCommandBufferSystem.OnUpdate (Playback)</code> — expensive ECB playback. Usually means too many commands recorded per frame.</li>
 <li><code>TypeManager.Initialize</code> — only at startup; if it appears per-frame, something is reloading the world.</li>
 </ul>
@@ -7364,7 +7364,7 @@ state.Dependency = new UpdateHealthBarJob { /* ... */ }
 <li><strong>Entities</strong> (if available) — a DOTS-specific module showing per-system timings over time.</li>
 </ul>
 <p>The Entities Profiler module arrived with 1.8.0 / 6.x and aligns with the Systems window on a timeline. If you see multi-frame spikes, this is the fastest way to attribute them.</p>
-<p>For networked projects, pair this with <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/24_Netcode%20Profiler%20&%20Debugging.md"><code>../DOTS Workflows/24_Netcode Profiler &amp; Debugging.md</code></a> to inspect Ghost snapshots, prediction ticks, and Netcode-specific bandwidth.</p>
+<p>For networked projects, pair this with <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/24_Netcode%20Profiler%20&%20Debugging.md"><code>../DOTS Workflows/24_Netcode Profiler &amp; Debugging.md</code></a> to inspect Ghost snapshots, prediction ticks, and Netcode-specific bandwidth.</p>
 <hr>
 <h3>6. Common bottlenecks and fixes</h3>
 <table>
@@ -7637,7 +7637,7 @@ public struct EnemyVisual : IComponentData
 </ol>
 <p>Each migration is done in its own sub-document in this folder. This page is the <strong>map</strong> — when to do which, in what order.</p>
 <blockquote>
-<p><strong>Naming watch-out:</strong> The Entities <strong>package</strong> version (1.4 / 6.4 / 6.5) is distinct from the Unity Editor version (6000.3 / 6000.4 / 6000.5). They align by convention from 6.4 onward but are tracked in separate release notes. This document treats them as two axes; the Changelog page (<a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Changelog/Entities%201.4%20%E2%86%92%206.5%20Key%20Changes.md"><code>../Changelog/Entities 1.4 → 6.5 Key Changes.md</code></a>) does the same.</p>
+<p><strong>Naming watch-out:</strong> The Entities <strong>package</strong> version (1.4 / 6.4 / 6.5) is distinct from the Unity Editor version (6000.3 / 6000.4 / 6000.5). They align by convention from 6.4 onward but are tracked in separate release notes. This document treats them as two axes; the Changelog page (<a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Changelog/Entities%201.4%20%E2%86%92%206.5%20Key%20Changes.md"><code>../Changelog/Entities 1.4 → 6.5 Key Changes.md</code></a>) does the same.</p>
 </blockquote>
 <hr>
 <h3>2. Recommended order</h3>
@@ -7735,7 +7735,7 @@ public struct EnemyVisual : IComponentData
 <td><code>TryGetRefRW</code> / <code>TryGetRefRO</code></td>
 </tr>
 </tbody></table>
-<p>Full changelog for the period is in <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Changelog/Entities%201.4%20%E2%86%92%206.5%20Key%20Changes.md"><code>../Changelog/Entities 1.4 → 6.5 Key Changes.md</code></a>.</p>
+<p>Full changelog for the period is in <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Changelog/Entities%201.4%20%E2%86%92%206.5%20Key%20Changes.md"><code>../Changelog/Entities 1.4 → 6.5 Key Changes.md</code></a>.</p>
 <hr>
 <h3>5. Backup strategy</h3>
 <p>Non-negotiable before starting:</p>
@@ -7754,24 +7754,24 @@ public struct EnemyVisual : IComponentData
 <li>Open the project in the new Editor — it will offer to upgrade <code>ProjectVersion.txt</code>. Accept.</li>
 <li>Let the initial import finish; expect warnings about deprecated APIs and missing packages. That&#39;s what the next steps fix.</li>
 </ul>
-<h4>6.2 Package cleanup → <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Migration/02_Package%20Manager%20%E2%86%92%20Core%20Package.md"><code>02_Package Manager → Core Package.md</code></a></h4>
+<h4>6.2 Package cleanup → <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/02_Package%20Manager%20%E2%86%92%20Core%20Package.md"><code>02_Package Manager → Core Package.md</code></a></h4>
 <ul>
 <li>Remove <code>com.unity.entities</code>, <code>com.unity.collections</code>, <code>com.unity.mathematics</code>, <code>com.unity.entities.graphics</code> from <code>manifest.json</code>.</li>
 <li>Delete <code>packages-lock.json</code> and let the Editor regenerate.</li>
 <li>Also remove Netcode for Entities if your project uses it (6.5 is a Core Package version).</li>
 </ul>
-<h4>6.3 Managed object references → <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Migration/03_Managed%20Object%20References%20%E2%86%92%20UnityObjectRef.md"><code>03_Managed Object References → UnityObjectRef.md</code></a></h4>
+<h4>6.3 Managed object references → <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/03_Managed%20Object%20References%20%E2%86%92%20UnityObjectRef.md"><code>03_Managed Object References → UnityObjectRef.md</code></a></h4>
 <ul>
 <li>Audit ECS-facing code for managed Unity object fields.</li>
 <li>Convert hot-path component data to unmanaged ECS data where possible.</li>
 <li>Use <code>UnityObjectRef&lt;T&gt;</code> for ECS-side references to Unity assets/objects.</li>
 <li>Use <code>BlobAssetReference&lt;T&gt;</code> for large immutable gameplay data.</li>
 </ul>
-<h4>6.4 Legacy ForEach → <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Migration/04_foreach%20%E2%86%92%20IJobEntity.md"><code>04_foreach → IJobEntity.md</code></a></h4>
+<h4>6.4 Legacy ForEach → <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/04_foreach%20%E2%86%92%20IJobEntity.md"><code>04_foreach → IJobEntity.md</code></a></h4>
 <ul>
 <li>For systems that still use <code>Entities.ForEach</code> / <code>Job.WithCode</code> — port to <code>IJobEntity</code> + <code>SystemAPI.Query</code>.</li>
 </ul>
-<h4>6.5 Aspect removal → <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Migration/05_IAspect%20Removal.md"><code>05_IAspect Removal.md</code></a></h4>
+<h4>6.5 Aspect removal → <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/05_IAspect%20Removal.md"><code>05_IAspect Removal.md</code></a></h4>
 <ul>
 <li>Inline aspect methods into the call site using <code>RefRW&lt;T&gt;</code> / <code>RefRO&lt;T&gt;</code> parameters.</li>
 <li>Delete the <code>IAspect</code> struct.</li>
@@ -8174,7 +8174,7 @@ public partial class ProjectileVisualUploadSystem : SystemBase
 <li><strong><code>SystemAPI.Query&lt;T, U, ...&gt;</code></strong> — main-thread iteration inside <code>OnUpdate</code>. Simple, no job overhead, ideal for small workloads or when you need managed APIs.</li>
 <li><strong><code>IJobEntity</code></strong> — source-generated parallel job. Drop-in if you&#39;re ready for multi-threaded work, which is where DOTS pays off.</li>
 </ul>
-<p>Background: <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/11_IJobEntity%20%C2%B7%20SystemAPI.Query.md"><code>../DOTS Workflows/11_IJobEntity · SystemAPI.Query.md</code></a>.</p>
+<p>Background: <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/11_IJobEntity%20%C2%B7%20SystemAPI.Query.md"><code>../DOTS Workflows/11_IJobEntity · SystemAPI.Query.md</code></a>.</p>
 <hr>
 <h3>3. Port — <code>Entities.ForEach</code> → <code>SystemAPI.Query</code></h3>
 <h4>3.1 Before</h4>
@@ -8296,7 +8296,7 @@ buffer.Dispose(state.Dependency);   // chained dispose replaces WithDisposeOnCom
 <p>If the original system had a genuine managed field (Input System, UI Toolkit, external service), you can&#39;t mechanically convert to <code>ISystem</code>. Two options:</p>
 <ol>
 <li><strong>Keep it as <code>SystemBase</code></strong> and use <code>SystemAPI.Query</code> inside <code>OnUpdate</code>. Single-threaded.</li>
-<li><strong>Split</strong> into a <code>SystemBase</code> that bridges the managed world and an <code>ISystem</code> that does the Burst work — see <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/08_System%20%E2%80%94%20ISystem%20vs%20SystemBase.md"><code>../DOTS Workflows/08_System — ISystem vs SystemBase.md</code></a>.</li>
+<li><strong>Split</strong> into a <code>SystemBase</code> that bridges the managed world and an <code>ISystem</code> that does the Burst work — see <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/08_System%20%E2%80%94%20ISystem%20vs%20SystemBase.md"><code>../DOTS Workflows/08_System — ISystem vs SystemBase.md</code></a>.</li>
 </ol>
 <hr>
 <h3>7. Validation</h3>
@@ -8592,7 +8592,7 @@ public partial struct AISystem : ISystem
 <td>Remove old Package Manager entries and let the Editor regenerate package resolution.</td>
 </tr>
 </tbody></table>
-<p>See <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Migration/02_Package%20Manager%20%E2%86%92%20Core%20Package.md"><code>../Migration/02_Package Manager → Core Package.md</code></a>.</p>
+<p>See <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/02_Package%20Manager%20%E2%86%92%20Core%20Package.md"><code>../Migration/02_Package Manager → Core Package.md</code></a>.</p>
 <hr>
 <h3>4. Entities 1.4.2</h3>
 <p>The official changelog history included with <code>com.unity.entities@6.5</code> lists 1.4.2 before the Core Package transition.</p>
@@ -9044,10 +9044,10 @@ public partial struct AISystem : ISystem
 <hr>
 <h3>4. Related docs</h3>
 <ul>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>../DOTS Workflows/16_Netcode Client-Server World &amp; Bootstrap.md</code></a></li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>../DOTS Workflows/18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a></li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>../DOTS Workflows/22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a></li>
-<li><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/24_Netcode%20Profiler%20&%20Debugging.md"><code>../DOTS Workflows/24_Netcode Profiler &amp; Debugging.md</code></a></li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>../DOTS Workflows/16_Netcode Client-Server World &amp; Bootstrap.md</code></a></li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>../DOTS Workflows/18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a></li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>../DOTS Workflows/22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a></li>
+<li><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/24_Netcode%20Profiler%20&%20Debugging.md"><code>../DOTS Workflows/24_Netcode Profiler &amp; Debugging.md</code></a></li>
 </ul>
 <hr>
 <h3>5. References</h3>
@@ -9071,27 +9071,27 @@ public partial struct AISystem : ISystem
 <tbody><tr>
 <td><strong>Entity</strong></td>
 <td>An opaque 64-bit ID (<code>struct Entity</code>, <code>Unity.Entities</code> namespace). No data, no behaviour — just a key used to look up components.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/03_ECS%20Core%20Concepts.md"><code>DOTS Workflows/03_ECS Core Concepts.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/03_ECS%20Core%20Concepts.md"><code>DOTS Workflows/03_ECS Core Concepts.md</code></a></td>
 </tr>
 <tr>
 <td><strong>Component</strong></td>
 <td>Data attached to an entity. Several kinds — see §2.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/05_Component%20Types.md"><code>DOTS Workflows/05_Component Types.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/05_Component%20Types.md"><code>DOTS Workflows/05_Component Types.md</code></a></td>
 </tr>
 <tr>
 <td><strong>Archetype</strong></td>
 <td>The set of component types an entity has. Entities with the same archetype share storage.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/03_ECS%20Core%20Concepts.md"><code>DOTS Workflows/03_ECS Core Concepts.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/03_ECS%20Core%20Concepts.md"><code>DOTS Workflows/03_ECS Core Concepts.md</code></a></td>
 </tr>
 <tr>
 <td><strong>Chunk</strong></td>
 <td>A 16 KB block of entities sharing an archetype. Components stored column-major (SoA) within the chunk.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Optimizations%20and%20Debugging/01_Chunk%20Layout%20&%20TypeManager.md"><code>Optimizations and Debugging/01_Chunk Layout &amp; TypeManager.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Optimizations%20and%20Debugging/01_Chunk%20Layout%20&%20TypeManager.md"><code>Optimizations and Debugging/01_Chunk Layout &amp; TypeManager.md</code></a></td>
 </tr>
 <tr>
 <td><strong>World</strong></td>
 <td>Container of entities and systems. The runtime starts with a &quot;Default World&quot;.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/03_ECS%20Core%20Concepts.md"><code>DOTS Workflows/03_ECS Core Concepts.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/03_ECS%20Core%20Concepts.md"><code>DOTS Workflows/03_ECS Core Concepts.md</code></a></td>
 </tr>
 </tbody></table>
 <hr>
@@ -9132,7 +9132,7 @@ public partial struct AISystem : ISystem
 <td>Component whose presence toggles via a per-chunk bitmask — <strong>no structural change</strong>.</td>
 </tr>
 </tbody></table>
-<p>Details: <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/05_Component%20Types.md"><code>DOTS Workflows/05_Component Types.md</code></a> · <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/06_Enableable%20Component.md"><code>DOTS Workflows/06_Enableable Component.md</code></a>.</p>
+<p>Details: <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/05_Component%20Types.md"><code>DOTS Workflows/05_Component Types.md</code></a> · <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/06_Enableable%20Component.md"><code>DOTS Workflows/06_Enableable Component.md</code></a>.</p>
 <hr>
 <h3>3. Systems and jobs</h3>
 <table>
@@ -9167,7 +9167,7 @@ public partial struct AISystem : ISystem
 <td>Static helper surface inside systems: <code>Query&lt;&gt;()</code>, <code>GetComponentLookup&lt;T&gt;()</code>, <code>Time</code>, <code>GetSingleton&lt;T&gt;()</code>, etc.</td>
 </tr>
 </tbody></table>
-<p>Details: <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/08_System%20%E2%80%94%20ISystem%20vs%20SystemBase.md"><code>DOTS Workflows/08_System — ISystem vs SystemBase.md</code></a> · <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/11_IJobEntity%20%C2%B7%20SystemAPI.Query.md"><code>DOTS Workflows/11_IJobEntity · SystemAPI.Query.md</code></a> · <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/12_IJobEntity%20vs%20IJobChunk.md"><code>DOTS Workflows/12_IJobEntity vs IJobChunk.md</code></a>.</p>
+<p>Details: <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/08_System%20%E2%80%94%20ISystem%20vs%20SystemBase.md"><code>DOTS Workflows/08_System — ISystem vs SystemBase.md</code></a> · <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/11_IJobEntity%20%C2%B7%20SystemAPI.Query.md"><code>DOTS Workflows/11_IJobEntity · SystemAPI.Query.md</code></a> · <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/12_IJobEntity%20vs%20IJobChunk.md"><code>DOTS Workflows/12_IJobEntity vs IJobChunk.md</code></a>.</p>
 <hr>
 <h3>4. Authoring → runtime</h3>
 <table>
@@ -9190,7 +9190,7 @@ public partial struct AISystem : ISystem
 <td>The baked asset produced from a SubScene — loaded into a World at runtime.</td>
 </tr>
 </tbody></table>
-<p>Details: <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/01_Baker%20Pattern%20&%20SubScene.md"><code>DOTS Workflows/01_Baker Pattern &amp; SubScene.md</code></a>.</p>
+<p>Details: <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/01_Baker%20Pattern%20&%20SubScene.md"><code>DOTS Workflows/01_Baker Pattern &amp; SubScene.md</code></a>.</p>
 <hr>
 <h3>5. Structural change safety</h3>
 <table>
@@ -9221,7 +9221,7 @@ public partial struct AISystem : ISystem
 <td>Integer passed to each parallel ECB command; <code>[ChunkIndexInQuery]</code> is the default.</td>
 </tr>
 </tbody></table>
-<p>Details: <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/13_Structural%20Change%20&%20Safety.md"><code>DOTS Workflows/13_Structural Change &amp; Safety.md</code></a> · <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/14_EntityCommandBuffer%20%C2%B7%20Deferred%20Entity.md"><code>DOTS Workflows/14_EntityCommandBuffer · Deferred Entity.md</code></a> · <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/15_ParallelWriter%20%C2%B7%20Deterministic%20Playback.md"><code>DOTS Workflows/15_ParallelWriter · Deterministic Playback.md</code></a>.</p>
+<p>Details: <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/13_Structural%20Change%20&%20Safety.md"><code>DOTS Workflows/13_Structural Change &amp; Safety.md</code></a> · <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/14_EntityCommandBuffer%20%C2%B7%20Deferred%20Entity.md"><code>DOTS Workflows/14_EntityCommandBuffer · Deferred Entity.md</code></a> · <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/15_ParallelWriter%20%C2%B7%20Deterministic%20Playback.md"><code>DOTS Workflows/15_ParallelWriter · Deterministic Playback.md</code></a>.</p>
 <hr>
 <h3>6. Entity reference types</h3>
 <p>These are the DOTS reference types used in ECS data and baking workflows.</p>
@@ -9245,7 +9245,7 @@ public partial struct AISystem : ISystem
 <td>ECS-side reference to a <code>UnityEngine.Object</code> — lets entities point at managed assets (materials, meshes) without boxing.</td>
 </tr>
 </tbody></table>
-<p>Details: <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/04_Entity%20References%20%E2%80%94%20Entity%20%C2%B7%20EntityPrefabReference%20%C2%B7%20UnityObjectRef.md"><code>DOTS Workflows/04_Entity References — Entity · EntityPrefabReference · UnityObjectRef.md</code></a>.</p>
+<p>Details: <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/04_Entity%20References%20%E2%80%94%20Entity%20%C2%B7%20EntityPrefabReference%20%C2%B7%20UnityObjectRef.md"><code>DOTS Workflows/04_Entity References — Entity · EntityPrefabReference · UnityObjectRef.md</code></a>.</p>
 <hr>
 <h3>7. Netcode for Entities</h3>
 <table>
@@ -9259,102 +9259,102 @@ public partial struct AISystem : ISystem
 <tbody><tr>
 <td>Netcode for Entities</td>
 <td>Unity&#39;s DOTS multiplayer netcode layer for server-authoritative games with client prediction.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>DOTS Workflows/16_Netcode Client-Server World &amp; Bootstrap.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>DOTS Workflows/16_Netcode Client-Server World &amp; Bootstrap.md</code></a></td>
 </tr>
 <tr>
 <td>Server World</td>
 <td>Authoritative ECS world that runs the server simulation and sends Ghost snapshots.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>DOTS Workflows/16_Netcode Client-Server World &amp; Bootstrap.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>DOTS Workflows/16_Netcode Client-Server World &amp; Bootstrap.md</code></a></td>
 </tr>
 <tr>
 <td>Client World</td>
 <td>ECS world that receives snapshots, sends commands, predicts local gameplay, and presents interpolated state.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>DOTS Workflows/16_Netcode Client-Server World &amp; Bootstrap.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>DOTS Workflows/16_Netcode Client-Server World &amp; Bootstrap.md</code></a></td>
 </tr>
 <tr>
 <td>Thin Client World</td>
 <td>Lightweight dummy client world used for testing load and connection behavior.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>DOTS Workflows/16_Netcode Client-Server World &amp; Bootstrap.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/16_Netcode%20Client-Server%20World%20&%20Bootstrap.md"><code>DOTS Workflows/16_Netcode Client-Server World &amp; Bootstrap.md</code></a></td>
 </tr>
 <tr>
 <td><code>NetworkStreamConnection</code></td>
 <td>Component on a connection entity that stores the transport connection handle.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>DOTS Workflows/17_Netcode Network Connection &amp; Approval.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>DOTS Workflows/17_Netcode Network Connection &amp; Approval.md</code></a></td>
 </tr>
 <tr>
 <td><code>NetworkId</code></td>
 <td>Server-assigned connection ID after approval.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>DOTS Workflows/17_Netcode Network Connection &amp; Approval.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>DOTS Workflows/17_Netcode Network Connection &amp; Approval.md</code></a></td>
 </tr>
 <tr>
 <td><code>NetworkStreamInGame</code></td>
 <td>Component that enables gameplay data exchange; without it, snapshots and commands do not flow.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>DOTS Workflows/17_Netcode Network Connection &amp; Approval.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/17_Netcode%20Network%20Connection%20&%20Approval.md"><code>DOTS Workflows/17_Netcode Network Connection &amp; Approval.md</code></a></td>
 </tr>
 <tr>
 <td>Ghost</td>
 <td>Server-authoritative networked entity replicated to clients through snapshots.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>DOTS Workflows/18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>DOTS Workflows/18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a></td>
 </tr>
 <tr>
 <td>Snapshot</td>
 <td>Serialized Ghost state sent from server to client, usually over unreliable transport.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>DOTS Workflows/18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>DOTS Workflows/18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a></td>
 </tr>
 <tr>
 <td><code>GhostField</code></td>
 <td>Attribute that marks a component field for Ghost serialization.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>DOTS Workflows/18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/18_Netcode%20Ghost%20Snapshot%20&%20Synchronization.md"><code>DOTS Workflows/18_Netcode Ghost Snapshot &amp; Synchronization.md</code></a></td>
 </tr>
 <tr>
 <td><code>PredictedGhost</code></td>
 <td>Component identifying Ghosts that participate in client prediction.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>DOTS Workflows/19_Netcode Prediction &amp; Rollback.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>DOTS Workflows/19_Netcode Prediction &amp; Rollback.md</code></a></td>
 </tr>
 <tr>
 <td><code>Simulate</code></td>
 <td>Enableable tag used by Netcode to mark which predicted entities should run on the current prediction tick.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>DOTS Workflows/19_Netcode Prediction &amp; Rollback.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/19_Netcode%20Prediction%20&%20Rollback.md"><code>DOTS Workflows/19_Netcode Prediction &amp; Rollback.md</code></a></td>
 </tr>
 <tr>
 <td><code>IInputComponentData</code></td>
 <td>High-level input component type with generated command-buffer management.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/20_Netcode%20Command%20Stream%20&%20Input.md"><code>DOTS Workflows/20_Netcode Command Stream &amp; Input.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/20_Netcode%20Command%20Stream%20&%20Input.md"><code>DOTS Workflows/20_Netcode Command Stream &amp; Input.md</code></a></td>
 </tr>
 <tr>
 <td><code>ICommandData</code></td>
 <td>Lower-level command stream type where tick mapping and buffer access are managed manually.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/20_Netcode%20Command%20Stream%20&%20Input.md"><code>DOTS Workflows/20_Netcode Command Stream &amp; Input.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/20_Netcode%20Command%20Stream%20&%20Input.md"><code>DOTS Workflows/20_Netcode Command Stream &amp; Input.md</code></a></td>
 </tr>
 <tr>
 <td><code>InputEvent</code></td>
 <td>One-shot input marker for events such as jump/fire that must register exactly once on the target tick.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/20_Netcode%20Command%20Stream%20&%20Input.md"><code>DOTS Workflows/20_Netcode Command Stream &amp; Input.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/20_Netcode%20Command%20Stream%20&%20Input.md"><code>DOTS Workflows/20_Netcode Command Stream &amp; Input.md</code></a></td>
 </tr>
 <tr>
 <td><code>IRpcCommand</code></td>
 <td>Reliable one-shot RPC message type.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/21_Netcode%20RPC.md"><code>DOTS Workflows/21_Netcode RPC.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/21_Netcode%20RPC.md"><code>DOTS Workflows/21_Netcode RPC.md</code></a></td>
 </tr>
 <tr>
 <td><code>IApprovalRpcCommand</code></td>
 <td>Special RPC type allowed during connection approval.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/21_Netcode%20RPC.md"><code>DOTS Workflows/21_Netcode RPC.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/21_Netcode%20RPC.md"><code>DOTS Workflows/21_Netcode RPC.md</code></a></td>
 </tr>
 <tr>
 <td>Ghost Importance</td>
 <td>Server-side priority score that decides which Ghosts fit into snapshot budget first.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>DOTS Workflows/22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>DOTS Workflows/22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a></td>
 </tr>
 <tr>
 <td>Ghost Relevancy</td>
 <td>Per-connection filtering that decides whether a Ghost should replicate to a specific client.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>DOTS Workflows/22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/22_Netcode%20Ghost%20Optimization%20%C2%B7%20Importance%20%C2%B7%20Relevancy.md"><code>DOTS Workflows/22_Netcode Ghost Optimization · Importance · Relevancy.md</code></a></td>
 </tr>
 <tr>
 <td>Lag Compensation</td>
 <td>Server-side lookup of historical collision worlds so it can validate client actions at the client&#39;s perceived time.</td>
-<td><a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/DOTS%20Workflows/23_Netcode%20Physics%20Integration%20&%20Lag%20Compensation.md"><code>DOTS Workflows/23_Netcode Physics Integration &amp; Lag Compensation.md</code></a></td>
+<td><a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/DOTS%20Workflows/23_Netcode%20Physics%20Integration%20&%20Lag%20Compensation.md"><code>DOTS Workflows/23_Netcode Physics Integration &amp; Lag Compensation.md</code></a></td>
 </tr>
 </tbody></table>
 <hr>
@@ -9370,17 +9370,17 @@ public partial struct AISystem : ISystem
 <tbody><tr>
 <td><code>Entities.ForEach</code></td>
 <td>Obsolete since 1.4; still compiles with warnings; removal planned for a future major release.</td>
-<td><code>SystemAPI.Query&lt;&gt;()</code> or <code>IJobEntity</code> — <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Migration/04_foreach%20%E2%86%92%20IJobEntity.md"><code>Migration/04_foreach → IJobEntity.md</code></a></td>
+<td><code>SystemAPI.Query&lt;&gt;()</code> or <code>IJobEntity</code> — <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/04_foreach%20%E2%86%92%20IJobEntity.md"><code>Migration/04_foreach → IJobEntity.md</code></a></td>
 </tr>
 <tr>
 <td><code>IAspect</code></td>
 <td>Obsolete since 1.4; still compiles with warnings; removal planned for a future major release.</td>
-<td>Direct component parameters (<code>RefRW&lt;T&gt;</code> / <code>RefRO&lt;T&gt;</code>) — <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Migration/05_IAspect%20Removal.md"><code>Migration/05_IAspect Removal.md</code></a></td>
+<td>Direct component parameters (<code>RefRW&lt;T&gt;</code> / <code>RefRO&lt;T&gt;</code>) — <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/05_IAspect%20Removal.md"><code>Migration/05_IAspect Removal.md</code></a></td>
 </tr>
 <tr>
 <td><code>ComponentLookup.GetRefRWOptional</code></td>
 <td>Obsolete.</td>
-<td><code>TryGetRefRW</code> — see <a href="https://github.com/luke-youngmin-cho/unity-dots-manual/blob/main/Migration/01_Entities%201.x%20%E2%86%92%206.5%20Overview.md"><code>Migration/01_Entities 1.x → 6.5 Overview.md</code></a></td>
+<td><code>TryGetRefRW</code> — see <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/01_Entities%201.x%20%E2%86%92%206.5%20Overview.md"><code>Migration/01_Entities 1.x → 6.5 Overview.md</code></a></td>
 </tr>
 </tbody></table>
 <hr>
@@ -9422,7 +9422,7 @@ public partial struct AISystem : ISystem
 </tr>
 </tbody></table>
 <h2>Source Repository</h2>
-<p>The editable source manual lives at <a href="https://github.com/luke-youngmin-cho/unity-dots-manual">github.com/luke-youngmin-cho/unity-dots-manual</a>.</p>
+<p>The editable source manual lives at <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction">github.com/luke-youngmin-cho/unity-dots-introduction</a>.</p>
 </main>
     <footer class="crawl-policy-footer">
       © Silly Tool Valley. Public reading and citation are allowed.
