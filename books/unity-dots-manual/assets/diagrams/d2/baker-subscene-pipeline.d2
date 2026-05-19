@@ -1,0 +1,19 @@
+# title: Baker and SubScene Pipeline
+direction: right
+authoring: "Authoring MonoBehaviour\nin SubScene" {
+  style.fill: "#ecfdf5"
+  style.stroke: "#22c55e"
+}
+baker: "Baker<T>\nBake authoring data" {
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+}
+entity: "Entity + Components\nbaked data" {
+  style.fill: "#eff6ff"
+  style.stroke: "#38bdf8"
+}
+entity_scene: "EntityScene asset\nserialized ECS world"
+runtime: "Runtime World\nloaded chunks"
+systems: "Systems\nquery and update"
+
+authoring -> baker -> entity -> entity_scene -> runtime -> systems

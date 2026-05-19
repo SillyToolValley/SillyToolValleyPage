@@ -1,0 +1,15 @@
+# title: System Group and Update Order
+direction: down
+init: "InitializationSystemGroup\nsetup and one-frame state"
+sim: "SimulationSystemGroup\ngameplay and ECS simulation" {
+  style.fill: "#ecfeff"
+  style.stroke: "#06b6d4"
+}
+fixed: "FixedStepSimulationSystemGroup\nfixed timestep work"
+end_sim: "EndSimulationEntityCommandBufferSystem\nplayback structural changes" {
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+}
+presentation: "PresentationSystemGroup\nrender-facing transforms"
+
+init -> sim -> fixed -> end_sim -> presentation

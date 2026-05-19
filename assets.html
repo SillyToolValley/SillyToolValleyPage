@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse Silly Tool Valley developer tools and game development assets.">
+    <meta name="robots" content="index, follow, noarchive">
+    <meta name="tdm-reservation" content="1">
+    <meta name="ai-training" content="disallow">
+    <meta name="ai-policy" content="Public reading and citation are allowed. Automated scraping, dataset inclusion, AI training, and AI answer ingestion are not permitted without written permission.">
+    <meta property="og:title" content="Catalog | Silly Tool Valley">
+    <meta property="og:description" content="Unity editor tools, AI workflow utilities, and game development assets.">
+    <meta property="og:image" content="images/uterminal/hero.png">
+    <meta property="og:type" content="website">
+    <title>Catalog | Silly Tool Valley</title>
+    <link rel="icon" type="image/png" href="Profile.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <nav class="site-nav" id="nav" aria-label="Primary navigation">
+        <div class="container nav-inner">
+            <a href="index.html" class="brand" aria-label="Silly Tool Valley home">
+                <img src="Profile.png" alt="" class="brand-mark">
+                <span>Silly Tool Valley</span>
+                <em>/ studio</em>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html">Home</a>
+                <a href="assets.html" class="is-active">Catalog</a>
+                <a href="ebooks.html">E-Book</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="https://github.com/SillyToolValley" class="nav-cta" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main">
+        <header class="page-header">
+            <div class="container">
+                <a href="index.html" class="back-link">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                    Back to home
+                </a>
+                <h1>Catalog</h1>
+                <p>Every tool we ship and every experiment that makes it far enough to deserve a page.</p>
+            </div>
+        </header>
+
+        <section class="catalog-shell section">
+            <div class="container catalog-layout">
+                <aside class="catalog-sidebar" aria-label="Catalog filters">
+                    <div class="sidebar-block">
+                        <h2>Categories</h2>
+                        <div class="sidebar-nav" id="categoryNav">
+                            <button class="sidebar-item is-active" type="button" data-category="all">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>
+                                All
+                                <span>1</span>
+                            </button>
+                            <button class="sidebar-item" type="button" data-category="gameengine">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/></svg>
+                                Game Engine
+                                <span>1</span>
+                            </button>
+                        </div>
+                        <div class="sidebar-subnav" id="engineSubnav">
+                            <button class="sub-filter" type="button" data-engine="unity">
+                                <span></span>
+                                Unity
+                                <em>1</em>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sidebar-block">
+                        <h2>Status</h2>
+                        <ul class="status-list">
+                            <li><span class="status-dot soon"></span>Coming soon</li>
+                            <li><span class="status-dot live"></span>Live</li>
+                            <li><span class="status-dot beta"></span>Beta</li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <div class="catalog-main">
+                    <div class="catalog-toolbar">
+                        <label class="search-box">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 19a8 8 0 1 1 5.65-2.35L21 21"/></svg>
+                            <input id="catalogSearch" type="search" placeholder="Search tools..." autocomplete="off">
+                            <button id="catalogSearchClear" class="search-clear" type="button" aria-label="Clear search">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                            </button>
+                        </label>
+                        <div class="view-toggle" aria-label="Catalog view">
+                            <button class="is-active" type="button" data-view="grid">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>
+                                Grid
+                            </button>
+                            <button type="button" data-view="list">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+                                List
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="catalog-meta">
+                        <span id="catalogCount" aria-live="polite">Showing 1 of 1 tools</span>
+                        <span>Sorted by most recent</span>
+                    </div>
+
+                    <div class="catalog-grid" id="catalogGrid">
+                        <article class="tool-card fade-in" data-category="gameengine" data-engine="unity" data-search="uterminal unity terminal ai mcp editor shell powershell bash conpty cli workflow">
+                            <a href="asset.html?id=uterminal" class="tool-card-cover" aria-label="Open UTerminal detail page"></a>
+                            <div class="tool-thumb">
+                                <img src="images/uterminal/hero.png" alt="">
+                                <span>UNITY / V1.0.0</span>
+                            </div>
+                            <div class="tool-body">
+                                <div class="card-meta">
+                                    <span class="pill pill-unity">unity</span>
+                                    <span class="status"><span class="status-dot soon"></span>coming soon</span>
+                                </div>
+                                <h2>UTerminal</h2>
+                                <p class="tool-sub">Real terminal for Unity Editor</p>
+                                <p>PowerShell, Bash, vim, Claude CLI, Codex CLI, and MCP workflows running inside a dockable Unity EditorWindow.</p>
+                            </div>
+                            <div class="tool-foot">
+                                <span>terminal / ai / mcp</span>
+                                <strong>Learn more</strong>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="empty-state" id="catalogEmpty" hidden>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 19a8 8 0 1 1 5.65-2.35L21 21"/></svg>
+                        <p>No tools match your filters.</p>
+                        <button class="btn btn-ghost btn-sm" type="button" id="resetFilters">Reset filters</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-main">
+            <div>
+                <a href="index.html" class="footer-brand">
+                    <img src="Profile.png" alt="">
+                    <span>Silly Tool Valley</span>
+                </a>
+                <p>A small studio shipping editor utilities and oddly specific dev tools.</p>
+            </div>
+            <div class="footer-cols">
+                <div>
+                    <h3>Site</h3>
+                    <a href="index.html">Home</a>
+                    <a href="assets.html">Catalog</a>
+                    <a href="ebooks.html">E-Book</a>
+                    <a href="index.html#about">About</a>
+                </div>
+                <div>
+                    <h3>Tools</h3>
+                    <a href="asset.html?id=uterminal">UTerminal</a>
+                    <a href="assets.html?cat=gameengine">Unity tools</a>
+                </div>
+                <div>
+                    <h3>Connect</h3>
+                    <a href="https://github.com/SillyToolValley" target="_blank" rel="noopener">GitHub</a>
+                    <a href="mailto:lukechodev@gmail.com">Email</a>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span>&copy; 2026 Silly Tool Valley</span>
+            <span>v1.0 / static build</span>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

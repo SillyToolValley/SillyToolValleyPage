@@ -1,0 +1,136 @@
+# title: Agent 보안은 위험한 능력 조합을 분리하는 일이다
+# subtitle: private data, untrusted content, external communication을 한 실행 경로에 모으지 않는다.
+
+grid-rows: 5
+grid-columns: 3
+horizontal-gap: 80
+vertical-gap: 58
+
+private: {
+  label: "Private data\n이메일, CRM, 고객 DB\nprivate repo, 사내 문서"
+  shape: rectangle
+  style.fill: "#eff6ff"
+  style.stroke: "#60a5fa"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+untrusted: {
+  label: "Untrusted content\n웹, 외부 메일\npublic issue, 업로드 PDF"
+  shape: rectangle
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+external: {
+  label: "External send\n메일, PR, Slack\nHTTP, 파일 업로드"
+  shape: rectangle
+  style.fill: "#fff1f2"
+  style.stroke: "#fb7185"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+blank-1: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+leak: {
+  label: "데이터 유출 경로\n간접 prompt injection + 과도한 권한"
+  shape: rectangle
+  style.fill: "#fff1f2"
+  style.stroke: "#f43f5e"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#be123c"
+}
+
+blank-2: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+separate: {
+  label: "분리:\n읽기 도구와 송신 도구를 분리"
+  shape: rectangle
+  style.fill: "#ecfeff"
+  style.stroke: "#22d3ee"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+blank-3: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+restrict: {
+  label: "제한:\negress allowlist, 승인, 감사 로그"
+  shape: rectangle
+  style.fill: "#f0fdf4"
+  style.stroke: "#4ade80"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+blank-4: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+question: {
+  label: "점검 질문: 이 agent가 내부 데이터를 읽고, 공격자가 만든 내용을 보고, 외부로 보낼 수 있는가?"
+  shape: text
+  style.font-size: 15
+  style.font-color: "#475569"
+}
+
+blank-5: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+private -> leak: "" {
+  style.stroke: "#475569"
+  style.stroke-width: 2
+}
+untrusted -> leak: "" {
+  style.stroke: "#475569"
+  style.stroke-width: 2
+}
+external -> leak: "" {
+  style.stroke: "#475569"
+  style.stroke-width: 2
+}
+leak -> separate: "" {
+  style.stroke: "#475569"
+  style.stroke-width: 2
+}
+leak -> restrict: "" {
+  style.stroke: "#475569"
+  style.stroke-width: 2
+}

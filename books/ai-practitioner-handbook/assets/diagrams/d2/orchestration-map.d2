@@ -1,0 +1,50 @@
+# title: 오케스트레이션은 실행 순서와 조건을 정하는 일이다
+# subtitle: 권한, 검색, 도구, 검증, 승인, 로그가 같은 흐름 안에 있어야 한다.
+
+grid-rows: 3
+grid-columns: 1
+vertical-gap: 24
+
+flow: {
+  label: "운영 흐름"
+  grid-columns: 5
+  horizontal-gap: 24
+  style.fill: "#f8fafc"
+  style.stroke: "#dbe3ef"
+  style.border-radius: 14
+  style.stroke-width: 2
+
+  request: { label: "요청\n사용자 입력"; shape: rectangle; style.fill: "#ffffff"; style.stroke: "#cbd5e1"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  auth: { label: "권한 확인\nrole, scope"; shape: rectangle; style.fill: "#eff6ff"; style.stroke: "#60a5fa"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  route: { label: "분류/라우팅\nworkflow 선택"; shape: rectangle; style.fill: "#f5f3ff"; style.stroke: "#a78bfa"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  retrieval: { label: "검색/도구\nRAG, API, DB"; shape: rectangle; style.fill: "#fff7ed"; style.stroke: "#fb923c"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  response: { label: "검증/응답\nschema/cite"; shape: rectangle; style.fill: "#f0fdf4"; style.stroke: "#4ade80"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+
+  request -> auth: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  auth -> route: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  route -> retrieval: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  retrieval -> response: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+}
+
+controls: {
+  label: "단계별 통제 지점"
+  grid-columns: 5
+  horizontal-gap: 24
+  style.fill: "#f8fafc"
+  style.stroke: "#dbe3ef"
+  style.border-radius: 14
+  style.stroke-width: 2
+
+  state: { label: "상태 관리\ntimeout, retry\ncheckpoint"; shape: rectangle; style.fill: "#eff6ff"; style.stroke: "#60a5fa"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  approval: { label: "승인 정책\n환불, 발송, 삭제\n사람 승인 필요"; shape: rectangle; style.fill: "#fff7ed"; style.stroke: "#fb923c"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  observability: { label: "관측성\ntrace, log, metric\n비용과 지연시간"; shape: rectangle; style.fill: "#ffffff"; style.stroke: "#cbd5e1"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  failure: { label: "실패 처리\nfallback\nescalation, cancel"; shape: rectangle; style.fill: "#ecfeff"; style.stroke: "#22d3ee"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  recovery: { label: "복구 경로\nrollback\naudit trail"; shape: rectangle; style.fill: "#f0fdf4"; style.stroke: "#4ade80"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+}
+
+question: {
+  label: "실무 질문: 다음 단계는 누가 결정하는가? 실패하면 어디로 가는가? 어떤 단계가 감사 로그에 남는가?"
+  shape: text
+  style.font-size: 15
+  style.font-color: "#475569"
+}

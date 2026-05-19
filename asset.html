@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UTerminal is a real terminal for Unity Editor with PTY support, persistent shell sessions, AI CLI workflows, and MCP integration.">
+    <meta name="robots" content="index, follow, noarchive">
+    <meta name="tdm-reservation" content="1">
+    <meta name="ai-training" content="disallow">
+    <meta name="ai-policy" content="Public reading and citation are allowed. Automated scraping, dataset inclusion, AI training, and AI answer ingestion are not permitted without written permission.">
+    <meta property="og:title" content="UTerminal | Silly Tool Valley">
+    <meta property="og:description" content="Real terminal sessions, AI CLIs, and MCP workflows inside Unity Editor.">
+    <meta property="og:image" content="images/uterminal/hero.png">
+    <meta property="og:type" content="website">
+    <title>UTerminal | Silly Tool Valley</title>
+    <link rel="icon" type="image/png" href="Profile.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <nav class="site-nav" id="nav" aria-label="Primary navigation">
+        <div class="container nav-inner">
+            <a href="index.html" class="brand" aria-label="Silly Tool Valley home">
+                <img src="Profile.png" alt="" class="brand-mark">
+                <span>Silly Tool Valley</span>
+                <em>/ studio</em>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html">Home</a>
+                <a href="assets.html" class="is-active">Catalog</a>
+                <a href="ebooks.html">E-Book</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="https://github.com/SillyToolValley" class="nav-cta" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main">
+        <header class="asset-hero">
+            <div class="container asset-hero-grid">
+                <div class="asset-hero-copy">
+                    <a href="assets.html" class="back-link">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                        Catalog
+                    </a>
+                    <div class="asset-title-row">
+                        <img src="images/uterminal/icon.png" alt="" class="asset-icon">
+                        <div class="card-meta">
+                            <span class="pill pill-unity">unity</span>
+                            <span class="status"><span class="status-dot soon"></span>coming soon</span>
+                            <span class="mono">v1.0.0</span>
+                        </div>
+                    </div>
+                    <h1>UTerminal</h1>
+                    <p class="asset-subtitle">Real terminal for Unity Editor</p>
+                    <p class="asset-lede">
+                        PowerShell, Bash, vim, Claude CLI, Codex CLI, and MCP-connected workflows running inside a dockable Unity EditorWindow with a real PTY backend.
+                    </p>
+                    <div class="asset-actions">
+                        <button class="btn btn-primary is-disabled" type="button" disabled>Coming soon on Asset Store</button>
+                        <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=aEw74kIf5lE" target="_blank" rel="noopener">
+                            Watch tutorial
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><path d="m9.75 15.02 5.75-3.27-5.75-3.27v6.54z"/></svg>
+                        </a>
+                    </div>
+                    <dl class="asset-facts">
+                        <div><dt>license</dt><dd>Asset Store EULA</dd></div>
+                        <div><dt>size</dt><dd>~5 MB</dd></div>
+                        <div><dt>min Unity</dt><dd>2021.3 LTS</dd></div>
+                        <div><dt>platforms</dt><dd>Windows, macOS, Linux</dd></div>
+                    </dl>
+                </div>
+                <div class="asset-hero-media">
+                    <img src="images/uterminal/hero.png" alt="UTerminal running Claude CLI inside a Unity editor window">
+                </div>
+            </div>
+        </header>
+
+        <nav class="subnav" aria-label="Asset sections">
+            <div class="container subnav-inner" id="subnav">
+                <a href="#overview" class="is-active">Overview</a>
+                <a href="#features">Highlights</a>
+                <a href="#profiles">Profiles</a>
+                <a href="#tutorials">Tutorials</a>
+                <a href="#changelog">Changelog</a>
+            </div>
+        </nav>
+
+        <section class="section" id="overview">
+            <div class="container">
+                <span class="section-num">01 / overview</span>
+                <h2>What it does.</h2>
+                <p class="block-lede">
+                    UTerminal brings a real terminal workflow into Unity. PowerShell, CMD, Bash, Zsh, Git Bash, WSL, and interactive TUI apps run in a dockable EditorWindow without leaving the project. Shell sessions survive Unity domain reloads, editor close, and even editor crashes because they live in a small project-local .NET server.
+                </p>
+                <div class="gallery-grid overview-gallery">
+                    <figure class="shot fade-in">
+                        <img src="images/uterminal/multi-shell.jpg" alt="Pick a shell or AI CLI profile from the plus menu">
+                        <figcaption>Pick a shell or AI CLI profile from the plus menu.</figcaption>
+                    </figure>
+                    <figure class="shot fade-in">
+                        <img src="images/uterminal/mcp-connected.png" alt="Codex CLI shows up as a connected MCP client in Unity">
+                        <figcaption>Codex CLI connected through MCP for Unity-aware workflows.</figcaption>
+                    </figure>
+                    <figure class="shot fade-in">
+                        <img src="images/uterminal/session-persist.png" alt="Editor close dialog for keeping sessions running">
+                        <figcaption>Keep terminal sessions running after closing the editor.</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt" id="features">
+            <div class="container">
+                <span class="section-num">02 / highlights</span>
+                <h2>Not a text box. A real terminal.</h2>
+                <div class="highlights-grid">
+                    <article class="highlight fade-in">
+                        <span>01</span>
+                        <h3>Real PTY terminal</h3>
+                        <p>ConPTY on Windows, Unix PTY on macOS and Linux. Shells behave like your OS terminal, not a command input field.</p>
+                    </article>
+                    <article class="highlight fade-in">
+                        <span>02</span>
+                        <h3>TUI apps run as-is</h3>
+                        <p>vim, nano, htop, git commit editors, Claude CLI, Codex CLI, and cursor-based apps work inside Unity.</p>
+                    </article>
+                    <article class="highlight fade-in">
+                        <span>03</span>
+                        <h3>Sessions outlive reloads</h3>
+                        <p>Domain reloads, editor close, and crashes do not wipe your shells, working directories, or long-running commands.</p>
+                    </article>
+                    <article class="highlight fade-in">
+                        <span>04</span>
+                        <h3>AI and MCP integration</h3>
+                        <p>Claude Code, Codex CLI, Cursor, Windsurf, Cline, and Copilot can participate through an MCP bridge and Unity-aware commands.</p>
+                    </article>
+                </div>
+
+                <div class="compare fade-in">
+                    <h3><span>Command console</span><em>vs.</em><span>UTerminal</span></h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Capability</th>
+                                    <th scope="col">Command console</th>
+                                    <th scope="col">UTerminal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Runs real shells</th>
+                                    <td>Usually no</td>
+                                    <td>PowerShell, CMD, Bash, Zsh, Git Bash, WSL</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Interactive TUI apps</th>
+                                    <td>Usually no</td>
+                                    <td>vim, nano, git editors, Claude CLI, Codex CLI</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Survives Unity domain reload</th>
+                                    <td>UI and state only</td>
+                                    <td>Shells, sessions, and tabs survive reloads and editor close</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ANSI and VT behavior</th>
+                                    <td>Limited</td>
+                                    <td>VT100/ANSI, alt screen, cursor modes, 256-color, TrueColor</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">AI integration</th>
+                                    <td>Not typical</td>
+                                    <td>MCP bridge, terminal session control, Unity-aware tools</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="profiles">
+            <div class="container profiles-grid">
+                <div>
+                    <span class="section-num">03 / profiles</span>
+                    <h2>Spin up a tab. Pick a profile. Run anything.</h2>
+                    <p class="block-lede">
+                        Each profile is a complete preset: executable path, arguments, environment variables, working directory, and color theme. Built-in profiles cover common shells; optional AI CLI presets handle Claude, Codex, and Gemini.
+                    </p>
+                    <ul class="check-list">
+                        <li>One-click new tab from the plus menu</li>
+                        <li>Duplicate, rename, export, and share profiles with your team</li>
+                        <li>Bypass-mode arguments for AI CLIs when your workflow needs them</li>
+                        <li>Per-profile color themes, including Dracula, Nord, Tokyo Night, and more</li>
+                    </ul>
+                </div>
+                <figure class="profiles-shot fade-in">
+                    <img src="images/uterminal/profiles.jpg" alt="UTerminal profile configuration screen with optional AI CLI presets">
+                    <figcaption>Optional AI CLI profile presets and custom terminal configuration.</figcaption>
+                </figure>
+            </div>
+
+            <div class="container">
+                <div class="profile-pill-box fade-in">
+                    <div>
+                        <strong>Shells</strong>
+                        <span>PowerShell</span><span>CMD</span><span>Bash</span><span>Zsh</span><span>Git Bash</span><span>WSL</span>
+                    </div>
+                    <div>
+                        <strong>AI CLIs</strong>
+                        <span>Claude CLI</span><span>Codex CLI</span><span>Gemini CLI</span>
+                    </div>
+                    <div>
+                        <strong>Customize</strong>
+                        <span>Any executable</span><span>Custom args</span><span>Env vars</span><span>Working dir</span>
+                    </div>
+                </div>
+                <aside class="note fade-in">
+                    <strong>Also:</strong> UTerminal includes a small <code>ut</code> CLI for Unity-aware scripting: refresh, compile, play mode, scenes, packages, tests, and builds from any shell.
+                </aside>
+            </div>
+        </section>
+
+        <section class="section section-alt" id="tutorials">
+            <div class="container">
+                <span class="section-num">04 / tutorials</span>
+                <h2>Watch the walkthrough.</h2>
+                <p class="block-lede">Click a clip to jump to that point in the video below.</p>
+                <div class="video-embed fade-in">
+                    <iframe
+                        id="tutorialPlayer"
+                        src="https://www.youtube-nocookie.com/embed/aEw74kIf5lE?rel=0&amp;enablejsapi=1"
+                        title="UTerminal tutorial"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <ul class="clip-list">
+                    <li class="fade-in"><button type="button" data-seek="0"><span>0:00</span><strong>Intro and overview</strong><em>What UTerminal is and how it fits next to Scene and Game views.</em></button></li>
+                    <li class="fade-in"><button type="button" data-seek="266"><span>4:26</span><strong>First-time setup</strong><em>Open the window, run one-click setup, and install companion tools.</em></button></li>
+                    <li class="fade-in"><button type="button" data-seek="158"><span>2:38</span><strong>Shells and AI CLI profiles</strong><em>Built-in profiles, optional AI CLIs, bypass args, and themes.</em></button></li>
+                    <li class="fade-in"><button type="button" data-seek="333"><span>5:33</span><strong>AI and MCP integration</strong><em>Detected MCP servers, Codex and Claude bypass, and focus guard.</em></button></li>
+                    <li class="fade-in"><button type="button" data-seek="510"><span>8:30</span><strong>Survives domain reloads</strong><em>Sessions survive recompiles and editor restarts.</em></button></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="changelog">
+            <div class="container">
+                <span class="section-num">05 / changelog</span>
+                <h2>What's changed.</h2>
+                <div class="changelog">
+                    <div class="changelog-row fade-in">
+                        <span>v1.0.0</span>
+                        <time datetime="2026">2026-Q2</time>
+                        <p><strong>Initial Asset Store release</strong> Multi-tab profiles, PTY backend, ANSI/VT rendering, project-local server, ut CLI, MCP bridge, and 22 color themes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-block">
+            <div class="container">
+                <h2>Currently in review.</h2>
+                <p>UTerminal is awaiting Asset Store review. Watch the tutorial or check back when it goes live.</p>
+                <div class="cta-actions">
+                    <button class="btn btn-primary is-disabled" type="button" disabled>Coming soon on Asset Store</button>
+                    <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=aEw74kIf5lE" target="_blank" rel="noopener">Watch tutorial</a>
+                    <a class="btn btn-ghost" href="assets.html">Back to catalog</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-main">
+            <div>
+                <a href="index.html" class="footer-brand">
+                    <img src="Profile.png" alt="">
+                    <span>Silly Tool Valley</span>
+                </a>
+                <p>A small studio shipping editor utilities and oddly specific dev tools.</p>
+            </div>
+            <div class="footer-cols">
+                <div>
+                    <h3>Site</h3>
+                    <a href="index.html">Home</a>
+                    <a href="assets.html">Catalog</a>
+                    <a href="ebooks.html">E-Book</a>
+                    <a href="index.html#about">About</a>
+                </div>
+                <div>
+                    <h3>Tools</h3>
+                    <a href="asset.html?id=uterminal">UTerminal</a>
+                    <a href="assets.html?cat=gameengine">Unity tools</a>
+                </div>
+                <div>
+                    <h3>Connect</h3>
+                    <a href="https://github.com/SillyToolValley" target="_blank" rel="noopener">GitHub</a>
+                    <a href="mailto:lukechodev@gmail.com">Email</a>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span>&copy; 2026 Silly Tool Valley</span>
+            <span>v1.0 / static build</span>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

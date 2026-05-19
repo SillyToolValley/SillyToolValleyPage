@@ -1,0 +1,32 @@
+# title: ECS Core Nouns
+direction: right
+entity: "Entity\njust an ID" {
+  style.fill: "#f8fafc"
+  style.stroke: "#64748b"
+}
+component: "Component\ndata only" {
+  style.fill: "#ecfdf5"
+  style.stroke: "#22c55e"
+}
+archetype: "Archetype\ncomponent signature" {
+  style.fill: "#eff6ff"
+  style.stroke: "#38bdf8"
+}
+chunk: "Chunk\n16 KB archetype block" {
+  style.fill: "#fefce8"
+  style.stroke: "#eab308"
+}
+world: "World\nentities + systems" {
+  style.fill: "#f5f3ff"
+  style.stroke: "#8b5cf6"
+}
+system: "System\nlogic over chunks" {
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+}
+
+entity -- component
+component -- archetype
+archetype -- chunk
+chunk -- world
+system -> world

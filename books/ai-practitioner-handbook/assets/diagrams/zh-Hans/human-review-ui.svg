@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">人工审核 UI 样机</title>
+  <desc id="desc">展示证据、置信度和审核人操作的审核控制台样机。</desc>
+  <style>
+    text {
+      font-family: "Noto Sans SC","Microsoft YaHei",Arial,sans-serif;
+      fill: #172033;
+      letter-spacing: 0;
+    }
+    .small { font-size: 15px; }
+    .body { font-size: 16px; }
+    .label { font-size: 15px; font-weight: 700; fill: #475569; }
+    .heading { font-size: 21px; font-weight: 800; fill: #0f172a; }
+    .title { font-size: 25px; font-weight: 800; fill: #0f172a; }
+    .muted { fill: #64748b; }
+    .card { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
+    .panel { fill: #f8fafc; stroke: #d8dee8; stroke-width: 1.2; }
+    .blue { fill: #e8f2ff; stroke: #7db2f0; }
+    .green { fill: #e9f8ef; stroke: #79c695; }
+    .amber { fill: #fff3d8; stroke: #e1b653; }
+    .red { fill: #ffe8e8; stroke: #ea8c8c; }
+    .button { fill: #f8fafc; stroke: #94a3b8; stroke-width: 1.2; }
+    .primary { fill: #1f6feb; stroke: #1f6feb; }
+    .primaryText { fill: #ffffff; font-size: 16px; font-weight: 800; }
+  </style>
+
+  <rect width="960" height="540" rx="0" fill="#eef4f9"/>
+  <rect x="32" y="28" width="896" height="484" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="32" y="28" width="896" height="58" rx="14" fill="#f8fafc"/>
+  <rect x="32" y="72" width="896" height="14" fill="#f8fafc"/>
+  <text x="56" y="64" class="title">人工审核控制台</text>
+  <rect x="688" y="44" width="108" height="28" rx="14" class="amber"/>
+  <text x="704" y="63" class="small" font-weight="700">中等风险</text>
+  <rect x="810" y="44" width="88" height="28" rx="14" class="green"/>
+  <text x="827" y="63" class="small" font-weight="700">待审核</text>
+
+  <rect x="52" y="108" width="190" height="352" rx="10" class="card"/>
+  <text x="72" y="142" class="heading">原始输入</text>
+  <rect x="72" y="162" width="150" height="62" rx="8" class="panel"/>
+  <text x="88" y="188" class="body">咨询摘要</text>
+  <text x="88" y="211" class="small muted">权限范围已确认</text>
+  <rect x="72" y="242" width="150" height="72" rx="8" class="panel"/>
+  <text x="88" y="268" class="body">用户问题</text>
+  <text x="88" y="291" class="small muted">政策条款请求</text>
+  <rect x="72" y="332" width="150" height="88" rx="8" class="panel"/>
+  <text x="88" y="358" class="body">近期相似案例</text>
+  <text x="88" y="382" class="small muted">case 1427</text>
+  <text x="88" y="404" class="small muted">case 1431</text>
+
+  <rect x="262" y="108" width="410" height="352" rx="10" class="card"/>
+  <text x="284" y="142" class="heading">模型回答草稿</text>
+  <rect x="284" y="162" width="366" height="60" rx="8" class="blue"/>
+  <text x="304" y="188" class="body">基于政策文档的适用范围，</text>
+  <text x="304" y="214" class="body">向坐席建议回答草稿。</text>
+
+  <text x="284" y="247" class="label">citation</text>
+  <rect x="360" y="227" width="96" height="30" rx="15" class="panel"/>
+  <text x="378" y="247" class="small" font-weight="700">[1] 政策</text>
+  <rect x="466" y="227" width="96" height="30" rx="15" class="panel"/>
+  <text x="484" y="247" class="small" font-weight="700">[2] 订单</text>
+
+  <text x="284" y="288" class="label">confidence</text>
+  <text x="592" y="288" class="label">0.72</text>
+  <rect x="284" y="304" width="340" height="12" rx="6" fill="#e2e8f0"/>
+  <rect x="284" y="304" width="245" height="12" rx="6" fill="#1f6feb"/>
+
+  <rect x="284" y="336" width="168" height="82" rx="8" class="green"/>
+  <text x="304" y="364" class="body" font-weight="800">证据 A</text>
+  <text x="304" y="388" class="small">政策文档 4.2</text>
+  <text x="304" y="410" class="small muted">page 12</text>
+  <rect x="466" y="336" width="168" height="82" rx="8" class="green"/>
+  <text x="486" y="364" class="body" font-weight="800">证据 B</text>
+  <text x="486" y="388" class="small">订单日志</text>
+  <text x="486" y="410" class="small muted">span 18-23</text>
+
+  <rect x="692" y="108" width="216" height="352" rx="10" class="card"/>
+  <text x="714" y="142" class="heading">审核人操作</text>
+  <rect x="714" y="164" width="172" height="58" rx="8" class="red"/>
+  <text x="734" y="188" class="body" font-weight="800">政策检查</text>
+  <text x="734" y="211" class="small">禁止自动发送</text>
+  <rect x="714" y="240" width="172" height="54" rx="8" class="amber"/>
+  <text x="734" y="264" class="body" font-weight="800">风险信号</text>
+  <text x="734" y="286" class="small">证据冲突 1 条</text>
+
+  <rect x="714" y="326" width="172" height="38" rx="8" class="primary"/>
+  <text x="772" y="351" class="primaryText">批准</text>
+  <rect x="714" y="376" width="172" height="38" rx="8" class="button"/>
+  <text x="754" y="401" class="body" font-weight="800">请求修改</text>
+  <rect x="714" y="426" width="172" height="38" rx="8" class="button"/>
+  <text x="752" y="451" class="body" font-weight="800">升级处理</text>
+</svg>

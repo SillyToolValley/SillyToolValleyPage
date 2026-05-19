@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse Silly Tool Valley E-books, field notes, and practical handbooks.">
+    <meta name="robots" content="index, follow, noarchive">
+    <meta name="tdm-reservation" content="1">
+    <meta name="ai-training" content="disallow">
+    <meta name="ai-policy" content="Public reading and citation are allowed. Automated scraping, dataset inclusion, AI training, and AI answer ingestion are not permitted without written permission.">
+    <meta property="og:title" content="E-Books | Silly Tool Valley">
+    <meta property="og:description" content="Practical E-books and field notes from Silly Tool Valley.">
+    <meta property="og:image" content="images/ebooks/ai-practitioner-handbook-en-cover.png">
+    <meta property="og:type" content="website">
+    <title>E-Books | Silly Tool Valley</title>
+    <link rel="icon" type="image/png" href="Profile.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <nav class="site-nav" id="nav" aria-label="Primary navigation">
+        <div class="container nav-inner">
+            <a href="index.html" class="brand" aria-label="Silly Tool Valley home">
+                <img src="Profile.png" alt="" class="brand-mark">
+                <span>Silly Tool Valley</span>
+                <em>/ studio</em>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html">Home</a>
+                <a href="assets.html">Catalog</a>
+                <a href="ebooks.html" class="is-active">E-Book</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="https://github.com/SillyToolValley" class="nav-cta" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main">
+        <header class="page-header">
+            <div class="container">
+                <a href="index.html" class="back-link">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                    Back to home
+                </a>
+                <h1>E-Book</h1>
+                <p>Practical books, field notes, and multilingual handbooks for developers, designers, and AI practitioners.</p>
+            </div>
+        </header>
+
+        <section class="catalog-shell section">
+            <div class="container catalog-layout">
+                <aside class="catalog-sidebar" aria-label="E-book filters">
+                    <div class="sidebar-block">
+                        <h2>Types</h2>
+                        <div class="sidebar-nav" id="categoryNav">
+                            <button class="sidebar-item is-active" type="button" data-category="all">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>
+                                All
+                                <span>2</span>
+                            </button>
+                            <button class="sidebar-item" type="button" data-category="ai">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18"/><path d="M7 7h10v10H7z"/></svg>
+                                AI Practice
+                                <span>1</span>
+                            </button>
+                            <button class="sidebar-item" type="button" data-category="unity">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                                Unity / Game Tech
+                                <span>1</span>
+                            </button>
+                            <button class="sidebar-item" type="button" data-category="workflow">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg>
+                                Workflow
+                                <span>0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sidebar-block">
+                        <h2>Formats</h2>
+                        <ul class="status-list">
+                            <li><span class="status-dot live"></span>Page reader</li>
+                            <li><span class="status-dot live"></span>PDF (in reader)</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-block">
+                        <h2>Languages</h2>
+                        <ul class="status-list">
+                            <li>English</li>
+                            <li>Korean</li>
+                            <li>Japanese</li>
+                            <li>Simplified Chinese</li>
+                            <li>Spanish</li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <div class="catalog-main">
+                    <section class="ebook-library" aria-label="E-Book Library">
+                        <div class="bookshelf-stage" id="bookshelfStage" aria-label="3D rotating E-book shelf" role="region" tabindex="0">
+                            <div class="bookshelf-topbar" aria-hidden="true">
+                                <span class="bookshelf-hint">scroll · drag · ← →</span>
+                            </div>
+                            <div class="bookshelf-row">
+                                <div class="bookshelf-ring" id="bookshelfRing"></div>
+                            </div>
+
+                            <article class="selected-book-slot" aria-live="polite">
+                                <div class="selected-info-head">
+                                    <div class="card-meta">
+                                        <span class="pill pill-unity">selected</span>
+                                        <span class="status" id="selectedBookMeta">AI / handbook / multilingual</span>
+                                    </div>
+                                    <h2 id="selectedBookTitle">A Shared Language for AI Practitioners</h2>
+                                    <p class="tool-sub" id="selectedBookSubtitle">Multilingual handbook for LLM-based AI work</p>
+                                </div>
+                                <div class="selected-info-body">
+                                    <p id="selectedBookSummary">A practical handbook for discussing LLM systems, agents, RAG, safety, and AI workflows with clearer shared terms.</p>
+                                    <div class="tag-row" id="selectedBookTags">
+                                        <span>LLM</span>
+                                        <span>RAG</span>
+                                        <span>Agents</span>
+                                        <span>AI Security</span>
+                                        <span>Workflow</span>
+                                    </div>
+                                </div>
+                                <div class="selected-book-actions">
+                                    <a id="selectedBookReader" href="books/ai-practitioner-handbook/reader.html?lang=en">Read Book</a>
+                                </div>
+                            </article>
+                        </div>
+
+                        <template id="ebookTemplates">
+                            <button class="library-book" type="button"
+                                data-book-id="ai-practitioner-handbook"
+                                data-title="A Shared Language for AI Practitioners"
+                                data-subtitle="Multilingual handbook for LLM-based AI work"
+                                data-summary="A practical handbook for discussing LLM systems, agents, RAG, safety, and AI workflows with clearer shared terms."
+                                data-meta="AI / handbook / multilingual"
+                                data-tags="LLM,RAG,Agents,AI Security,Workflow"
+                                data-cover="images/ebooks/ai-practitioner-handbook-en-cover.png"
+                                data-reader="books/ai-practitioner-handbook/reader.html?lang=en"
+                                data-spine-label="AI Practice"
+                                data-spine-gradient="linear-gradient(180deg, #2e4a72, #6a8fc1)"
+                                data-cover-tint="#cfd9e8"
+                                aria-label="Select A Shared Language for AI Practitioners">
+                                <span class="book-object" aria-hidden="true">
+                                    <span class="book-face book-front">
+                                        <img src="images/ebooks/ai-practitioner-handbook-en-cover.png" alt="">
+                                    </span>
+                                    <span class="book-face book-back">
+                                        <img src="images/ebooks/ai-practitioner-handbook-en-cover.png" alt="">
+                                    </span>
+                                    <span class="book-face book-spine"><span>AI Practice</span></span>
+                                    <span class="book-face book-pages"></span>
+                                    <span class="book-face book-top"></span>
+                                    <span class="book-face book-bottom"></span>
+                                </span>
+                                <span class="book-label">AI Practice</span>
+                            </button>
+                            <button class="library-book" type="button"
+                                data-book-id="unity-dots-manual"
+                                data-title="Unity DOTS Manual"
+                                data-subtitle="Entities 6.5 and Netcode field guide"
+                                data-summary="A practical book for Unity DOTS workflows: SubScene baking, ECS components, systems, jobs, EntityCommandBuffer, Netcode for Entities, optimization, debugging, and migration."
+                                data-meta="Unity / DOTS / handbook"
+                                data-tags="Unity,DOTS,ECS,Netcode,Entities 6.5"
+                                data-cover="images/ebooks/unity-dots-manual-cover.png"
+                                data-reader="books/unity-dots-manual/reader.html?lang=en"
+                                data-spine-label="Unity DOTS"
+                                data-spine-gradient="linear-gradient(180deg, #334a39, #6e946f)"
+                                data-cover-tint="#22272a"
+                                aria-label="Select Unity DOTS Manual">
+                                <span class="book-object" aria-hidden="true">
+                                    <span class="book-face book-front">
+                                        <img src="images/ebooks/unity-dots-manual-cover.png" alt="">
+                                    </span>
+                                    <span class="book-face book-back">
+                                        <img src="images/ebooks/unity-dots-manual-cover.png" alt="">
+                                    </span>
+                                    <span class="book-face book-spine"><span>Unity DOTS</span></span>
+                                    <span class="book-face book-pages"></span>
+                                    <span class="book-face book-top"></span>
+                                    <span class="book-face book-bottom"></span>
+                                </span>
+                                <span class="book-label">Unity DOTS</span>
+                            </button>
+                        </template>
+                    </section>
+
+                    <div class="catalog-toolbar">
+                        <label class="search-box">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 19a8 8 0 1 1 5.65-2.35L21 21"/></svg>
+                            <input id="catalogSearch" type="search" placeholder="Search E-books..." autocomplete="off">
+                            <button id="catalogSearchClear" class="search-clear" type="button" aria-label="Clear search">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                            </button>
+                        </label>
+                        <div class="view-toggle" aria-label="E-book view">
+                            <button class="is-active" type="button" data-view="grid">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>
+                                Grid
+                            </button>
+                            <button type="button" data-view="list">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+                                List
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="catalog-meta">
+                        <span id="catalogCount" aria-live="polite">Showing 2 of 2 books</span>
+                        <span>Sorted by most recent</span>
+                    </div>
+
+                    <div class="catalog-grid" id="catalogGrid" data-item-label="book" data-item-label-plural="books">
+                        <article class="tool-card ebook-card fade-in" data-book-id="ai-practitioner-handbook" data-category="ai" data-search="ai practitioner handbook shared language llm agent rag security workflow korean english japanese chinese spanish reader">
+                            <a href="books/ai-practitioner-handbook/reader.html?lang=en" class="tool-card-cover" aria-label="Open A Shared Language for AI Practitioners reader"></a>
+                            <div class="tool-thumb">
+                                <img src="images/ebooks/ai-practitioner-handbook-en-cover.png" alt="">
+                            </div>
+                            <div class="tool-body">
+                                <div class="card-meta">
+                                    <span class="pill pill-unity">ai practice</span>
+                                    <span class="status"><span class="status-dot live"></span>published</span>
+                                </div>
+                                <h2>A Shared Language for AI Practitioners</h2>
+                                <p class="tool-sub">Multilingual handbook for LLM-based AI work</p>
+                                <p>A practical handbook for discussing LLM systems, agents, RAG, safety, and AI workflows with clearer shared terms.</p>
+                                <div class="tag-row">
+                                    <span>ko/en/ja/zh/es</span>
+                                </div>
+                            </div>
+                            <div class="tool-foot">
+                                <span>AI / handbook / multilingual</span>
+                                <div class="ebook-actions">
+                                    <a href="books/ai-practitioner-handbook/reader.html?lang=en">Read Book</a>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="tool-card ebook-card fade-in" data-book-id="unity-dots-manual" data-category="unity" data-search="unity dots manual entities ecs netcode baker subscene jobs burst entity command buffer migration optimization debugging reader">
+                            <a href="books/unity-dots-manual/reader.html?lang=en" class="tool-card-cover" aria-label="Open Unity DOTS Manual reader"></a>
+                            <div class="tool-thumb">
+                                <img src="images/ebooks/unity-dots-manual-cover.png" alt="">
+                            </div>
+                            <div class="tool-body">
+                                <div class="card-meta">
+                                    <span class="pill pill-unity">unity</span>
+                                    <span class="status"><span class="status-dot live"></span>published</span>
+                                </div>
+                                <h2>Unity DOTS Manual</h2>
+                                <p class="tool-sub">Entities 6.5 and Netcode field guide</p>
+                                <p>A practical book for SubScene baking, ECS components, systems, jobs, EntityCommandBuffer, Netcode for Entities, optimization, debugging, and migration.</p>
+                                <div class="tag-row">
+                                    <span>ecs/netcode</span>
+                                </div>
+                            </div>
+                            <div class="tool-foot">
+                                <span>Unity / DOTS / handbook</span>
+                                <div class="ebook-actions">
+                                    <a href="books/unity-dots-manual/reader.html?lang=en">Read Book</a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="empty-state" id="catalogEmpty" hidden>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 19a8 8 0 1 1 5.65-2.35L21 21"/></svg>
+                        <p>No E-books match your filters.</p>
+                        <button class="btn btn-ghost btn-sm" type="button" id="resetFilters">Reset filters</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-main">
+            <div>
+                <a href="index.html" class="footer-brand">
+                    <img src="Profile.png" alt="">
+                    <span>Silly Tool Valley</span>
+                </a>
+                <p>A small studio shipping editor utilities and oddly specific dev tools.</p>
+            </div>
+            <div class="footer-cols">
+                <div>
+                    <h3>Site</h3>
+                    <a href="index.html">Home</a>
+                    <a href="assets.html">Catalog</a>
+                    <a href="ebooks.html">E-Book</a>
+                    <a href="index.html#about">About</a>
+                </div>
+                <div>
+                    <h3>Books</h3>
+                    <a href="ebooks.html?cat=ai">AI Practice</a>
+                    <a href="ebooks.html?cat=unity">Unity / Game Tech</a>
+                    <a href="books/ai-practitioner-handbook/reader.html?lang=en">AI Handbook reader</a>
+                    <a href="books/unity-dots-manual/reader.html?lang=en">Unity DOTS Manual reader</a>
+                </div>
+                <div>
+                    <h3>Connect</h3>
+                    <a href="https://github.com/SillyToolValley" target="_blank" rel="noopener">GitHub</a>
+                    <a href="mailto:lukechodev@gmail.com">Email</a>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span>&copy; 2026 Silly Tool Valley</span>
+            <span>v1.0 / static build</span>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

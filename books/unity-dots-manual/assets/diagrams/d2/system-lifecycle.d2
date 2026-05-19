@@ -1,0 +1,22 @@
+# title: System Lifecycle
+direction: down
+create: "OnCreate\nallocate lookups, require queries" {
+  style.fill: "#eff6ff"
+  style.stroke: "#38bdf8"
+}
+start: "First matching update\nrequirements satisfied" {
+  style.fill: "#ecfdf5"
+  style.stroke: "#22c55e"
+}
+update: "OnUpdate\nread/write ECS data" {
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+}
+schedule: "Schedule jobs\ncombine dependencies" {
+  style.fill: "#f5f3ff"
+  style.stroke: "#8b5cf6"
+}
+destroy: "OnDestroy\nrelease native resources"
+
+create -> start -> update -> schedule -> update
+update -> destroy: "world shutdown"

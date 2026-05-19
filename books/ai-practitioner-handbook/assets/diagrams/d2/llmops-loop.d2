@@ -1,0 +1,90 @@
+# title: LLMOps는 prompt, model, index, tool, eval을 함께 관리한다
+# subtitle: 실험, 평가, 배포, 관측, 피드백, 개선이 같은 운영 기준을 중심으로 돌아야 한다.
+
+grid-rows: 3
+grid-columns: 3
+horizontal-gap: 54
+vertical-gap: 34
+
+blank-1: { label: ""; width: 1; height: 1; style.opacity: 0 }
+eval_gate: {
+  label: "Eval gate\ngolden set, security"
+  shape: rectangle
+  style.fill: "#f0fdf4"
+  style.stroke: "#4ade80"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+deploy: {
+  label: "배포\ncanary, rollback"
+  shape: rectangle
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+experiment: {
+  label: "실험\nprompt, model, RAG"
+  shape: rectangle
+  style.fill: "#eff6ff"
+  style.stroke: "#60a5fa"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+criteria: {
+  label: "운영 기준\n품질 · 비용 · 지연\n보안 · 권한 · UX"
+  shape: circle
+  width: 170
+  height: 170
+  style.fill: "#f8fafc"
+  style.stroke: "#cbd5e1"
+  style.stroke-width: 2
+  style.font-size: 17
+  style.font-color: "#111827"
+}
+observe: {
+  label: "관측\ntrace, cost, incident"
+  shape: rectangle
+  style.fill: "#fdf2f8"
+  style.stroke: "#f9a8d4"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+improve: {
+  label: "개선\n문서, prompt, policy"
+  shape: rectangle
+  style.fill: "#f5f3ff"
+  style.stroke: "#a78bfa"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+feedback: {
+  label: "피드백\n사용자 수정, 실패 사례"
+  shape: rectangle
+  style.fill: "#ecfeff"
+  style.stroke: "#22d3ee"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+blank-2: { label: ""; width: 1; height: 1; style.opacity: 0 }
+
+experiment -> eval_gate: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+eval_gate -> deploy: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+deploy -> observe: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+observe -> feedback: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+feedback -> improve: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+improve -> experiment: "" { style.stroke: "#475569"; style.stroke-width: 2 }

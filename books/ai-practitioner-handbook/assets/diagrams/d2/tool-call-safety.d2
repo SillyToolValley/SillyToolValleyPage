@@ -1,0 +1,39 @@
+# title: 모델은 실행을 제안하고, 서버가 허가한다
+# subtitle: tool call은 모델 제안이 아니라 서버 검증, 권한 확인, 위험도 분기, 감사 로그로 실행한다.
+
+grid-rows: 4
+grid-columns: 5
+horizontal-gap: 28
+vertical-gap: 28
+
+request: { label: "사용자 요청\n주문 상태 조회"; shape: rectangle; style.fill: "#eff6ff"; style.stroke: "#60a5fa"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+proposal: { label: "모델 제안\ntool + arguments"; shape: rectangle; style.fill: "#f5f3ff"; style.stroke: "#a78bfa"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+validation: { label: "서버 검증\nschema, 인자, 범위"; shape: rectangle; style.fill: "#fff7ed"; style.stroke: "#fb923c"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+permission: { label: "권한 확인\n사용자와 리소스"; shape: rectangle; style.fill: "#f0fdf4"; style.stroke: "#4ade80"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+blank-1: { label: ""; width: 1; height: 1; style.opacity: 0 }
+
+blank-2: { label: ""; width: 1; height: 1; style.opacity: 0 }
+blank-3: { label: ""; width: 1; height: 1; style.opacity: 0 }
+blank-4: { label: ""; width: 1; height: 1; style.opacity: 0 }
+risk: { label: "위험도 분기\n조회 / 실행 / 외부 발송"; shape: rectangle; style.fill: "#fdf2f8"; style.stroke: "#f9a8d4"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+blank-5: { label: ""; width: 1; height: 1; style.opacity: 0 }
+
+low: { label: "낮은 위험 조회 실행\n읽기 전용, 제한된 결과\n감사 로그와 결과 범위 제한"; shape: rectangle; style.fill: "#ecfeff"; style.stroke: "#22d3ee"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+blank-6: { label: ""; width: 1; height: 1; style.opacity: 0 }
+blank-7: { label: ""; width: 1; height: 1; style.opacity: 0 }
+approval: { label: "Human approval\n고위험 실행 전 승인"; shape: rectangle; style.fill: "#fff7ed"; style.stroke: "#fb923c"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+blank-8: { label: ""; width: 1; height: 1; style.opacity: 0 }
+
+ban: { label: "금지:\n모델 제안만으로 실행하지 않는다."; shape: rectangle; style.fill: "#fff1f2"; style.stroke: "#fb7185"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#be123c" }
+blank-9: { label: ""; width: 1; height: 1; style.opacity: 0 }
+blank-10: { label: ""; width: 1; height: 1; style.opacity: 0 }
+audit: { label: "실행 + 감사\nidempotency"; shape: rectangle; style.fill: "#f8fafc"; style.stroke: "#cbd5e1"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+blank-11: { label: ""; width: 1; height: 1; style.opacity: 0 }
+
+request -> proposal: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+proposal -> validation: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+validation -> permission: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+permission -> risk: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+risk -> low: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+risk -> approval: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+approval -> audit: "" { style.stroke: "#475569"; style.stroke-width: 2 }

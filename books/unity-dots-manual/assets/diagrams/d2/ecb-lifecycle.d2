@@ -1,0 +1,18 @@
+# title: EntityCommandBuffer Lifecycle
+direction: right
+record: "Record commands\nmain thread or jobs" {
+  style.fill: "#eff6ff"
+  style.stroke: "#38bdf8"
+}
+deferred: "Deferred entities\nplaceholder handles"
+sort: "ParallelWriter sortKey\ndeterministic merge" {
+  style.fill: "#f5f3ff"
+  style.stroke: "#8b5cf6"
+}
+playback: "Playback\nstructural changes run" {
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+}
+destroy: "Dispose\ncommands released"
+
+record -> deferred -> sort -> playback -> destroy

@@ -1,0 +1,124 @@
+# title: 하네스는 모델 주변의 실행 환경과 통제 장치다
+# subtitle: 프롬프트만으로는 부족하다. 도구, 권한, 검증, 관측, 평가가 함께 묶여야 한다.
+
+grid-rows: 4
+grid-columns: 3
+horizontal-gap: 34
+vertical-gap: 26
+
+context: {
+  label: "Context Layer\nRAG, memory, 권한 필터"
+  shape: rectangle
+  style.fill: "#eff6ff"
+  style.stroke: "#60a5fa"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+model_interface: {
+  label: "Model Interface\nadapter, routing"
+  shape: rectangle
+  style.fill: "#f5f3ff"
+  style.stroke: "#a78bfa"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+tool: {
+  label: "Tool Layer\n업무 API, DB, 브라우저"
+  shape: rectangle
+  style.fill: "#f0fdf4"
+  style.stroke: "#4ade80"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+permission: {
+  label: "Permission Layer\nRBAC, 승인, allowlist"
+  shape: rectangle
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+core: {
+  label: "LLM / Agent\n작업 수행 핵심"
+  shape: rectangle
+  style.fill: "#0f172a"
+  style.stroke: "#0f172a"
+  style.border-radius: 14
+  style.stroke-width: 2
+  style.font-size: 19
+  style.font-color: "#ffffff"
+}
+validation: {
+  label: "Validation Layer\nschema, policy, test"
+  shape: rectangle
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+blank-1: { label: ""; width: 1; height: 1; style.opacity: 0 }
+execution: {
+  label: "Execution Layer\nsandbox, retry, timeout"
+  shape: rectangle
+  style.fill: "#ecfeff"
+  style.stroke: "#22d3ee"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+blank-2: { label: ""; width: 1; height: 1; style.opacity: 0 }
+
+observability: {
+  label: "Observability\ntrace, cost, latency"
+  shape: rectangle
+  style.fill: "#f8fafc"
+  style.stroke: "#94a3b8"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+evaluation: {
+  label: "Evaluation\ngolden set, simulation"
+  shape: rectangle
+  style.fill: "#f8fafc"
+  style.stroke: "#94a3b8"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+feedback: {
+  label: "Feedback\nprompt, 문서, rule 개선"
+  shape: rectangle
+  style.fill: "#f8fafc"
+  style.stroke: "#94a3b8"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+context -> core: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+model_interface -> core: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+tool -> core: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+permission -> core: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+core -> validation: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+core -> execution: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+execution -> evaluation: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+observability -> evaluation: "" { style.stroke: "#64748b"; style.stroke-width: 2; style.stroke-dash: 6 }
+evaluation -> feedback: "" { style.stroke: "#64748b"; style.stroke-width: 2; style.stroke-dash: 6 }
+feedback -> validation: "" { style.stroke: "#64748b"; style.stroke-width: 2; style.stroke-dash: 6 }

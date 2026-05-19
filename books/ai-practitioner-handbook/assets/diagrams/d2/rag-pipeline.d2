@@ -1,0 +1,61 @@
+# title: RAG는 색인 시간과 질의 시간을 분리한다
+# subtitle: 색인은 검색 가능한 근거를 준비하고, 질의는 권한 안에서 근거를 찾아 답변한다.
+
+grid-rows: 3
+grid-columns: 1
+vertical-gap: 24
+
+indexing: {
+  label: "색인 시간: 문서를 검색 가능한 근거로 준비"
+  grid-columns: 5
+  horizontal-gap: 24
+  style.fill: "#f8fafc"
+  style.stroke: "#dbe3ef"
+  style.border-radius: 14
+  style.stroke-width: 2
+
+  collect: { label: "문서 수집\nsource, owner"; shape: rectangle; style.fill: "#eff6ff"; style.stroke: "#60a5fa"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  parse: { label: "정제/파싱\n표, OCR"; shape: rectangle; style.fill: "#f0fdf4"; style.stroke: "#4ade80"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  chunk: { label: "Chunking\n문단, 조항"; shape: rectangle; style.fill: "#fff7ed"; style.stroke: "#fb923c"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  metadata: { label: "Metadata\n권한, 버전"; shape: rectangle; style.fill: "#f8fafc"; style.stroke: "#cbd5e1"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  index: { label: "Index\nvector + keyword\n최신 index 사용"; shape: rectangle; style.fill: "#f5f3ff"; style.stroke: "#a78bfa"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+
+  collect -> parse: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  parse -> chunk: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  chunk -> metadata: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  metadata -> index: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+}
+
+querying: {
+  label: "질의 시간: 권한 안에서 근거를 찾고 답변한다"
+  grid-columns: 6
+  horizontal-gap: 22
+  style.fill: "#f8fafc"
+  style.stroke: "#dbe3ef"
+  style.border-radius: 14
+  style.stroke-width: 2
+
+  question: { label: "질문\nintent"; shape: rectangle; style.fill: "#eff6ff"; style.stroke: "#60a5fa"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  query: { label: "Query plan\nrewrite, filter"; shape: rectangle; style.fill: "#fff7ed"; style.stroke: "#fb923c"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  permission: { label: "권한 검색\nhybrid, top-k"; shape: rectangle; style.fill: "#ecfeff"; style.stroke: "#22d3ee"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  rerank: { label: "Rerank\n후보 정렬"; shape: rectangle; style.fill: "#fdf2f8"; style.stroke: "#f9a8d4"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  context: { label: "Context\n근거 압축"; shape: rectangle; style.fill: "#f8fafc"; style.stroke: "#cbd5e1"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+  answer: { label: "답변\n출처"; shape: rectangle; style.fill: "#f0fdf4"; style.stroke: "#4ade80"; style.border-radius: 12; style.stroke-width: 2; style.font-size: 17; style.font-color: "#111827" }
+
+  question -> query: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  query -> permission: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  permission -> rerank: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  rerank -> context: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  context -> answer: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+}
+
+eval: {
+  label: "Eval: recall, groundedness, citation"
+  shape: rectangle
+  style.fill: "#ffffff"
+  style.stroke: "#cbd5e1"
+  style.border-radius: 10
+  style.stroke-width: 1
+  style.font-size: 15
+  style.font-color: "#475569"
+}

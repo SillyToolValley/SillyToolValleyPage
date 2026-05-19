@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow, noarchive">
+    <meta name="tdm-reservation" content="1">
+    <meta name="ai-training" content="disallow">
+    <meta name="ai-policy" content="Public reading and citation are allowed. Automated scraping, dataset inclusion, AI training, and AI answer ingestion are not permitted without written permission.">
+    <title>AI Practitioner Handbook Reader</title>
+    <style>
+      :root {
+        --bg: #e7edf5;
+        --panel: #ffffff;
+        --ink: #1f2328;
+        --muted: #64748b;
+        --line: #cbd5e1;
+        --accent: #1f6feb;
+        --accent-dark: #174ea6;
+        --page-shadow: 0 18px 45px rgba(15, 23, 42, 0.2);
+        color-scheme: light;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: linear-gradient(180deg, #f7f9fc, var(--bg));
+        color: var(--ink);
+        font-family: "Segoe UI", "Malgun Gothic", Arial, sans-serif;
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      button {
+        min-height: 36px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        color: var(--ink);
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      button:hover:not(:disabled),
+      select:hover,
+      input:hover {
+        border-color: var(--accent);
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.45;
+      }
+
+      select,
+      input[type="number"] {
+        min-height: 36px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        color: var(--ink);
+      }
+
+      .app {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.55);
+        background: rgba(248, 250, 252, 0.92);
+        backdrop-filter: blur(14px);
+      }
+
+      .toolbar.collapsed {
+        background: transparent;
+        border-bottom-color: transparent;
+        backdrop-filter: none;
+      }
+
+      .toolbar.collapsed .toolbar-inner {
+        display: none;
+      }
+
+      .toolbar-toggle {
+        position: fixed;
+        top: 10px;
+        right: 14px;
+        z-index: 30;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 30px;
+        height: 30px;
+        width: 44px;
+        padding: 0;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+      }
+
+      .toolbar-toggle:hover {
+        border-color: var(--accent);
+      }
+
+      .page-nav {
+        position: fixed;
+        top: 50%;
+        z-index: 25;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 84px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: none;
+        border-radius: 14px;
+        background: rgba(100, 116, 139, 0.22);
+        color: rgba(255, 255, 255, 0.92);
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1;
+        cursor: pointer;
+        transition: background 0.15s ease, opacity 0.15s ease;
+      }
+
+      .page-nav:hover:not(:disabled) {
+        background: rgba(71, 85, 105, 0.55);
+      }
+
+      .page-nav:disabled {
+        opacity: 0.22;
+        cursor: not-allowed;
+      }
+
+      .page-nav-prev {
+        left: 10px;
+      }
+
+      .page-nav-next {
+        right: 10px;
+      }
+
+      @media (max-width: 560px) {
+        .page-nav {
+          width: 36px;
+          height: 64px;
+          font-size: 24px;
+        }
+      }
+
+      .toolbar-inner {
+        width: min(1280px, calc(100% - 28px));
+        margin: 0 auto;
+        padding: 12px 0;
+        display: grid;
+        grid-template-columns: minmax(220px, 1fr) auto;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .title-block {
+        min-width: 0;
+      }
+
+      .title {
+        margin: 0;
+        overflow: hidden;
+        font-size: 17px;
+        line-height: 1.3;
+        letter-spacing: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .subtitle {
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .control-group {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px;
+        border: 1px solid rgba(203, 213, 225, 0.8);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.7);
+      }
+
+      .segmented button {
+        min-width: 72px;
+        border-color: transparent;
+        background: transparent;
+      }
+
+      .segmented button[aria-pressed="true"] {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .page-input {
+        width: 74px;
+        padding: 0 8px;
+        text-align: center;
+      }
+
+      .page-total {
+        min-width: 54px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .zoom {
+        width: 116px;
+        accent-color: var(--accent);
+      }
+
+      .link-button {
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        color: var(--accent-dark);
+        font-size: 13px;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .reader {
+        min-width: 0;
+        overflow: auto;
+      }
+
+      .stage {
+        min-height: calc(100vh - 86px);
+        padding: 28px 18px 44px;
+        display: flex;
+        justify-content: safe center;
+        align-items: flex-start;
+      }
+
+      .spread {
+        display: flex;
+        gap: 22px;
+        align-items: flex-start;
+        justify-content: center;
+        flex-wrap: nowrap;
+      }
+
+      .page-shell {
+        min-width: 0;
+      }
+
+      .page-label {
+        margin: 0 0 8px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        text-align: center;
+      }
+
+      canvas {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 3px;
+        background: #fff;
+        box-shadow: var(--page-shadow);
+      }
+
+      .status {
+        width: min(860px, calc(100% - 28px));
+        margin: 42px auto;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--muted);
+        line-height: 1.7;
+        text-align: center;
+      }
+
+      .status strong {
+        color: var(--ink);
+      }
+
+      @media (max-width: 920px) {
+        .toolbar-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .controls {
+          justify-content: flex-start;
+        }
+
+        .spread.double {
+          flex-wrap: wrap;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .toolbar-inner {
+          width: min(100% - 18px, 1280px);
+        }
+
+        .control-group {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .control-group.language {
+          justify-content: stretch;
+        }
+
+        .control-group.language select {
+          width: 100%;
+        }
+
+        .link-button {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .stage {
+          padding: 18px 8px 34px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header class="toolbar" id="toolbar">
+        <div class="toolbar-inner">
+          <div class="title-block">
+            <h1 class="title" id="bookTitle">AI Practitioner Handbook Reader</h1>
+            <div class="subtitle" id="statusText" aria-live="polite">PDF 페이지를 불러오는 중입니다.</div>
+          </div>
+
+          <div class="controls" aria-label="Reader controls">
+            <div class="control-group language">
+              <select id="languageSelect" aria-label="Language">
+                <option value="ko">한국어</option>
+                <option value="en">English</option>
+                <option value="ja">日本語</option>
+                <option value="zh-Hans">简体中文</option>
+                <option value="es">Español</option>
+              </select>
+            </div>
+
+            <div class="control-group segmented" aria-label="View mode">
+              <button type="button" id="singleMode" aria-pressed="true">1 page</button>
+              <button type="button" id="doubleMode" aria-pressed="false">2 pages</button>
+            </div>
+
+            <div class="control-group" aria-label="Page navigation">
+              <button type="button" id="prevPage" aria-label="Previous page">‹</button>
+              <input class="page-input" id="pageNumber" type="number" min="1" value="1" aria-label="Current page">
+              <span class="page-total" id="pageTotal">/ 0</span>
+              <button type="button" id="nextPage" aria-label="Next page">›</button>
+            </div>
+
+            <div class="control-group" aria-label="Zoom">
+              <input class="zoom" id="zoomRange" type="range" min="80" max="180" step="10" value="100" aria-label="Zoom">
+              <span id="zoomLabel">100%</span>
+            </div>
+
+            <a class="link-button" id="pdfLink" href="en/ai-practitioner-handbook.pdf">PDF</a>
+          </div>
+        </div>
+      </header>
+
+      <button class="toolbar-toggle" id="toolbarToggle" type="button" aria-label="툴바 접기/펴기" aria-expanded="true" title="툴바 접기/펴기">▴</button>
+      <button class="page-nav page-nav-prev" id="pageNavPrev" type="button" aria-label="이전 페이지" title="이전 페이지">‹</button>
+      <button class="page-nav page-nav-next" id="pageNavNext" type="button" aria-label="다음 페이지" title="다음 페이지">›</button>
+
+      <main class="reader">
+        <div class="stage" id="stage">
+          <div class="spread single" id="spread"></div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module">
+      import * as pdfjsLib from "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.mjs";
+
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.mjs";
+
+      const books = {
+        ko: {
+          title: "AI 실무자를 위한 공통 언어",
+          nativeName: "한국어",
+          pdf: "ko/ai-practitioner-handbook.pdf",
+        },
+        en: {
+          title: "A Shared Language for AI Practitioners",
+          nativeName: "English",
+          pdf: "en/ai-practitioner-handbook.pdf",
+        },
+        ja: {
+          title: "AI実務者のための共通言語",
+          nativeName: "日本語",
+          pdf: "ja/ai-practitioner-handbook.pdf",
+        },
+        "zh-Hans": {
+          title: "AI 从业者的共同语言",
+          nativeName: "简体中文",
+          pdf: "zh-Hans/ai-practitioner-handbook.pdf",
+        },
+        es: {
+          title: "Un lenguaje común para profesionales de IA",
+          nativeName: "Español",
+          pdf: "es/ai-practitioner-handbook.pdf",
+        },
+      };
+
+      const elements = {
+        title: document.querySelector("#bookTitle"),
+        status: document.querySelector("#statusText"),
+        language: document.querySelector("#languageSelect"),
+        singleMode: document.querySelector("#singleMode"),
+        doubleMode: document.querySelector("#doubleMode"),
+        prev: document.querySelector("#prevPage"),
+        next: document.querySelector("#nextPage"),
+        pageNumber: document.querySelector("#pageNumber"),
+        pageTotal: document.querySelector("#pageTotal"),
+        zoomRange: document.querySelector("#zoomRange"),
+        zoomLabel: document.querySelector("#zoomLabel"),
+        pdfLink: document.querySelector("#pdfLink"),
+        stage: document.querySelector("#stage"),
+        spread: document.querySelector("#spread"),
+        reader: document.querySelector(".reader"),
+        toolbar: document.querySelector("#toolbar"),
+        toolbarToggle: document.querySelector("#toolbarToggle"),
+        pageNavPrev: document.querySelector("#pageNavPrev"),
+        pageNavNext: document.querySelector("#pageNavNext"),
+      };
+
+      const setToolbarCollapsed = (collapsed) => {
+        elements.toolbar.classList.toggle("collapsed", collapsed);
+        elements.toolbarToggle.textContent = collapsed ? "▾" : "▴";
+        elements.toolbarToggle.setAttribute("aria-expanded", String(!collapsed));
+        try {
+          localStorage.setItem("reader.toolbarCollapsed", collapsed ? "1" : "0");
+        } catch (error) {}
+      };
+
+      const centerScrollSpread = () => {
+        if (!elements.reader) return;
+        const overflow = elements.reader.scrollWidth - elements.reader.clientWidth;
+        if (overflow > 0) {
+          elements.reader.scrollLeft = overflow / 2;
+        }
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      let currentLang = books[params.get("lang")] ? params.get("lang") : "en";
+      let viewMode = params.get("view") === "double" ? "double" : "single";
+      let pageNumber = Number.parseInt(params.get("page") || "1", 10);
+      let zoom = Number.parseFloat(params.get("zoom") || "1");
+      let pdfDocument = null;
+      let renderToken = 0;
+
+      if (!Number.isFinite(pageNumber) || pageNumber < 1) {
+        pageNumber = 1;
+      }
+
+      if (!Number.isFinite(zoom) || zoom < 0.8 || zoom > 1.8) {
+        zoom = 1;
+      }
+
+      const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+      const setStatus = (message) => {
+        elements.status.textContent = message;
+      };
+
+      const setBusy = (busy) => {
+        const prevDisabled = busy || !pdfDocument || pageNumber <= 1;
+        const nextDisabled = busy || !pdfDocument || pageNumber >= pdfDocument.numPages;
+        elements.prev.disabled = prevDisabled;
+        elements.next.disabled = nextDisabled;
+        elements.pageNavPrev.disabled = prevDisabled;
+        elements.pageNavNext.disabled = nextDisabled;
+        elements.pageNumber.disabled = busy || !pdfDocument;
+        elements.language.disabled = busy;
+        elements.singleMode.disabled = busy;
+        elements.doubleMode.disabled = busy;
+      };
+
+      const updateModeButtons = () => {
+        elements.singleMode.setAttribute("aria-pressed", String(viewMode === "single"));
+        elements.doubleMode.setAttribute("aria-pressed", String(viewMode === "double"));
+        elements.spread.className = `spread ${viewMode}`;
+      };
+
+      const updateUrl = () => {
+        const nextParams = new URLSearchParams({
+          lang: currentLang,
+          page: String(pageNumber),
+          view: viewMode,
+        });
+        if (zoom !== 1) {
+          nextParams.set("zoom", zoom.toFixed(1));
+        }
+        window.history.replaceState(null, "", `${window.location.pathname}?${nextParams.toString()}`);
+      };
+
+      const visiblePages = () => {
+        if (!pdfDocument) {
+          return [];
+        }
+        const pages = [pageNumber];
+        if (viewMode === "double" && pageNumber < pdfDocument.numPages && window.innerWidth > 920) {
+          pages.push(pageNumber + 1);
+        }
+        return pages;
+      };
+
+      const renderPage = async (pageIndex, token) => {
+        const page = await pdfDocument.getPage(pageIndex);
+        if (token !== renderToken) {
+          return;
+        }
+
+        const shell = document.createElement("section");
+        shell.className = "page-shell";
+        shell.setAttribute("aria-label", `Page ${pageIndex}`);
+
+        const label = document.createElement("p");
+        label.className = "page-label";
+        label.textContent = `Page ${pageIndex}`;
+        shell.append(label);
+
+        const canvas = document.createElement("canvas");
+        shell.append(canvas);
+        elements.spread.append(shell);
+
+        const unscaledViewport = page.getViewport({ scale: 1 });
+        const stageWidth = Math.max(320, elements.stage.clientWidth - 36);
+        const availableWidth =
+          viewMode === "double" && window.innerWidth > 920
+            ? Math.min(580, (stageWidth - 24) / 2)
+            : Math.min(900, stageWidth);
+        const cssScale = (availableWidth / unscaledViewport.width) * zoom;
+        const viewport = page.getViewport({ scale: cssScale });
+        const outputScale = Math.max(1, window.devicePixelRatio || 1);
+        const context = canvas.getContext("2d", { alpha: false });
+
+        canvas.width = Math.floor(viewport.width * outputScale);
+        canvas.height = Math.floor(viewport.height * outputScale);
+        canvas.style.width = `${Math.floor(viewport.width)}px`;
+        canvas.style.height = `${Math.floor(viewport.height)}px`;
+
+        context.setTransform(outputScale, 0, 0, outputScale, 0, 0);
+        await page.render({ canvasContext: context, viewport }).promise;
+      };
+
+      const renderSpread = async () => {
+        if (!pdfDocument) {
+          return;
+        }
+
+        const token = ++renderToken;
+        pageNumber = clamp(pageNumber, 1, pdfDocument.numPages);
+        setBusy(true);
+        updateModeButtons();
+        elements.spread.replaceChildren();
+        elements.pageNumber.value = String(pageNumber);
+        elements.pageNumber.max = String(pdfDocument.numPages);
+        elements.pageTotal.textContent = `/ ${pdfDocument.numPages}`;
+        elements.zoomRange.value = String(Math.round(zoom * 100));
+        elements.zoomLabel.textContent = `${Math.round(zoom * 100)}%`;
+        setStatus(`${books[currentLang].nativeName} · ${pageNumber}/${pdfDocument.numPages}`);
+
+        try {
+          for (const pageIndex of visiblePages()) {
+            await renderPage(pageIndex, token);
+          }
+        } catch (error) {
+          console.error(error);
+          elements.spread.innerHTML =
+            '<div class="status"><strong>페이지 렌더링에 실패했습니다.</strong><br>브라우저를 새로고침하거나 원본 PDF 링크를 열어주세요.</div>';
+        } finally {
+          if (token === renderToken) {
+            setBusy(false);
+            updateUrl();
+            requestAnimationFrame(centerScrollSpread);
+          }
+        }
+      };
+
+      const loadBook = async (lang) => {
+        currentLang = books[lang] ? lang : "en";
+        const book = books[currentLang];
+
+        ++renderToken;
+        pdfDocument = null;
+        elements.language.value = currentLang;
+        elements.title.textContent = book.title;
+        elements.pdfLink.href = book.pdf;
+        elements.spread.innerHTML = '<div class="status">PDF 페이지를 불러오는 중입니다.</div>';
+        setStatus("PDF 페이지를 불러오는 중입니다.");
+        setBusy(true);
+
+        try {
+          pdfDocument = await pdfjsLib.getDocument(book.pdf).promise;
+          pageNumber = clamp(pageNumber, 1, pdfDocument.numPages);
+          await renderSpread();
+        } catch (error) {
+          console.error(error);
+          setBusy(false);
+          elements.spread.innerHTML =
+            '<div class="status"><strong>PDF를 불러오지 못했습니다.</strong><br>정적 서버나 GitHub Pages에서 열었는지 확인해주세요. 로컬 파일을 직접 여는 경우 브라우저 보안 정책 때문에 PDF 로딩이 막힐 수 있습니다.</div>';
+        }
+      };
+
+      const goToPage = (nextPage) => {
+        if (!pdfDocument) {
+          return;
+        }
+        pageNumber = clamp(nextPage, 1, pdfDocument.numPages);
+        renderSpread();
+      };
+
+      const setMode = (nextMode) => {
+        if (viewMode === nextMode) {
+          return;
+        }
+        viewMode = nextMode;
+        renderSpread();
+      };
+
+      elements.language.addEventListener("change", () => {
+        pageNumber = 1;
+        loadBook(elements.language.value);
+      });
+
+      elements.singleMode.addEventListener("click", () => setMode("single"));
+      elements.doubleMode.addEventListener("click", () => setMode("double"));
+      elements.prev.addEventListener("click", () => goToPage(pageNumber - 1));
+      elements.next.addEventListener("click", () => goToPage(pageNumber + 1));
+      elements.pageNavPrev.addEventListener("click", () => goToPage(pageNumber - 1));
+      elements.pageNavNext.addEventListener("click", () => goToPage(pageNumber + 1));
+
+      elements.pageNumber.addEventListener("change", () => {
+        const requestedPage = Number.parseInt(elements.pageNumber.value, 10);
+        goToPage(Number.isFinite(requestedPage) ? requestedPage : pageNumber);
+      });
+
+      elements.zoomRange.addEventListener("input", () => {
+        zoom = Number.parseInt(elements.zoomRange.value, 10) / 100;
+        elements.zoomLabel.textContent = `${Math.round(zoom * 100)}%`;
+      });
+
+      elements.zoomRange.addEventListener("change", () => renderSpread());
+
+      document.addEventListener("keydown", (event) => {
+        const target = event.target;
+        const isEditing =
+          target instanceof HTMLInputElement ||
+          target instanceof HTMLSelectElement ||
+          target instanceof HTMLTextAreaElement;
+
+        if (isEditing) {
+          return;
+        }
+
+        if (event.key === "ArrowRight" || event.key === "PageDown") {
+          event.preventDefault();
+          goToPage(pageNumber + 1);
+        }
+
+        if (event.key === "ArrowLeft" || event.key === "PageUp") {
+          event.preventDefault();
+          goToPage(pageNumber - 1);
+        }
+      });
+
+      let resizeTimer = 0;
+      window.addEventListener("resize", () => {
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(() => renderSpread(), 160);
+      });
+
+      elements.toolbarToggle.addEventListener("click", () => {
+        setToolbarCollapsed(!elements.toolbar.classList.contains("collapsed"));
+      });
+
+      try {
+        setToolbarCollapsed(localStorage.getItem("reader.toolbarCollapsed") === "1");
+      } catch (error) {
+        setToolbarCollapsed(false);
+      }
+
+      elements.language.value = currentLang;
+      updateModeButtons();
+      await loadBook(currentLang);
+    </script>
+  </body>
+</html>

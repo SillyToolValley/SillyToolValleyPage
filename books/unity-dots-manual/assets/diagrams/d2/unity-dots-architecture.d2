@@ -1,0 +1,52 @@
+# title: Unity DOTS Architecture Flow
+direction: down
+
+authoring: "Authoring\nSubScene / GameObject" {
+  style.fill: "#ecfdf5"
+  style.stroke: "#22c55e"
+}
+baking: "Baking\nBaker -> ECS data" {
+  style.fill: "#f0fdf4"
+  style.stroke: "#22c55e"
+}
+entity_scene: "EntityScene\nAsset"
+runtime: "DefaultWorld\nRuntime ECS Data" {
+  style.fill: "#eff6ff"
+  style.stroke: "#38bdf8"
+}
+init: "Initialization\nSystemGroup"
+simulation: "Simulation\nSystemGroup" {
+  style.fill: "#ecfeff"
+  style.stroke: "#06b6d4"
+}
+fixed: "FixedStep\nSimulationSystemGroup"
+ecb: "EndSimulation\nEntityCommandBufferSystem"
+systems: "Systems\nISystem / SystemBase" {
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+}
+jobs: "Jobs\nIJobEntity / IJobChunk" {
+  style.fill: "#f5f3ff"
+  style.stroke: "#8b5cf6"
+}
+chunks: "Chunks\nArchetype Blocks" {
+  style.fill: "#f8fafc"
+  style.stroke: "#64748b"
+}
+presentation: "Presentation\nSystemGroup"
+profiler: "Profiler &\nEntities Windows" {
+  style.fill: "#fefce8"
+  style.stroke: "#eab308"
+}
+
+authoring -> baking -> entity_scene -> runtime -> init -> simulation
+simulation -> fixed
+simulation -> ecb
+simulation -> systems -> jobs -> chunks -> systems
+simulation -> presentation
+systems -> profiler: "measure" {
+  style.stroke-dash: 4
+}
+jobs -> profiler: "inspect" {
+  style.stroke-dash: 4
+}

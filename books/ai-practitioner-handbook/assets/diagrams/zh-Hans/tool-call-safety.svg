@@ -1,0 +1,100 @@
+<svg role="img" aria-labelledby="tool-call-safety-title tool-call-safety-desc" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  preserveAspectRatio="xMinYMin meet" viewBox="0 0 1067 583">
+  <title id="tool-call-safety-title">模型提出执行，服务器负责授权</title>
+  <desc id="tool-call-safety-desc">D2 generated diagram for 模型提出执行，服务器负责授权</desc>
+  <rect x="0" y="0" width="1067" height="96" fill="#ffffff" stroke-width="0" />
+  <text x="48" y="36" fill="#0f172a" style="font-family:&quot;Noto Sans SC&quot;,&quot;Microsoft YaHei&quot;,Arial,sans-serif;font-size:29px;font-weight:700">模型提出执行，服务器负责授权</text>
+  <text x="48" y="72" fill="#475569" style="font-family:&quot;Noto Sans SC&quot;,&quot;Microsoft YaHei&quot;,Arial,sans-serif;font-size:16px">tool call 通过服务端验证、权限检查、风险分流和审计日志执行，而不是仅凭模型建议执行。</text><svg x="0" y="96" class="d2-1639662831 d2-svg" width="1067" height="487" viewBox="-25 -25 1067 487"><rect x="-25.000000" y="-25.000000" width="1067.000000" height="487.000000" rx="0.000000" fill="#FFFFFF" class=" fill-N7" stroke-width="0" /><style type="text/css"><![CDATA[
+.d2-1639662831 .text-bold {
+	font-family:"Noto Sans SC","Microsoft YaHei",Arial,sans-serif;
+}
+@font-face {
+	font-family:"Noto Sans SC","Microsoft YaHei",Arial,sans-serif;
+	src: url("data:application/font-woff;base64,d09GRgABAAAAAAwAAAoAAAAAEqQAAguFAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAGAAAABgXxHXrmNtYXAAAAFUAAAAhwAAAKwCfAOBZ2x5ZgAAAdwAAAW+AAAHhCu+nE5oZWFkAAAHnAAAADYAAAA2G38e1GhoZWEAAAfUAAAAJAAAACQKfwXZaG10eAAAB/gAAABoAAAAaC95A/5sb2NhAAAIYAAAADYAAAA2HE4aZm1heHAAAAiYAAAAIAAAACAAMgD3bmFtZQAACLgAAAMoAAAIKgjwVkFwb3N0AAAL4AAAAB0AAAAg/9EAMgADAioCvAAFAAACigJYAAAASwKKAlgAAAFeADIBKQAAAgsHAwMEAwICBGAAAvcAAAADAAAAAAAAAABBREJPACAAIP//Au7/BgAAA9gBESAAAZ8AAAAAAfAClAAAACAAA3icbMw/asIAHEDhL03apm3apvXv6K7gNbyGiIjgIA6CZxElegxv4ySCd/iJboJv/eAhkUpQyFRoK6VyHV09fQNDY1NzS6sIHmRkYmZxkzjGJc5xikPsYxdVbGMT6/v7eYmWhqYXqcyrN+9yHz59KXz78av0519NnSsAAAD//wEAAP///4Qf6wB4nGRVTWzb1h3/vyeZjGU6NkWRFGVRH6RJinIsR6JI2pZtWbFsJY4U2wny0dWx0xy6bE6TIXEWrRiwSzBgW4NhkA9DD9swbNgGtECKYoBXwBvQw7agOy3tehq2YDv1MAiFMQyoTA6k5MRGD9ITIL7fx//3e4/QB6sA+CbegQD0wxCEgQUw6DStGJomk7Zh2zIfsDVEk6s47PzyF5oe1PVgNvXj5Jubm6ixgXcObr/auHnzv5ulkvOT333gPEb3PwBA0ADAl/FbMODhGaxhGrRMy3Sj9Xxn5zl+64svDrbRsNMGAAxZdx99jDoggAzAS6pZtGxVlSWC1CzLKHAsLWsyQdgFyzYJgo1wv6+uPmphWU/Oj5oTW9ObrzdDwWTthKAwF2aS1NXyhWtDaS3KviaO3rnn/NuIy/d45mpoTIzy4GkbdffRHupADKBPUj06j4UnPUo2whkFy+YJAgmLdytnv1nN1eKLcsosl09Hc8y0coWafXDx0vZsgt8U65X5Bjt0IzUCvg/N3UcdvAcMpA59+MCaZ/6FA7VH8/n63dJmUZ8UiFYzFIwt4agWZsYisjVB/eBbaw/m4tH6bw4W8jG5GRE+Cp9cqJ1bBOxrf446EIXkMfUcGyHINMcZBU97wCh6LChZu3dm4Xapdn0iiJ1PQ0t508qrG2+/r52SLGpu++Ladrm8VWWUfstIvxJLoGndnPC8BEByxzGJOjABJVj23ahm0RPvhWMe0vIGK/vUhCxp/uy8uCIEEShYZrFnlOn+liXVf+Tz6Y3JGjOSisb06Q3zVPq3K2R/8ZotJsOSvrr+WvXby6KmiaKm6YV5TTGENDUy+yw2eWomExzMJEcKw8FwdWxmJUNtDUiRqeXR0BDHhEsLxloOPc3qmp7J6FmnNSrww4FAVIiL4Gde8QLCexDp9pE8LBbtqyTpSouMny+snWuJqXgmivfeeUUY27ru/AWlrYzAO++B64INAH/Hz7AKUQAgQYDvd7HdfRTGezDUTZ026Bcl+nO91KL7+0giTCnUq+exfPApH0bojT6yqykgog6kfU280W3LMWXki7XidXwpb1aY9HJ+9XxLTCmnva8J1J5Pjo9lpPyh3NPOe73l0Dfq9Hz3OI76boaCqcYL46hdTowf893tnN+FIRj5UucI7UjSiCvfrVbvlst3qtU75fFcbjw3Pt47L7Pbly4+mH3YmK/UvWPj4Vbcs5hDHWAgAcC/VOfXSdV41m+OLJEsx3k6xXPaV27NbFqpmVjfimpdGctGMrv41/mY/L37l5vlEWHlR2h0qf7d8Y/CJ3uZox+iDoSPzZdUXzofqatsPBQdFIbjsxHUvlrI9/V9JxjUC84/AQHr7qOfog5ofq6a7Z0uz6yq5bBZfAnGRjg+gdkI8Sz/VfWMVE6mE2IulihlvnZ56mryTKwYm5pSU7P6LUpNrgsjPENzTIgandIXr2jRaxFOiwonB+Sp3ML1bldpdx/dwdvA+9M2Tdm0bYM1WPnI5QTrK9U6/ebDh7JICSGesamvX3n6BvHo0f0/ZRUiuEVQXawZdx/9D7W9/I91k+5dSX9bO9dKpOIq12oOBJLL1NZ1VHT+YeoxEZ11hheVU4CAAkAuasMggBEweI7zRmnbRuD9X+3Mh5hQsJ8JVR7/HLU/Uxqa1lA+c4Z9bsqdQweo7bXm5fxs+xjESdzk0kMxMnxCyYTIP+zUBsKh4Am6f+bxO/zkyodE8Buob1SMoX99Ii0pck3+xBmYu5ztesu5cwjgXS9fXrMsTZJk/9LtdqiemJxGOIhly1ILxfUPL0QqylhGzS1XLja7+wfdG8jCf4QAAM8YgcGnN57+LPB6523vPwk20H+w5b2/bFM2DbMbwF+fPLn95MnG7q3d3Vu7vY7Bx6jtYRi0QVdaqO0MA3LfxVNwCT/z9tNHRCm5nKLkcngqK8tZ7wP/BwAA//8BAAD//8f6ibwAAAABAAAAAguFlY4mfV8PPPUAAQPoAAAAANhdoIQAAAAA3WYvNv43/sQIbQPxAAEAAwACAAAAAAAAAAEAAAPY/u8AAAiY/jf+NwhtAAEAAAAAAAAAAAAAAAAAAAAaArIAUADIAAACogBNAg8AKgHTACQCPQAnAgYAJAIWACICOwBBARQANwEeAEEDWQBBAjwAQQIrACQCPQBBAY4AQQG7ABUBfwARAjgAPAILAAwCCQAMASwALgFTAA0CEAAiARQAQQAA/60AAAAsACwAQgB6AKYA2AEMAXQBlgGiAb4B8AISAj4CbgKOAsoC8AMSAy4DXgN+A4wDoAOsA8IAAAABAAAAGgCQAAwAYwAHAAEAAAAAAAAAAAAAAAAABAADeJyclM9uG1UUxn9ObNMKwQJFVbqJ7oJFkejYVEnVNiuH1IpFFAePC0JCSBPP+I8ynhl5Jg7hCVjzFrxFVzwEz4FYo/l87NgF0SaKknx37vnznXO+c4Ed/mabSvUh8Ec9MVxhr35ueIsH9RPD27TrW4arPKn9abhGWJsbrvN5rWf4I95WfzP8gP3qT4YfslttG/6YZ9Udw59sO/4y/Cn7vF3gCrzgV8MVdskMb7HDj4a3eYTFrFR5RNNwjc/YM1xnD+gzoSBmQsIIx5AJI66YEZHjEzFjwpCIEEeHFjGFviYEQo7Rf34N8CmYESjimAJHjE9MQM7YIv4ir5RzZRzqNLO7FgVjAi7kcUlAgiNlREpCxKXiFBRkvKJBg5yB+GYU5HjkTIjxSJkxokGXNqf0GTMhx9FWpJKZT8qQgmsC5XdmUXZmQERCbqyuSAjF04lfJO8Opzi6ZLJdj3y6EeFLHN/Ju+SWyvYrPP26NWabeZdsAubqZ6yuxLq51gTHui3ztvhWuOAV7l792WTy/h6F+l8o8gVXmn+oSSVikuDcLi18Kch3j3Ec6dzBV0e+p0OfE7q8oa9zix49WpzRp8Nr+Xbp4fiaLmccy6MjvLhrSzFn/IDjGzqyKWNH1p/FxCJ+JjN15+I4Ux1TMvW8ZO6p1kgV3n3C5Q6lG+rI5TPQHpWWTvNLtGcBI1NFJoZT9XKpjdz6F5oipqqlnO3tfbkNc9u95RbfkGqHS7UuOJWTWzB631S9dzRzrR+PgJCUC1kMSJnSoOBGvM8JuCLGcazunWhLClornzLPjVQSMRWDDonizMj0NzDd+MZ9sKF7Z29JKP+S6eWqqvtkcerV7YzeqHvLO9+6HK1NoGFTTdfUNBDXxLQfaafW+fvyzfW6pTzliJSY8F8vwDM8muxzwCFjZRjoZm6vQ1MvRJOXHKr6SyJZDaXnyCIc4PGcAw54yfN3+rhk4oyLW3FZz93imCO6HH5QFQv7Lke8Xn37/6y/i2lTtTierk4v7j3FJ3dQ6xfas9v3sqeJlZOYW7TbrTgjYFpycbvrNbnHeP8AAAD//wEAAP//9LdPUXicYmBmAIP/5xiMGLAAAAAAAP//AQAA//8vAQIDAAAA");
+}]]></style><style type="text/css"><![CDATA[.shape {
+  shape-rendering: geometricPrecision;
+  stroke-linejoin: round;
+}
+.connection {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.blend {
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+		.d2-1639662831 .fill-N1{fill:#0A0F25;}
+		.d2-1639662831 .fill-N2{fill:#676C7E;}
+		.d2-1639662831 .fill-N3{fill:#9499AB;}
+		.d2-1639662831 .fill-N4{fill:#CFD2DD;}
+		.d2-1639662831 .fill-N5{fill:#DEE1EB;}
+		.d2-1639662831 .fill-N6{fill:#EEF1F8;}
+		.d2-1639662831 .fill-N7{fill:#FFFFFF;}
+		.d2-1639662831 .fill-B1{fill:#0D32B2;}
+		.d2-1639662831 .fill-B2{fill:#0D32B2;}
+		.d2-1639662831 .fill-B3{fill:#E3E9FD;}
+		.d2-1639662831 .fill-B4{fill:#E3E9FD;}
+		.d2-1639662831 .fill-B5{fill:#EDF0FD;}
+		.d2-1639662831 .fill-B6{fill:#F7F8FE;}
+		.d2-1639662831 .fill-AA2{fill:#4A6FF3;}
+		.d2-1639662831 .fill-AA4{fill:#EDF0FD;}
+		.d2-1639662831 .fill-AA5{fill:#F7F8FE;}
+		.d2-1639662831 .fill-AB4{fill:#EDF0FD;}
+		.d2-1639662831 .fill-AB5{fill:#F7F8FE;}
+		.d2-1639662831 .stroke-N1{stroke:#0A0F25;}
+		.d2-1639662831 .stroke-N2{stroke:#676C7E;}
+		.d2-1639662831 .stroke-N3{stroke:#9499AB;}
+		.d2-1639662831 .stroke-N4{stroke:#CFD2DD;}
+		.d2-1639662831 .stroke-N5{stroke:#DEE1EB;}
+		.d2-1639662831 .stroke-N6{stroke:#EEF1F8;}
+		.d2-1639662831 .stroke-N7{stroke:#FFFFFF;}
+		.d2-1639662831 .stroke-B1{stroke:#0D32B2;}
+		.d2-1639662831 .stroke-B2{stroke:#0D32B2;}
+		.d2-1639662831 .stroke-B3{stroke:#E3E9FD;}
+		.d2-1639662831 .stroke-B4{stroke:#E3E9FD;}
+		.d2-1639662831 .stroke-B5{stroke:#EDF0FD;}
+		.d2-1639662831 .stroke-B6{stroke:#F7F8FE;}
+		.d2-1639662831 .stroke-AA2{stroke:#4A6FF3;}
+		.d2-1639662831 .stroke-AA4{stroke:#EDF0FD;}
+		.d2-1639662831 .stroke-AA5{stroke:#F7F8FE;}
+		.d2-1639662831 .stroke-AB4{stroke:#EDF0FD;}
+		.d2-1639662831 .stroke-AB5{stroke:#F7F8FE;}
+		.d2-1639662831 .background-color-N1{background-color:#0A0F25;}
+		.d2-1639662831 .background-color-N2{background-color:#676C7E;}
+		.d2-1639662831 .background-color-N3{background-color:#9499AB;}
+		.d2-1639662831 .background-color-N4{background-color:#CFD2DD;}
+		.d2-1639662831 .background-color-N5{background-color:#DEE1EB;}
+		.d2-1639662831 .background-color-N6{background-color:#EEF1F8;}
+		.d2-1639662831 .background-color-N7{background-color:#FFFFFF;}
+		.d2-1639662831 .background-color-B1{background-color:#0D32B2;}
+		.d2-1639662831 .background-color-B2{background-color:#0D32B2;}
+		.d2-1639662831 .background-color-B3{background-color:#E3E9FD;}
+		.d2-1639662831 .background-color-B4{background-color:#E3E9FD;}
+		.d2-1639662831 .background-color-B5{background-color:#EDF0FD;}
+		.d2-1639662831 .background-color-B6{background-color:#F7F8FE;}
+		.d2-1639662831 .background-color-AA2{background-color:#4A6FF3;}
+		.d2-1639662831 .background-color-AA4{background-color:#EDF0FD;}
+		.d2-1639662831 .background-color-AA5{background-color:#F7F8FE;}
+		.d2-1639662831 .background-color-AB4{background-color:#EDF0FD;}
+		.d2-1639662831 .background-color-AB5{background-color:#F7F8FE;}
+		.d2-1639662831 .color-N1{color:#0A0F25;}
+		.d2-1639662831 .color-N2{color:#676C7E;}
+		.d2-1639662831 .color-N3{color:#9499AB;}
+		.d2-1639662831 .color-N4{color:#CFD2DD;}
+		.d2-1639662831 .color-N5{color:#DEE1EB;}
+		.d2-1639662831 .color-N6{color:#EEF1F8;}
+		.d2-1639662831 .color-N7{color:#FFFFFF;}
+		.d2-1639662831 .color-B1{color:#0D32B2;}
+		.d2-1639662831 .color-B2{color:#0D32B2;}
+		.d2-1639662831 .color-B3{color:#E3E9FD;}
+		.d2-1639662831 .color-B4{color:#E3E9FD;}
+		.d2-1639662831 .color-B5{color:#EDF0FD;}
+		.d2-1639662831 .color-B6{color:#F7F8FE;}
+		.d2-1639662831 .color-AA2{color:#4A6FF3;}
+		.d2-1639662831 .color-AA4{color:#EDF0FD;}
+		.d2-1639662831 .color-AA5{color:#F7F8FE;}
+		.d2-1639662831 .color-AB4{color:#EDF0FD;}
+		.d2-1639662831 .color-AB5{color:#F7F8FE;}.appendix text.text{fill:#0A0F25}.md{--color-fg-default:#0A0F25;--color-fg-muted:#676C7E;--color-fg-subtle:#9499AB;--color-canvas-default:#FFFFFF;--color-canvas-subtle:#EEF1F8;--color-border-default:#0D32B2;--color-border-muted:#0D32B2;--color-neutral-muted:#EEF1F8;--color-accent-fg:#0D32B2;--color-accent-emphasis:#0D32B2;--color-attention-subtle:#676C7E;--color-danger-fg:red;}.sketch-overlay-B1{fill:url(#streaks-darker-d2-1639662831);mix-blend-mode:lighten}.sketch-overlay-B2{fill:url(#streaks-darker-d2-1639662831);mix-blend-mode:lighten}.sketch-overlay-B3{fill:url(#streaks-bright-d2-1639662831);mix-blend-mode:darken}.sketch-overlay-B4{fill:url(#streaks-bright-d2-1639662831);mix-blend-mode:darken}.sketch-overlay-B5{fill:url(#streaks-bright-d2-1639662831);mix-blend-mode:darken}.sketch-overlay-B6{fill:url(#streaks-bright-d2-1639662831);mix-blend-mode:darken}.sketch-overlay-AA2{fill:url(#streaks-dark-d2-1639662831);mix-blend-mode:overlay}.sketch-overlay-AA4{fill:url(#streaks-bright-d2-1639662831);mix-blend-mode:darken}.sketch-overlay-AA5{fill:url(#streaks-bright-d2-1639662831);mix-blend-mode:darken}.sketch-overlay-AB4{fill:url(#streaks-bright-d2-1639662831);mix-blend-mode:darken}.sketch-overlay-AB5{fill:url(#streaks-bright-d2-1639662831);mix-blend-mode:darken}.sketch-overlay-N1{fill:url(#streaks-darker-d2-1639662831);mix-blend-mode:lighten}.sketch-overlay-N2{fill:url(#streaks-dark-d2-1639662831);mix-blend-mode:overlay}.sketch-overlay-N3{fill:url(#streaks-normal-d2-1639662831);mix-blend-mode:color-burn}.sketch-overlay-N4{fill:url(#streaks-normal-d2-1639662831);mix-blend-mode:color-burn}.sketch-overlay-N5{fill:url(#streaks-bright-d2-1639662831);mix-blend-mode:darken}.sketch-overlay-N6{fill:url(#streaks-bright-d2-1639662831);mix-blend-mode:darken}.sketch-overlay-N7{fill:url(#streaks-bright-d2-1639662831);mix-blend-mode:darken}.light-code{display: block}.dark-code{display: none}]]></style><g class="cmVxdWVzdA=="><g class="shape" ><rect x="0.000000" y="0.000000" width="276.000000" height="84.000000" rx="12.000000" stroke="#60a5fa" fill="#eff6ff" style="stroke-width:2;" /></g><text x="138.000000" y="39.500000" fill="#111827" class="text-bold" style="text-anchor:middle;font-size:18px"><tspan x="138.000000" dy="0.000000">用户请求</tspan><tspan x="138.000000" dy="19.500000">订单状态查询</tspan></text></g><g class="cHJvcG9zYWw="><g class="shape" ><rect x="304.000000" y="0.000000" width="174.000000" height="84.000000" rx="12.000000" stroke="#a78bfa" fill="#f5f3ff" style="stroke-width:2;" /></g><text x="391.000000" y="39.500000" fill="#111827" class="text-bold" style="text-anchor:middle;font-size:18px"><tspan x="391.000000" dy="0.000000">模型建议</tspan><tspan x="391.000000" dy="19.500000">tool + arguments</tspan></text></g><g class="dmFsaWRhdGlvbg=="><g class="shape" ><rect x="506.000000" y="0.000000" width="216.000000" height="84.000000" rx="12.000000" stroke="#fb923c" fill="#fff7ed" style="stroke-width:2;" /></g><text x="614.000000" y="39.500000" fill="#111827" class="text-bold" style="text-anchor:middle;font-size:18px"><tspan x="614.000000" dy="0.000000">服务端验证</tspan><tspan x="614.000000" dy="19.500000">schema, 参数、范围</tspan></text></g><g class="cGVybWlzc2lvbg=="><g class="shape" ><rect x="750.000000" y="0.000000" width="238.000000" height="84.000000" rx="12.000000" stroke="#4ade80" fill="#f0fdf4" style="stroke-width:2;" /></g><text x="869.000000" y="39.500000" fill="#111827" class="text-bold" style="text-anchor:middle;font-size:18px"><tspan x="869.000000" dy="0.000000">权限检查</tspan><tspan x="869.000000" dy="19.500000">用户和资源</tspan></text></g><g class="YmxhbmstMQ==" style='opacity:0.000000'><g class="shape" ><rect x="1016.000000" y="0.000000" width="1.000000" height="84.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g></g><g class="YmxhbmstMg==" style='opacity:0.000000'><g class="shape" ><rect x="0.000000" y="112.000000" width="276.000000" height="84.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g></g><g class="YmxhbmstMw==" style='opacity:0.000000'><g class="shape" ><rect x="304.000000" y="112.000000" width="174.000000" height="84.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g></g><g class="YmxhbmstNA==" style='opacity:0.000000'><g class="shape" ><rect x="506.000000" y="112.000000" width="216.000000" height="84.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g></g><g class="cmlzaw=="><g class="shape" ><rect x="750.000000" y="112.000000" width="238.000000" height="84.000000" rx="12.000000" stroke="#f9a8d4" fill="#fdf2f8" style="stroke-width:2;" /></g><text x="869.000000" y="151.500000" fill="#111827" class="text-bold" style="text-anchor:middle;font-size:18px"><tspan x="869.000000" dy="0.000000">风险分流</tspan><tspan x="869.000000" dy="19.500000">查询 / 执行 / 外部发送</tspan></text></g><g class="YmxhbmstNQ==" style='opacity:0.000000'><g class="shape" ><rect x="1016.000000" y="112.000000" width="1.000000" height="84.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g></g><g class="bG93"><g class="shape" ><rect x="0.000000" y="224.000000" width="276.000000" height="101.000000" rx="12.000000" stroke="#22d3ee" fill="#ecfeff" style="stroke-width:2;" /></g><text x="138.000000" y="263.500000" fill="#111827" class="text-bold" style="text-anchor:middle;font-size:18px"><tspan x="138.000000" dy="0.000000">执行低风险查询</tspan><tspan x="138.000000" dy="18.666667">只读、限制结果</tspan><tspan x="138.000000" dy="18.666667">审计日志和结果范围限制</tspan></text></g><g class="YmxhbmstNg==" style='opacity:0.000000'><g class="shape" ><rect x="304.000000" y="224.000000" width="174.000000" height="101.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g></g><g class="YmxhbmstNw==" style='opacity:0.000000'><g class="shape" ><rect x="506.000000" y="224.000000" width="216.000000" height="101.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g></g><g class="YXBwcm92YWw="><g class="shape" ><rect x="750.000000" y="224.000000" width="238.000000" height="101.000000" rx="12.000000" stroke="#fb923c" fill="#fff7ed" style="stroke-width:2;" /></g><text x="869.000000" y="272.000000" fill="#111827" class="text-bold" style="text-anchor:middle;font-size:18px"><tspan x="869.000000" dy="0.000000">Human approval</tspan><tspan x="869.000000" dy="19.500000">高风险执行前审批</tspan></text></g><g class="YmxhbmstOA==" style='opacity:0.000000'><g class="shape" ><rect x="1016.000000" y="224.000000" width="1.000000" height="101.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g></g><g class="YmFu"><g class="shape" ><rect x="0.000000" y="353.000000" width="276.000000" height="84.000000" rx="12.000000" stroke="#fb7185" fill="#fff1f2" style="stroke-width:2;" /></g><text x="138.000000" y="392.500000" fill="#be123c" class="text-bold" style="text-anchor:middle;font-size:18px"><tspan x="138.000000" dy="0.000000">禁止：</tspan><tspan x="138.000000" dy="19.500000">不得仅凭模型建议执行。</tspan></text></g><g class="YmxhbmstOQ==" style='opacity:0.000000'><g class="shape" ><rect x="304.000000" y="353.000000" width="174.000000" height="84.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g></g><g class="YmxhbmstMTA=" style='opacity:0.000000'><g class="shape" ><rect x="506.000000" y="353.000000" width="216.000000" height="84.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g></g><g class="YXVkaXQ="><g class="shape" ><rect x="750.000000" y="353.000000" width="238.000000" height="84.000000" rx="12.000000" stroke="#cbd5e1" fill="#f8fafc" style="stroke-width:2;" /></g><text x="869.000000" y="392.500000" fill="#111827" class="text-bold" style="text-anchor:middle;font-size:18px"><tspan x="869.000000" dy="0.000000">执行 + 审计</tspan><tspan x="869.000000" dy="19.500000">idempotency</tspan></text></g><g class="YmxhbmstMTE=" style='opacity:0.000000'><g class="shape" ><rect x="1016.000000" y="353.000000" width="1.000000" height="84.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g></g><g class="KHJlcXVlc3QgLSZndDsgcHJvcG9zYWwpWzBd"><marker id="mk-d2-1639662831-1672925162" markerWidth="10.000000" markerHeight="12.000000" refX="7.000000" refY="6.000000" viewBox="0.000000 0.000000 10.000000 12.000000" orient="auto" markerUnits="userSpaceOnUse"> <polygon points="0.000000,0.000000 10.000000,6.000000 0.000000,12.000000" fill="#475569" class="connection" stroke-width="2" /> </marker><path d="M 278.000000 42.000000 L 300.000000 42.000000" stroke="#475569" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-1639662831-1672925162)" mask="url(#d2-1639662831)" /></g><g class="KHByb3Bvc2FsIC0mZ3Q7IHZhbGlkYXRpb24pWzBd"><path d="M 480.000000 42.000000 L 502.000000 42.000000" stroke="#475569" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-1639662831-1672925162)" mask="url(#d2-1639662831)" /></g><g class="KHZhbGlkYXRpb24gLSZndDsgcGVybWlzc2lvbilbMF0="><path d="M 724.000000 42.000000 L 746.000000 42.000000" stroke="#475569" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-1639662831-1672925162)" mask="url(#d2-1639662831)" /></g><g class="KHBlcm1pc3Npb24gLSZndDsgcmlzaylbMF0="><path d="M 869.000000 86.000000 L 869.000000 108.000000" stroke="#475569" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-1639662831-1672925162)" mask="url(#d2-1639662831)" /></g><g class="KHJpc2sgLSZndDsgbG93KVswXQ=="><path d="M 748.026541 173.824746 L 279.946918 250.850507" stroke="#475569" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-1639662831-1672925162)" mask="url(#d2-1639662831)" /></g><g class="KHJpc2sgLSZndDsgYXBwcm92YWwpWzBd"><path d="M 869.000000 197.500000 L 869.000000 220.500000" stroke="#475569" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-1639662831-1672925162)" mask="url(#d2-1639662831)" /></g><g class="KGFwcHJvdmFsIC0mZ3Q7IGF1ZGl0KVswXQ=="><path d="M 869.000000 327.000000 L 869.000000 349.000000" stroke="#475569" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-1639662831-1672925162)" mask="url(#d2-1639662831)" /></g><mask id="d2-1639662831" maskUnits="userSpaceOnUse" x="-25" y="-25" width="1067" height="487">
+<rect x="-25" y="-25" width="1067" height="487" fill="white"></rect>
+
+</mask></svg></svg>

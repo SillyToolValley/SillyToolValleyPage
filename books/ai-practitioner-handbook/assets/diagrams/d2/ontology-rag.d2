@@ -1,0 +1,198 @@
+# title: 온톨로지는 RAG의 검색 계획을 구조화한다
+# subtitle: 질문을 엔티티와 관계로 해석하고, 문서 검색과 지식 그래프 근거를 함께 조립한다.
+
+grid-rows: 6
+grid-columns: 3
+horizontal-gap: 36
+vertical-gap: 22
+
+blank-1: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+question: {
+  label: "사용자 질문\n프리미엄 고객의\n결제 실패 원인은?"
+  shape: rectangle
+  style.fill: "#eff6ff"
+  style.stroke: "#60a5fa"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+blank-2: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+blank-3: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+entity: {
+  label: "Entity linking\n프리미엄 -> customer_tier\n결제 실패 -> payment_failure"
+  shape: rectangle
+  style.fill: "#f0fdf4"
+  style.stroke: "#4ade80"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+blank-4: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+blank-5: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+query: {
+  label: "Query plan\n검색 + 관계 탐색\n권한 필터 적용"
+  shape: rectangle
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+blank-6: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+vector: {
+  label: "Vector / Hybrid Search\n정책 문서, FAQ, 로그\n관련 passage 검색"
+  shape: rectangle
+  style.fill: "#f8fafc"
+  style.stroke: "#cbd5e1"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+retrieval: {
+  label: "Retrieval plan"
+  shape: rectangle
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+kg: {
+  label: "Knowledge Graph\n고객-계약-결제 관계\n대상 관계와 원인 범위"
+  shape: rectangle
+  style.fill: "#f5f3ff"
+  style.stroke: "#a78bfa"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+blank-7: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+evidence: {
+  label: "Evidence assembly\npassage + 관계 정보\n출처와 충돌 근거 정리"
+  shape: rectangle
+  style.fill: "#ecfeff"
+  style.stroke: "#22d3ee"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+blank-8: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+blank-9: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+answer: {
+  label: "근거 기반 답변\ncitation 포함"
+  shape: rectangle
+  style.fill: "#f0fdf4"
+  style.stroke: "#4ade80"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 18
+  style.font-color: "#111827"
+}
+
+blank-10: {
+  label: ""
+  width: 1
+  height: 1
+  style.opacity: 0
+}
+
+question -> entity: "" {
+  style.stroke: "#64748b"
+  style.stroke-width: 2
+}
+entity -> query: "" {
+  style.stroke: "#64748b"
+  style.stroke-width: 2
+}
+query -> retrieval: "" {
+  style.stroke: "#64748b"
+  style.stroke-width: 2
+}
+retrieval -> vector: "" {
+  style.stroke: "#64748b"
+  style.stroke-width: 2
+}
+retrieval -> kg: "" {
+  style.stroke: "#64748b"
+  style.stroke-width: 2
+}
+vector -> evidence: "" {
+  style.stroke: "#64748b"
+  style.stroke-width: 2
+}
+kg -> evidence: "" {
+  style.stroke: "#64748b"
+  style.stroke-width: 2
+}
+evidence -> answer: "" {
+  style.stroke: "#64748b"
+  style.stroke-width: 2
+}

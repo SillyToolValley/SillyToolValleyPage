@@ -1,0 +1,119 @@
+# title: AI 보안은 입력부터 로그까지 전체 경로를 본다
+# subtitle: 프롬프트만이 아니라 데이터, 권한, 도구, 출력 처리, 로그 보존, 공급망까지 함께 통제한다.
+
+grid-rows: 3
+grid-columns: 1
+vertical-gap: 24
+
+pipeline: {
+  label: ""
+  grid-columns: 6
+  horizontal-gap: 22
+  style.stroke: transparent
+  style.fill: transparent
+
+  input: {
+    label: "입력\n사용자 요청\ninjection"
+    shape: rectangle
+    style.fill: "#eff6ff"
+    style.stroke: "#60a5fa"
+    style.border-radius: 12
+    style.stroke-width: 2
+    style.font-size: 17
+    style.font-color: "#111827"
+  }
+  context: {
+    label: "컨텍스트\nRAG, vector DB\npoisoning"
+    shape: rectangle
+    style.fill: "#f0fdf4"
+    style.stroke: "#4ade80"
+    style.border-radius: 12
+    style.stroke-width: 2
+    style.font-size: 17
+    style.font-color: "#111827"
+  }
+  model: {
+    label: "모델\nLLM, SLM\nleakage"
+    shape: rectangle
+    style.fill: "#f5f3ff"
+    style.stroke: "#a78bfa"
+    style.border-radius: 12
+    style.stroke-width: 2
+    style.font-size: 17
+    style.font-color: "#111827"
+  }
+  tool: {
+    label: "도구/행동\nAPI, MCP\nagency"
+    shape: rectangle
+    style.fill: "#fff7ed"
+    style.stroke: "#fb923c"
+    style.border-radius: 12
+    style.stroke-width: 2
+    style.font-size: 17
+    style.font-color: "#111827"
+  }
+  output: {
+    label: "출력\n답변/실행\nunsafe"
+    shape: rectangle
+    style.fill: "#ecfeff"
+    style.stroke: "#22d3ee"
+    style.border-radius: 12
+    style.stroke-width: 2
+    style.font-size: 17
+    style.font-color: "#111827"
+  }
+  logs: {
+    label: "로그/관측\ntrace, audit\nsecret"
+    shape: rectangle
+    style.fill: "#f8fafc"
+    style.stroke: "#cbd5e1"
+    style.border-radius: 12
+    style.stroke-width: 2
+    style.font-size: 17
+    style.font-color: "#111827"
+  }
+
+  input -> context: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  context -> model: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  model -> tool: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  tool -> output: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+  output -> logs: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+}
+
+controls: {
+  label: "전 구간 공통 통제"
+  grid-columns: 2
+  horizontal-gap: 28
+  style.fill: "#f8fafc"
+  style.stroke: "#cbd5e1"
+  style.border-radius: 14
+  style.stroke-width: 2
+
+  control_left: {
+    label: "1. 최소 권한과 tool allowlist\n2. 서버 측 schema, 인자, 권한 검증\n3. 민감정보 redaction과 egress 차단\n4. red team, 회귀 테스트, incident review"
+    shape: rectangle
+    style.fill: "#ffffff"
+    style.stroke: "#cbd5e1"
+    style.border-radius: 10
+    style.stroke-width: 1
+    style.font-size: 16
+    style.font-color: "#111827"
+  }
+  control_right: {
+    label: "5. prompt/model/index/tool versioning\n6. trace, audit log, 보존기간 관리\n7. 공급망 검토와 vendor due diligence\n8. human review와 rollback 경로"
+    shape: rectangle
+    style.fill: "#ffffff"
+    style.stroke: "#cbd5e1"
+    style.border-radius: 10
+    style.stroke-width: 1
+    style.font-size: 16
+    style.font-color: "#111827"
+  }
+}
+
+note: {
+  label: "핵심: 프롬프트 분리만으로는 부족하다."
+  shape: text
+  style.font-size: 15
+  style.font-color: "#475569"
+}

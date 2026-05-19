@@ -1,0 +1,27 @@
+<svg width="420" height="560" viewBox="0 0 420 560" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">A Shared Language for AI Practitioners book cover</title>
+  <desc id="desc">Minimal book cover with typography, topic labels, and a quiet editorial layout.</desc>
+  <rect width="420" height="560" rx="18" fill="#F7F8F2"/>
+  <rect x="18" y="18" width="384" height="524" rx="14" fill="#FFFFFF" stroke="#D9E0D2" stroke-width="2"/>
+
+  <rect x="42" y="42" width="336" height="476" rx="10" fill="#FBFCF8"/>
+  <path d="M42 140H378" stroke="#D9E0D2" stroke-width="2"/>
+  <path d="M42 420H378" stroke="#D9E0D2" stroke-width="2"/>
+
+  <text x="62" y="82" fill="#6E946F" font-family="JetBrains Mono, Consolas, monospace" font-size="15" font-weight="700" letter-spacing="2">SILLY TOOL VALLEY</text>
+  <text x="62" y="108" fill="#727A71" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600">Practitioner Handbook / 2026</text>
+
+  <text x="62" y="202" fill="#242A24" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="800">A Shared</text>
+  <text x="62" y="250" fill="#242A24" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="800">Language</text>
+  <text x="62" y="298" fill="#242A24" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="800">for AI</text>
+  <text x="62" y="346" fill="#242A24" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="800">Practitioners</text>
+
+  <rect x="62" y="452" width="82" height="28" rx="14" fill="#E8EDE0" stroke="#C3CAB9"/>
+  <text x="83" y="471" fill="#334A39" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800">LLM</text>
+  <rect x="154" y="452" width="86" height="28" rx="14" fill="#F3E7D8" stroke="#D8C7B2"/>
+  <text x="175" y="471" fill="#7A5335" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800">RAG</text>
+  <rect x="250" y="452" width="96" height="28" rx="14" fill="#E8EDE0" stroke="#C3CAB9"/>
+  <text x="270" y="471" fill="#334A39" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800">Agents</text>
+
+  <text x="62" y="506" fill="#727A71" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600">Clear terms for AI product, design, and engineering work.</text>
+</svg>

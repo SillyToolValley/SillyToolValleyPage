@@ -1,0 +1,11 @@
+{
+  "id": "ai-practitioner-handbook",
+  "title": "A Shared Language for AI Practitioners",
+  "defaultLanguage": "en",
+  "languages": ["en", "ko", "ja", "zh-Hans", "es"],
+  "paths": {
+    "reader": "reader.html",
+    "html": "en/ai-practitioner-handbook.html",
+    "pdf": "en/ai-practitioner-handbook.pdf"
+  }
+}

@@ -1,0 +1,91 @@
+# title: LLM 제품은 여러 계층의 시스템이다
+# subtitle: 모델 교체 전에 어느 계층에서 실패했는지 분리해서 본다.
+
+direction: down
+
+ux: {
+  label: "사용자 경험\n업무 화면, 근거 표시, 승인, 피드백\n사용자는 모델보다 업무 흐름과 복구 경로를 만난다."
+  shape: rectangle
+  style.fill: "#eff6ff"
+  style.stroke: "#60a5fa"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 17
+  style.font-color: "#111827"
+}
+
+app: {
+  label: "앱 로직\n업무 규칙, 권한, 검증, fallback\n모델 출력은 시스템 검증을 통과해야 한다."
+  shape: rectangle
+  style.fill: "#f0fdf4"
+  style.stroke: "#4ade80"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 17
+  style.font-color: "#111827"
+}
+
+orchestration: {
+  label: "오케스트레이션\nworkflow, agent routing, tool call 순서\n상태, 재시도, 멱등성까지 함께 설계한다."
+  shape: rectangle
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 17
+  style.font-color: "#111827"
+}
+
+knowledge: {
+  label: "지식 계층\nRAG, metadata"
+  shape: rectangle
+  style.fill: "#f8fafc"
+  style.stroke: "#cbd5e1"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 17
+  style.font-color: "#111827"
+}
+
+tool: {
+  label: "도구 계층\nAPI, DB, MCP"
+  shape: rectangle
+  style.fill: "#fdf2f8"
+  style.stroke: "#f9a8d4"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 17
+  style.font-color: "#111827"
+}
+
+model: {
+  label: "모델 계층\nLLM, SLM\nembedding"
+  shape: rectangle
+  style.fill: "#f5f3ff"
+  style.stroke: "#a78bfa"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 17
+  style.font-color: "#111827"
+}
+
+ops: {
+  label: "운영 통제\neval\ntrace / log\n보안 / 권한\n비용 / 지연\n배포 / rollback\n전 계층에 가로질러 적용"
+  shape: rectangle
+  style.fill: "#ecfeff"
+  style.stroke: "#22d3ee"
+  style.border-radius: 12
+  style.stroke-width: 2
+  style.font-size: 17
+  style.font-color: "#111827"
+}
+
+ux -> app: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+app -> orchestration: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+orchestration -> knowledge: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+orchestration -> tool: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+orchestration -> model: "" { style.stroke: "#475569"; style.stroke-width: 2 }
+ux -> ops: "" { style.stroke: "#64748b"; style.stroke-width: 2; style.stroke-dash: 6 }
+app -> ops: "" { style.stroke: "#64748b"; style.stroke-width: 2; style.stroke-dash: 6 }
+orchestration -> ops: "" { style.stroke: "#64748b"; style.stroke-width: 2; style.stroke-dash: 6 }
+model -> ops: "" { style.stroke: "#64748b"; style.stroke-width: 2; style.stroke-dash: 6 }

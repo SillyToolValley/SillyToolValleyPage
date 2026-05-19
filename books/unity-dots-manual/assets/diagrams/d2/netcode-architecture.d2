@@ -1,0 +1,34 @@
+# title: Netcode for Entities Architecture Flow
+direction: right
+
+bootstrap: "ClientServerBootstrap\nWorld creation" {
+  style.fill: "#eff6ff"
+  style.stroke: "#38bdf8"
+}
+
+server: "Server World" {
+  style.fill: "#f8fafc"
+  sim: "SimulationSystemGroup"
+  ghost_send: "GhostSendSystem\nSnapshot send"
+  command_recv: "CommandReceiveSystem\nInput receive"
+  rpc_server: "RpcSystem"
+}
+
+client: "Client World" {
+  style.fill: "#f8fafc"
+  sim: "SimulationSystemGroup"
+  ghost_recv: "GhostReceiveSystem\nSnapshot receive"
+  predicted: "PredictedSimulationSystemGroup\nRollback + re-simulate"
+  command_send: "CommandSendSystem\nInput send"
+  interpolation: "GhostInterpolation"
+  rpc_client: "RpcSystem"
+}
+
+bootstrap -> server
+bootstrap -> client
+server.ghost_send -> client.ghost_recv: "Snapshot\nunreliable"
+client.command_send -> server.command_recv: "Command stream"
+client.rpc_client -> server.rpc_server: "RPC\nreliable"
+server.rpc_server -> client.rpc_client: "RPC\nreliable"
+client.ghost_recv -> client.predicted
+client.ghost_recv -> client.interpolation

@@ -1,0 +1,19 @@
+# title: Entities 1.x to 6.5 Migration Order
+direction: down
+backup: "Backup and branch\nfreeze current project"
+packages: "Packages\nmove to Unity 6000.5 core packages" {
+  style.fill: "#eff6ff"
+  style.stroke: "#38bdf8"
+}
+managed: "Managed references\nmove to UnityObjectRef or baked data"
+foreach: "Entities.ForEach\nport to SystemAPI.Query or IJobEntity" {
+  style.fill: "#fff7ed"
+  style.stroke: "#fb923c"
+}
+aspects: "IAspect\nremove aspect wrappers"
+verify: "Verify\nPlay Mode, profiler, netcode checks" {
+  style.fill: "#ecfdf5"
+  style.stroke: "#22c55e"
+}
+
+backup -> packages -> managed -> foreach -> aspects -> verify
