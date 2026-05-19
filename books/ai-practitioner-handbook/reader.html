@@ -10,15 +10,19 @@
     <title>AI Practitioner Handbook Reader</title>
     <style>
       :root {
-        --bg: #e7edf5;
-        --panel: #ffffff;
-        --ink: #1f2328;
-        --muted: #64748b;
-        --line: #cbd5e1;
-        --accent: #1f6feb;
-        --accent-dark: #174ea6;
-        --page-shadow: 0 18px 45px rgba(15, 23, 42, 0.2);
-        color-scheme: light;
+        --bg: #525659;
+        --bg-deep: #3c3f42;
+        --toolbar-bg: #323639;
+        --toolbar-border: rgba(255, 255, 255, 0.08);
+        --sidebar-bg: #2b2c2f;
+        --ink: #e8eaed;
+        --muted: #9aa0a6;
+        --line: rgba(255, 255, 255, 0.16);
+        --accent: #8ab4f8;
+        --accent-strong: #aecbfa;
+        --page-shadow: 0 4px 18px rgba(0, 0, 0, 0.55);
+        --thumb-active-shadow: 0 0 0 2px var(--accent);
+        color-scheme: dark;
       }
 
       * {
@@ -32,7 +36,7 @@
 
       body {
         margin: 0;
-        background: linear-gradient(180deg, #f7f9fc, var(--bg));
+        background: var(--bg);
         color: var(--ink);
         font-family: "Segoe UI", "Malgun Gothic", Arial, sans-serif;
       }
@@ -41,237 +45,336 @@
       input,
       select {
         font: inherit;
+        color: var(--ink);
       }
 
       button {
-        min-height: 36px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: #fff;
+        min-height: 32px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        background: transparent;
         color: var(--ink);
-        font-weight: 700;
+        font-weight: 600;
         cursor: pointer;
       }
 
-      button:hover:not(:disabled),
-      select:hover,
-      input:hover {
-        border-color: var(--accent);
+      button:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.08);
       }
 
       button:disabled {
         cursor: not-allowed;
-        opacity: 0.45;
+        opacity: 0.4;
       }
 
       select,
       input[type="number"] {
-        min-height: 36px;
+        min-height: 30px;
+        padding: 0 8px;
         border: 1px solid var(--line);
-        border-radius: 8px;
-        background: #fff;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--ink);
+      }
+
+      select:hover,
+      input:hover {
+        border-color: rgba(255, 255, 255, 0.32);
+      }
+
+      select option {
+        background: var(--toolbar-bg);
         color: var(--ink);
       }
 
       .app {
-        min-height: 100vh;
+        height: 100vh;
+        height: 100dvh;
         display: grid;
         grid-template-rows: auto 1fr;
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+          "toolbar toolbar"
+          "sidebar reader";
+        transition: grid-template-columns 0.2s ease;
+        overflow: hidden;
+      }
+
+      .app.chrome-hidden {
+        grid-template-rows: 0 1fr;
+        grid-template-columns: 0 1fr;
       }
 
       .toolbar {
-        position: sticky;
-        top: 0;
+        grid-area: toolbar;
         z-index: 10;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.55);
-        background: rgba(248, 250, 252, 0.92);
-        backdrop-filter: blur(14px);
+        background: var(--toolbar-bg);
+        border-bottom: 1px solid var(--toolbar-border);
+        overflow: hidden;
+        transition: max-height 0.18s ease, opacity 0.18s ease;
+        max-height: 56px;
+        opacity: 1;
       }
 
-      .toolbar.collapsed {
-        background: transparent;
+      .app.chrome-hidden .toolbar {
+        max-height: 0;
+        opacity: 0;
         border-bottom-color: transparent;
-        backdrop-filter: none;
-      }
-
-      .toolbar.collapsed .toolbar-inner {
-        display: none;
-      }
-
-      .toolbar-toggle {
-        position: fixed;
-        top: 10px;
-        right: 14px;
-        z-index: 30;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 30px;
-        height: 30px;
-        width: 44px;
-        padding: 0;
-        border: 1px solid rgba(148, 163, 184, 0.6);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        color: var(--ink);
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 1;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
-      }
-
-      .toolbar-toggle:hover {
-        border-color: var(--accent);
-      }
-
-      .page-nav {
-        position: fixed;
-        top: 50%;
-        z-index: 25;
-        transform: translateY(-50%);
-        width: 48px;
-        height: 84px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-        border: none;
-        border-radius: 14px;
-        background: rgba(100, 116, 139, 0.22);
-        color: rgba(255, 255, 255, 0.92);
-        font-size: 30px;
-        font-weight: 700;
-        line-height: 1;
-        cursor: pointer;
-        transition: background 0.15s ease, opacity 0.15s ease;
-      }
-
-      .page-nav:hover:not(:disabled) {
-        background: rgba(71, 85, 105, 0.55);
-      }
-
-      .page-nav:disabled {
-        opacity: 0.22;
-        cursor: not-allowed;
-      }
-
-      .page-nav-prev {
-        left: 10px;
-      }
-
-      .page-nav-next {
-        right: 10px;
-      }
-
-      @media (max-width: 560px) {
-        .page-nav {
-          width: 36px;
-          height: 64px;
-          font-size: 24px;
-        }
       }
 
       .toolbar-inner {
-        width: min(1280px, calc(100% - 28px));
-        margin: 0 auto;
-        padding: 12px 0;
+        width: 100%;
+        height: 56px;
+        padding: 0 14px;
         display: grid;
-        grid-template-columns: minmax(220px, 1fr) auto;
-        gap: 12px;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        gap: 14px;
         align-items: center;
       }
 
-      .title-block {
+      .toolbar-left,
+      .toolbar-center,
+      .toolbar-right {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .toolbar-left {
         min-width: 0;
+        gap: 12px;
+      }
+
+      .toolbar-center {
+        justify-content: center;
+      }
+
+      .toolbar-right {
+        justify-content: flex-end;
       }
 
       .title {
         margin: 0;
         overflow: hidden;
-        font-size: 17px;
-        line-height: 1.3;
-        letter-spacing: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.2;
         text-overflow: ellipsis;
         white-space: nowrap;
+        color: var(--ink);
       }
 
       .subtitle {
-        margin-top: 3px;
         color: var(--muted);
         font-size: 12px;
-        line-height: 1.4;
-      }
-
-      .controls {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
       }
 
       .control-group {
         display: flex;
         align-items: center;
-        gap: 6px;
-        padding: 4px;
-        border: 1px solid rgba(203, 213, 225, 0.8);
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.7);
+        gap: 4px;
+        padding: 3px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.04);
       }
 
       .segmented button {
-        min-width: 72px;
-        border-color: transparent;
-        background: transparent;
+        min-width: 56px;
+        height: 26px;
+        min-height: 26px;
+        padding: 0 10px;
+        font-size: 12px;
+        border-radius: 5px;
+        color: var(--muted);
       }
 
       .segmented button[aria-pressed="true"] {
-        background: var(--accent);
-        color: #fff;
+        background: rgba(138, 180, 248, 0.18);
+        color: var(--accent-strong);
       }
 
       .page-input {
-        width: 74px;
-        padding: 0 8px;
+        width: 52px;
+        height: 26px;
+        min-height: 26px;
+        padding: 0 6px;
         text-align: center;
+        font-size: 13px;
+        border-color: transparent;
+        background: rgba(255, 255, 255, 0.06);
       }
 
       .page-total {
-        min-width: 54px;
+        min-width: 40px;
+        padding: 0 4px;
         color: var(--muted);
-        font-size: 13px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .icon-button {
+        width: 32px;
+        height: 32px;
+        min-height: 32px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        color: var(--ink);
+        font-size: 18px;
+        line-height: 1;
       }
 
       .zoom {
-        width: 116px;
+        width: 96px;
         accent-color: var(--accent);
       }
 
-      .link-button {
-        min-height: 36px;
+      .zoom-label {
+        min-width: 38px;
+        text-align: right;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .fit-toggle {
+        width: 38px;
+        height: 32px;
+        min-height: 32px;
+        padding: 0;
         display: inline-flex;
         align-items: center;
-        padding: 0 10px;
+        justify-content: center;
         border: 1px solid var(--line);
-        border-radius: 8px;
-        background: #fff;
-        color: var(--accent-dark);
-        font-size: 13px;
-        font-weight: 800;
-        text-decoration: none;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1;
+      }
+
+      .fit-toggle:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .fit-toggle[data-mode="width"],
+      .fit-toggle[data-mode="page"] {
+        background: rgba(138, 180, 248, 0.18);
+        color: var(--accent-strong);
+        border-color: rgba(138, 180, 248, 0.3);
+      }
+
+      .fullscreen-button {
+        width: 32px;
+        height: 32px;
+        min-height: 32px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--ink);
+        font-size: 16px;
+        line-height: 1;
+      }
+
+      .fullscreen-button:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .fullscreen-button[aria-pressed="true"] {
+        background: rgba(138, 180, 248, 0.18);
+        color: var(--accent-strong);
+        border-color: rgba(138, 180, 248, 0.3);
+      }
+
+      .sidebar {
+        grid-area: sidebar;
+        width: 184px;
+        background: var(--sidebar-bg);
+        border-right: 1px solid var(--toolbar-border);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 14px 10px 28px;
+        transition: width 0.2s ease, padding 0.2s ease, opacity 0.18s ease;
+      }
+
+      .app.chrome-hidden .sidebar {
+        width: 0;
+        padding: 0;
+        opacity: 0;
+        border-right-color: transparent;
+      }
+
+      .thumb {
+        width: 100%;
+        margin-bottom: 14px;
+        padding: 0;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .thumb-frame {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        background: var(--bg-deep);
+        border-radius: 3px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        outline: 1px solid transparent;
+        transition: outline-color 0.12s ease, box-shadow 0.12s ease;
+      }
+
+      .thumb:hover .thumb-frame {
+        outline-color: rgba(255, 255, 255, 0.35);
+      }
+
+      .thumb[aria-current="true"] .thumb-frame {
+        outline: none;
+        box-shadow: var(--thumb-active-shadow);
+      }
+
+      .thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .thumb-label {
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .thumb[aria-current="true"] .thumb-label {
+        color: var(--accent-strong);
+        font-weight: 700;
       }
 
       .reader {
+        grid-area: reader;
         min-width: 0;
+        position: relative;
         overflow: auto;
+        background: var(--bg);
       }
 
       .stage {
-        min-height: calc(100vh - 86px);
-        padding: 28px 18px 44px;
+        min-height: 100%;
+        padding: 12px 18px;
         display: flex;
         justify-content: safe center;
         align-items: flex-start;
@@ -279,7 +382,7 @@
 
       .spread {
         display: flex;
-        gap: 22px;
+        gap: 14px;
         align-items: flex-start;
         justify-content: center;
         flex-wrap: nowrap;
@@ -287,32 +390,25 @@
 
       .page-shell {
         min-width: 0;
+        flex: 0 0 auto;
+        align-self: flex-start;
       }
 
-      .page-label {
-        margin: 0 0 8px;
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 800;
-        text-align: center;
-      }
-
-      canvas {
-        width: 100%;
-        height: auto;
+      .page-shell canvas {
         display: block;
-        border-radius: 3px;
         background: #fff;
         box-shadow: var(--page-shadow);
+        max-width: none;
+        max-height: none;
       }
 
       .status {
-        width: min(860px, calc(100% - 28px));
+        width: min(720px, calc(100% - 28px));
         margin: 42px auto;
         padding: 20px;
         border: 1px solid var(--line);
-        border-radius: 12px;
-        background: #fff;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.2);
         color: var(--muted);
         line-height: 1.7;
         text-align: center;
@@ -322,13 +418,123 @@
         color: var(--ink);
       }
 
-      @media (max-width: 920px) {
-        .toolbar-inner {
-          grid-template-columns: 1fr;
+      .chrome-show {
+        position: fixed;
+        top: 10px;
+        right: 14px;
+        z-index: 30;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 28px;
+        min-height: 28px;
+        padding: 0;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 6px;
+        background: rgba(50, 54, 57, 0.92);
+        color: var(--ink);
+        font-size: 13px;
+        line-height: 1;
+        cursor: pointer;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      }
+
+      .app.chrome-hidden ~ .chrome-show {
+        display: inline-flex;
+      }
+
+      .chrome-show:hover {
+        background: rgba(70, 74, 78, 0.95);
+      }
+
+      .page-nav {
+        position: fixed;
+        top: 50%;
+        z-index: 25;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: none;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.4);
+        color: rgba(255, 255, 255, 0.92);
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1;
+        cursor: pointer;
+        transition: background 0.15s ease, opacity 0.15s ease;
+      }
+
+      .page-nav:hover:not(:disabled) {
+        background: rgba(0, 0, 0, 0.65);
+      }
+
+      .page-nav:disabled {
+        opacity: 0.2;
+        cursor: not-allowed;
+      }
+
+      .page-nav-prev {
+        left: 14px;
+      }
+
+      .page-nav-next {
+        right: 14px;
+      }
+
+      .page-indicator {
+        position: fixed;
+        bottom: 22px;
+        left: 50%;
+        z-index: 22;
+        transform: translateX(-50%);
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: rgba(32, 33, 36, 0.92);
+        color: var(--ink);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(6px);
+        pointer-events: none;
+      }
+
+      @media (max-width: 1100px) {
+        .sidebar {
+          width: 132px;
         }
 
-        .controls {
+        .toolbar-inner {
+          grid-template-columns: minmax(0, 1fr) auto;
+          height: auto;
+          padding: 8px 12px;
+          gap: 8px;
+        }
+
+        .toolbar {
+          max-height: 240px;
+        }
+
+        .toolbar-left {
+          grid-column: 1 / 2;
+        }
+
+        .toolbar-center {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          flex-wrap: wrap;
           justify-content: flex-start;
+        }
+
+        .toolbar-right {
+          grid-column: 2 / 3;
         }
 
         .spread.double {
@@ -336,46 +542,66 @@
         }
       }
 
-      @media (max-width: 560px) {
-        .toolbar-inner {
-          width: min(100% - 18px, 1280px);
-        }
-
-        .control-group {
-          width: 100%;
-          justify-content: center;
-        }
-
-        .control-group.language {
-          justify-content: stretch;
-        }
-
-        .control-group.language select {
-          width: 100%;
-        }
-
-        .link-button {
-          width: 100%;
-          justify-content: center;
+      @media (max-width: 640px) {
+        .sidebar {
+          width: 96px;
+          padding: 10px 6px 20px;
         }
 
         .stage {
-          padding: 18px 8px 34px;
+          padding: 16px 8px 48px;
+        }
+
+        .page-nav {
+          width: 34px;
+          height: 60px;
+          font-size: 22px;
+        }
+
+        .page-nav-prev {
+          left: 6px;
+        }
+
+        .page-nav-next {
+          right: 6px;
         }
       }
     </style>
   </head>
   <body>
-    <div class="app">
+    <div class="app" id="app">
       <header class="toolbar" id="toolbar">
         <div class="toolbar-inner">
-          <div class="title-block">
+          <div class="toolbar-left">
             <h1 class="title" id="bookTitle">AI Practitioner Handbook Reader</h1>
-            <div class="subtitle" id="statusText" aria-live="polite">PDF 페이지를 불러오는 중입니다.</div>
+            <span class="subtitle" id="statusText" aria-live="polite">PDF 페이지를 불러오는 중입니다.</span>
           </div>
 
-          <div class="controls" aria-label="Reader controls">
-            <div class="control-group language">
+          <div class="toolbar-center" aria-label="Reader controls">
+            <div class="control-group segmented" aria-label="View mode">
+              <button type="button" id="singleMode" aria-pressed="true">1p</button>
+              <button type="button" id="doubleMode" aria-pressed="false">2p</button>
+            </div>
+
+            <div class="control-group" aria-label="Page navigation">
+              <button class="icon-button" type="button" id="prevPage" aria-label="Previous page">‹</button>
+              <input class="page-input" id="pageNumber" type="number" min="1" value="1" aria-label="Current page">
+              <span class="page-total" id="pageTotal">/ 0</span>
+              <button class="icon-button" type="button" id="nextPage" aria-label="Next page">›</button>
+            </div>
+
+            <button class="fit-toggle" type="button" id="fitToggle" data-mode="actual" aria-label="가로 폭에 맞춤" title="가로 폭에 맞춤">↔</button>
+
+            <div class="control-group" aria-label="Zoom">
+              <input class="zoom" id="zoomRange" type="range" min="50" max="200" step="10" value="100" aria-label="Zoom">
+              <span class="zoom-label" id="zoomLabel">100%</span>
+            </div>
+
+            <button class="fullscreen-button" type="button" id="fullscreenToggle" aria-pressed="false" aria-label="전체화면" title="전체화면">⛶</button>
+          </div>
+
+          <div class="toolbar-right">
+            <div class="control-group" aria-label="Language">
               <select id="languageSelect" aria-label="Language">
                 <option value="ko">한국어</option>
                 <option value="en">English</option>
@@ -384,39 +610,24 @@
                 <option value="es">Español</option>
               </select>
             </div>
-
-            <div class="control-group segmented" aria-label="View mode">
-              <button type="button" id="singleMode" aria-pressed="true">1 page</button>
-              <button type="button" id="doubleMode" aria-pressed="false">2 pages</button>
-            </div>
-
-            <div class="control-group" aria-label="Page navigation">
-              <button type="button" id="prevPage" aria-label="Previous page">‹</button>
-              <input class="page-input" id="pageNumber" type="number" min="1" value="1" aria-label="Current page">
-              <span class="page-total" id="pageTotal">/ 0</span>
-              <button type="button" id="nextPage" aria-label="Next page">›</button>
-            </div>
-
-            <div class="control-group" aria-label="Zoom">
-              <input class="zoom" id="zoomRange" type="range" min="80" max="180" step="10" value="100" aria-label="Zoom">
-              <span id="zoomLabel">100%</span>
-            </div>
-
-            <a class="link-button" id="pdfLink" href="en/ai-practitioner-handbook.pdf">PDF</a>
+            <button class="icon-button" id="chromeToggle" type="button" aria-label="툴바 접기" aria-expanded="true" title="툴바 접기">▴</button>
           </div>
         </div>
       </header>
 
-      <button class="toolbar-toggle" id="toolbarToggle" type="button" aria-label="툴바 접기/펴기" aria-expanded="true" title="툴바 접기/펴기">▴</button>
-      <button class="page-nav page-nav-prev" id="pageNavPrev" type="button" aria-label="이전 페이지" title="이전 페이지">‹</button>
-      <button class="page-nav page-nav-next" id="pageNavNext" type="button" aria-label="다음 페이지" title="다음 페이지">›</button>
+      <aside class="sidebar" id="sidebar" aria-label="Page thumbnails"></aside>
 
-      <main class="reader">
+      <main class="reader" id="reader">
         <div class="stage" id="stage">
           <div class="spread single" id="spread"></div>
         </div>
       </main>
     </div>
+
+    <button class="chrome-show" id="chromeShow" type="button" aria-label="툴바 펼치기" title="툴바 펼치기">▾</button>
+    <button class="page-nav page-nav-prev" id="pageNavPrev" type="button" aria-label="이전 페이지" title="이전 페이지">‹</button>
+    <button class="page-nav page-nav-next" id="pageNavNext" type="button" aria-label="다음 페이지" title="다음 페이지">›</button>
+    <div class="page-indicator" id="pageIndicator" aria-hidden="true">1 / 0</div>
 
     <script type="module">
       import * as pdfjsLib from "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.mjs";
@@ -453,6 +664,7 @@
       };
 
       const elements = {
+        app: document.querySelector("#app"),
         title: document.querySelector("#bookTitle"),
         status: document.querySelector("#statusText"),
         language: document.querySelector("#languageSelect"),
@@ -464,23 +676,29 @@
         pageTotal: document.querySelector("#pageTotal"),
         zoomRange: document.querySelector("#zoomRange"),
         zoomLabel: document.querySelector("#zoomLabel"),
-        pdfLink: document.querySelector("#pdfLink"),
+        fitToggle: document.querySelector("#fitToggle"),
+        fullscreenToggle: document.querySelector("#fullscreenToggle"),
         stage: document.querySelector("#stage"),
         spread: document.querySelector("#spread"),
-        reader: document.querySelector(".reader"),
+        reader: document.querySelector("#reader"),
+        sidebar: document.querySelector("#sidebar"),
         toolbar: document.querySelector("#toolbar"),
-        toolbarToggle: document.querySelector("#toolbarToggle"),
+        chromeToggle: document.querySelector("#chromeToggle"),
+        chromeShow: document.querySelector("#chromeShow"),
         pageNavPrev: document.querySelector("#pageNavPrev"),
         pageNavNext: document.querySelector("#pageNavNext"),
+        pageIndicator: document.querySelector("#pageIndicator"),
       };
 
-      const setToolbarCollapsed = (collapsed) => {
-        elements.toolbar.classList.toggle("collapsed", collapsed);
-        elements.toolbarToggle.textContent = collapsed ? "▾" : "▴";
-        elements.toolbarToggle.setAttribute("aria-expanded", String(!collapsed));
+      const setChromeHidden = (hidden) => {
+        elements.app.classList.toggle("chrome-hidden", hidden);
+        elements.chromeToggle.setAttribute("aria-expanded", String(!hidden));
         try {
-          localStorage.setItem("reader.toolbarCollapsed", collapsed ? "1" : "0");
+          localStorage.setItem("reader.chromeHidden", hidden ? "1" : "0");
         } catch (error) {}
+        if (pdfDocument) {
+          window.setTimeout(() => renderSpread(), 220);
+        }
       };
 
       const centerScrollSpread = () => {
@@ -496,14 +714,18 @@
       let viewMode = params.get("view") === "double" ? "double" : "single";
       let pageNumber = Number.parseInt(params.get("page") || "1", 10);
       let zoom = Number.parseFloat(params.get("zoom") || "1");
+      const fitParam = params.get("fit");
+      let fitMode = fitParam === "width" || fitParam === "page" ? fitParam : "actual";
       let pdfDocument = null;
       let renderToken = 0;
+      let thumbToken = 0;
+      const thumbCache = new Map();
 
       if (!Number.isFinite(pageNumber) || pageNumber < 1) {
         pageNumber = 1;
       }
 
-      if (!Number.isFinite(zoom) || zoom < 0.8 || zoom > 1.8) {
+      if (!Number.isFinite(zoom) || zoom < 0.5 || zoom > 2.0) {
         zoom = 1;
       }
 
@@ -524,6 +746,28 @@
         elements.language.disabled = busy;
         elements.singleMode.disabled = busy;
         elements.doubleMode.disabled = busy;
+        elements.fitToggle.disabled = busy;
+      };
+
+      const fitLabel = {
+        actual: { icon: "↔", title: "가로 폭에 맞춤" },
+        width: { icon: "↔", title: "페이지 전체에 맞춤" },
+        page: { icon: "⊡", title: "가로 폭에 맞춤" },
+      };
+
+      const updateFitButtons = () => {
+        elements.fitToggle.dataset.mode = fitMode;
+        const label = fitLabel[fitMode] || fitLabel.actual;
+        elements.fitToggle.textContent = label.icon;
+        elements.fitToggle.setAttribute("aria-label", label.title);
+        elements.fitToggle.setAttribute("title", label.title);
+      };
+
+      const updateFullscreenButton = () => {
+        const active = !!document.fullscreenElement;
+        elements.fullscreenToggle.setAttribute("aria-pressed", String(active));
+        elements.fullscreenToggle.setAttribute("aria-label", active ? "전체화면 해제" : "전체화면");
+        elements.fullscreenToggle.setAttribute("title", active ? "전체화면 해제" : "전체화면");
       };
 
       const updateModeButtons = () => {
@@ -538,8 +782,10 @@
           page: String(pageNumber),
           view: viewMode,
         });
-        if (zoom !== 1) {
-          nextParams.set("zoom", zoom.toFixed(1));
+        if (fitMode !== "actual") {
+          nextParams.set("fit", fitMode);
+        } else if (zoom !== 1) {
+          nextParams.set("zoom", zoom.toFixed(2));
         }
         window.history.replaceState(null, "", `${window.location.pathname}?${nextParams.toString()}`);
       };
@@ -555,7 +801,41 @@
         return pages;
       };
 
-      const renderPage = async (pageIndex, token) => {
+      const STAGE_PAD_X = 18 * 2;
+      const STAGE_PAD_Y = 12 * 2;
+
+      const getAvailableArea = () => {
+        const rect = elements.reader.getBoundingClientRect();
+        const readerWidth = rect.width || window.innerWidth;
+        const readerHeight = rect.height || window.innerHeight;
+        return {
+          width: Math.max(280, readerWidth - STAGE_PAD_X),
+          height: Math.max(240, readerHeight - STAGE_PAD_Y),
+        };
+      };
+
+      const computeCssScale = (page, visibleCount) => {
+        const unscaledViewport = page.getViewport({ scale: 1 });
+        const { width: availableWidth, height: availableHeight } = getAvailableArea();
+        const gap = 14;
+        const perPageWidthBudget = (availableWidth - gap * (visibleCount - 1)) / visibleCount;
+
+        if (fitMode === "width") {
+          return perPageWidthBudget / unscaledViewport.width;
+        }
+        if (fitMode === "page") {
+          const widthScale = perPageWidthBudget / unscaledViewport.width;
+          const heightScale = availableHeight / unscaledViewport.height;
+          return Math.min(widthScale, heightScale);
+        }
+        const baseAvailableWidth =
+          viewMode === "double" && window.innerWidth > 920
+            ? Math.min(580, perPageWidthBudget)
+            : Math.min(900, availableWidth);
+        return (baseAvailableWidth / unscaledViewport.width) * zoom;
+      };
+
+      const renderPage = async (pageIndex, token, visibleCount) => {
         const page = await pdfDocument.getPage(pageIndex);
         if (token !== renderToken) {
           return;
@@ -565,33 +845,141 @@
         shell.className = "page-shell";
         shell.setAttribute("aria-label", `Page ${pageIndex}`);
 
-        const label = document.createElement("p");
-        label.className = "page-label";
-        label.textContent = `Page ${pageIndex}`;
-        shell.append(label);
-
         const canvas = document.createElement("canvas");
         shell.append(canvas);
         elements.spread.append(shell);
 
-        const unscaledViewport = page.getViewport({ scale: 1 });
-        const stageWidth = Math.max(320, elements.stage.clientWidth - 36);
-        const availableWidth =
-          viewMode === "double" && window.innerWidth > 920
-            ? Math.min(580, (stageWidth - 24) / 2)
-            : Math.min(900, stageWidth);
-        const cssScale = (availableWidth / unscaledViewport.width) * zoom;
+        const cssScale = computeCssScale(page, visibleCount);
         const viewport = page.getViewport({ scale: cssScale });
-        const outputScale = Math.max(1, window.devicePixelRatio || 1);
-        const context = canvas.getContext("2d", { alpha: false });
+        const widthPx = Math.floor(viewport.width);
+        const heightPx = Math.floor(viewport.height);
 
+        shell.style.width = `${widthPx}px`;
+        shell.style.height = `${heightPx}px`;
+        canvas.style.width = `${widthPx}px`;
+        canvas.style.height = `${heightPx}px`;
+
+        const outputScale = Math.max(1, window.devicePixelRatio || 1);
         canvas.width = Math.floor(viewport.width * outputScale);
         canvas.height = Math.floor(viewport.height * outputScale);
-        canvas.style.width = `${Math.floor(viewport.width)}px`;
-        canvas.style.height = `${Math.floor(viewport.height)}px`;
 
+        const context = canvas.getContext("2d", { alpha: false });
         context.setTransform(outputScale, 0, 0, outputScale, 0, 0);
         await page.render({ canvasContext: context, viewport }).promise;
+
+        if (fitMode !== "actual") {
+          const unscaledViewport = page.getViewport({ scale: 1 });
+          const { width: availableWidth } = getAvailableArea();
+          const baseAvailableWidth =
+            viewMode === "double" && window.innerWidth > 920
+              ? Math.min(580, (availableWidth - 14) / 2)
+              : Math.min(900, availableWidth);
+          const baseScale = baseAvailableWidth / unscaledViewport.width;
+          const reflectedZoom = cssScale / baseScale;
+          elements.zoomRange.value = String(Math.round(clamp(reflectedZoom, 0.5, 2.0) * 100));
+          elements.zoomLabel.textContent = `${Math.round(reflectedZoom * 100)}%`;
+        }
+      };
+
+      const updatePageIndicator = () => {
+        if (!pdfDocument) {
+          elements.pageIndicator.textContent = "";
+          return;
+        }
+        elements.pageIndicator.textContent = `${pageNumber} / ${pdfDocument.numPages}`;
+      };
+
+      const highlightActiveThumb = () => {
+        const activeNums = new Set(visiblePages().map(String));
+        const thumbs = elements.sidebar.querySelectorAll(".thumb");
+        let firstActive = null;
+        thumbs.forEach((thumb) => {
+          const isActive = activeNums.has(thumb.dataset.page);
+          thumb.setAttribute("aria-current", isActive ? "true" : "false");
+          if (isActive && !firstActive) firstActive = thumb;
+        });
+        if (firstActive && typeof firstActive.scrollIntoView === "function") {
+          firstActive.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        }
+      };
+
+      const makeThumbImg = (dataUrl, pageIndex) => {
+        const img = document.createElement("img");
+        img.src = dataUrl;
+        img.alt = `Page ${pageIndex}`;
+        img.decoding = "async";
+        img.loading = "lazy";
+        return img;
+      };
+
+      const renderThumbnail = async (pageIndex, frame, token) => {
+        if (thumbCache.has(pageIndex)) {
+          frame.replaceChildren(makeThumbImg(thumbCache.get(pageIndex), pageIndex));
+          return;
+        }
+        try {
+          const page = await pdfDocument.getPage(pageIndex);
+          if (token !== thumbToken) return;
+          const baseViewport = page.getViewport({ scale: 1 });
+          const targetWidth = 140;
+          const scale = targetWidth / baseViewport.width;
+          const viewport = page.getViewport({ scale });
+          const outputScale = Math.max(1, window.devicePixelRatio || 1);
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.floor(viewport.width * outputScale);
+          canvas.height = Math.floor(viewport.height * outputScale);
+          const context = canvas.getContext("2d", { alpha: false });
+          context.setTransform(outputScale, 0, 0, outputScale, 0, 0);
+          await page.render({ canvasContext: context, viewport }).promise;
+          if (token !== thumbToken) return;
+          const dataUrl = canvas.toDataURL("image/png");
+          thumbCache.set(pageIndex, dataUrl);
+          frame.replaceChildren(makeThumbImg(dataUrl, pageIndex));
+        } catch (error) {
+          console.warn(`thumbnail ${pageIndex} failed`, error);
+        }
+      };
+
+      const buildSidebar = () => {
+        thumbCache.clear();
+        const token = ++thumbToken;
+        elements.sidebar.replaceChildren();
+        if (!pdfDocument) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              const thumb = entry.target;
+              const pageIndex = Number.parseInt(thumb.dataset.page, 10);
+              const frame = thumb.querySelector(".thumb-frame");
+              observer.unobserve(thumb);
+              renderThumbnail(pageIndex, frame, token);
+            }
+          },
+          { root: elements.sidebar, rootMargin: "120px 0px", threshold: 0.01 }
+        );
+
+        for (let i = 1; i <= pdfDocument.numPages; i++) {
+          const thumb = document.createElement("button");
+          thumb.type = "button";
+          thumb.className = "thumb";
+          thumb.dataset.page = String(i);
+          thumb.setAttribute("aria-label", `Go to page ${i}`);
+          thumb.setAttribute("aria-current", "false");
+
+          const frame = document.createElement("span");
+          frame.className = "thumb-frame";
+          const label = document.createElement("span");
+          label.className = "thumb-label";
+          label.textContent = String(i);
+
+          thumb.append(frame, label);
+          thumb.addEventListener("click", () => goToPage(i));
+          elements.sidebar.append(thumb);
+          observer.observe(thumb);
+        }
+        highlightActiveThumb();
       };
 
       const renderSpread = async () => {
@@ -603,17 +991,23 @@
         pageNumber = clamp(pageNumber, 1, pdfDocument.numPages);
         setBusy(true);
         updateModeButtons();
+        updateFitButtons();
         elements.spread.replaceChildren();
         elements.pageNumber.value = String(pageNumber);
         elements.pageNumber.max = String(pdfDocument.numPages);
         elements.pageTotal.textContent = `/ ${pdfDocument.numPages}`;
-        elements.zoomRange.value = String(Math.round(zoom * 100));
-        elements.zoomLabel.textContent = `${Math.round(zoom * 100)}%`;
+        if (fitMode === "actual") {
+          elements.zoomRange.value = String(Math.round(zoom * 100));
+          elements.zoomLabel.textContent = `${Math.round(zoom * 100)}%`;
+        }
         setStatus(`${books[currentLang].nativeName} · ${pageNumber}/${pdfDocument.numPages}`);
+        updatePageIndicator();
+        highlightActiveThumb();
 
+        const pages = visiblePages();
         try {
-          for (const pageIndex of visiblePages()) {
-            await renderPage(pageIndex, token);
+          for (const pageIndex of pages) {
+            await renderPage(pageIndex, token, pages.length);
           }
         } catch (error) {
           console.error(error);
@@ -633,10 +1027,12 @@
         const book = books[currentLang];
 
         ++renderToken;
+        ++thumbToken;
         pdfDocument = null;
+        thumbCache.clear();
         elements.language.value = currentLang;
         elements.title.textContent = book.title;
-        elements.pdfLink.href = book.pdf;
+        elements.sidebar.replaceChildren();
         elements.spread.innerHTML = '<div class="status">PDF 페이지를 불러오는 중입니다.</div>';
         setStatus("PDF 페이지를 불러오는 중입니다.");
         setBusy(true);
@@ -644,6 +1040,7 @@
         try {
           pdfDocument = await pdfjsLib.getDocument(book.pdf).promise;
           pageNumber = clamp(pageNumber, 1, pdfDocument.numPages);
+          buildSidebar();
           await renderSpread();
         } catch (error) {
           console.error(error);
@@ -689,9 +1086,40 @@
       elements.zoomRange.addEventListener("input", () => {
         zoom = Number.parseInt(elements.zoomRange.value, 10) / 100;
         elements.zoomLabel.textContent = `${Math.round(zoom * 100)}%`;
+        if (fitMode !== "actual") {
+          fitMode = "actual";
+          updateFitButtons();
+        }
       });
 
       elements.zoomRange.addEventListener("change", () => renderSpread());
+
+      const cycleFitMode = () => {
+        fitMode = fitMode === "width" ? "page" : "width";
+        updateFitButtons();
+        void elements.reader.offsetHeight;
+        requestAnimationFrame(() => renderSpread());
+      };
+
+      elements.fitToggle.addEventListener("click", cycleFitMode);
+
+      const toggleFullscreen = async () => {
+        try {
+          if (document.fullscreenElement) {
+            await document.exitFullscreen();
+          } else {
+            await document.documentElement.requestFullscreen();
+          }
+        } catch (error) {
+          console.warn("fullscreen toggle failed", error);
+        }
+      };
+
+      elements.fullscreenToggle.addEventListener("click", toggleFullscreen);
+      document.addEventListener("fullscreenchange", () => {
+        updateFullscreenButton();
+        if (pdfDocument) renderSpread();
+      });
 
       document.addEventListener("keydown", (event) => {
         const target = event.target;
@@ -721,18 +1149,19 @@
         resizeTimer = window.setTimeout(() => renderSpread(), 160);
       });
 
-      elements.toolbarToggle.addEventListener("click", () => {
-        setToolbarCollapsed(!elements.toolbar.classList.contains("collapsed"));
-      });
+      elements.chromeToggle.addEventListener("click", () => setChromeHidden(true));
+      elements.chromeShow.addEventListener("click", () => setChromeHidden(false));
 
       try {
-        setToolbarCollapsed(localStorage.getItem("reader.toolbarCollapsed") === "1");
+        setChromeHidden(localStorage.getItem("reader.chromeHidden") === "1");
       } catch (error) {
-        setToolbarCollapsed(false);
+        setChromeHidden(false);
       }
 
       elements.language.value = currentLang;
       updateModeButtons();
+      updateFitButtons();
+      updateFullscreenButton();
       await loadBook(currentLang);
     </script>
   </body>
