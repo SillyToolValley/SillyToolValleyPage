@@ -440,7 +440,7 @@ function initEbookLibrary() {
 function initCatalog() {
     const grid = document.getElementById("catalogGrid");
     const cards = grid ? Array.from(grid.querySelectorAll(".tool-card")) : [];
-    const categoryButtons = Array.from(document.querySelectorAll("[data-category]"));
+    const categoryButtons = Array.from(document.querySelectorAll(".sidebar-item[data-category]"));
     const engineButtons = Array.from(document.querySelectorAll("[data-engine]"));
     const searchInput = document.getElementById("catalogSearch");
     const clearButton = document.getElementById("catalogSearchClear");
