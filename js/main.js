@@ -128,6 +128,7 @@ function initEbookLibrary() {
     let dragStartX = 0;
     let dragStartAngle = 0;
     let dragMoved = false;
+    let suppressClickUntil = 0;
     let momentum = 0;
     let momentumRaf = null;
     let lastMoveTime = 0;
@@ -286,6 +287,16 @@ function initEbookLibrary() {
         momentum = 0;
     };
 
+    const consumeSuppressedClick = (event) => {
+        if (!suppressClickUntil) return false;
+        const shouldSuppress = performance.now() <= suppressClickUntil;
+        suppressClickUntil = 0;
+        if (!shouldSuppress) return false;
+        event.preventDefault();
+        event.stopPropagation();
+        return true;
+    };
+
     const wheelZone = stage.querySelector(".bookshelf-row") || stage;
     wheelZone.addEventListener("wheel", (event) => {
         event.preventDefault();
@@ -304,6 +315,7 @@ function initEbookLibrary() {
         dragStartX = event.clientX;
         dragStartAngle = ringAngle;
         dragMoved = false;
+        suppressClickUntil = 0;
         lastMoveTime = event.timeStamp;
         lastMoveAngle = ringAngle;
         trackedVelocity = 0;
@@ -353,7 +365,9 @@ function initEbookLibrary() {
         if (wheelZone.hasPointerCapture(event.pointerId)) {
             wheelZone.releasePointerCapture(event.pointerId);
         }
-        if (!dragMoved) {
+        const movedDuringDrag = dragMoved;
+        dragMoved = false;
+        if (!movedDuringDrag) {
             const elem = document.elementFromPoint(event.clientX, event.clientY);
             const bookEl = elem && elem.closest(".library-book");
             if (bookEl) {
@@ -369,6 +383,7 @@ function initEbookLibrary() {
             scheduleIdleSnap();
             return;
         }
+        suppressClickUntil = performance.now() + 250;
         const idleGap = event.timeStamp - lastMoveTime;
         const velocity = idleGap > 120 ? 0 : trackedVelocity;
         if (Math.abs(velocity) > 0.25) {
@@ -381,11 +396,7 @@ function initEbookLibrary() {
     wheelZone.addEventListener("pointercancel", endDrag);
 
     stage.addEventListener("click", (event) => {
-        if (dragMoved) {
-            event.preventDefault();
-            event.stopPropagation();
-            return;
-        }
+        if (consumeSuppressedClick(event)) return;
         const target = event.target.closest(".library-book");
         if (!target) return;
         event.preventDefault();
