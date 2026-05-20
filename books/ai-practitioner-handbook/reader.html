@@ -370,11 +370,12 @@
         position: relative;
         overflow: auto;
         background: var(--bg);
+        scroll-behavior: auto;
       }
 
       .stage {
         min-height: 100%;
-        padding: 12px 18px;
+        padding: 12px 18px 32px;
         display: flex;
         justify-content: safe center;
         align-items: flex-start;
@@ -382,24 +383,53 @@
 
       .spread {
         display: flex;
+        flex-direction: column;
+        gap: 14px;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .spread-row {
+        display: flex;
+        flex-direction: row;
         gap: 14px;
         align-items: flex-start;
         justify-content: center;
-        flex-wrap: nowrap;
       }
 
       .page-shell {
         min-width: 0;
         flex: 0 0 auto;
-        align-self: flex-start;
+        align-self: center;
+        background: var(--bg-deep);
+        border-radius: 1px;
+        box-shadow: var(--page-shadow);
+        position: relative;
+        overflow: hidden;
       }
 
       .page-shell canvas {
         display: block;
         background: #fff;
-        box-shadow: var(--page-shadow);
         max-width: none;
         max-height: none;
+      }
+
+      .page-shell::before {
+        content: attr(data-page);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 500;
+        pointer-events: none;
+        opacity: 0.6;
+      }
+
+      .page-shell.rendered::before {
+        content: none;
       }
 
       .status {
@@ -447,45 +477,6 @@
 
       .chrome-show:hover {
         background: rgba(70, 74, 78, 0.95);
-      }
-
-      .page-nav {
-        position: fixed;
-        top: 50%;
-        z-index: 25;
-        transform: translateY(-50%);
-        width: 44px;
-        height: 72px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-        border: none;
-        border-radius: 10px;
-        background: rgba(0, 0, 0, 0.4);
-        color: rgba(255, 255, 255, 0.92);
-        font-size: 28px;
-        font-weight: 700;
-        line-height: 1;
-        cursor: pointer;
-        transition: background 0.15s ease, opacity 0.15s ease;
-      }
-
-      .page-nav:hover:not(:disabled) {
-        background: rgba(0, 0, 0, 0.65);
-      }
-
-      .page-nav:disabled {
-        opacity: 0.2;
-        cursor: not-allowed;
-      }
-
-      .page-nav-prev {
-        left: 14px;
-      }
-
-      .page-nav-next {
-        right: 14px;
       }
 
       .page-indicator {
@@ -536,10 +527,6 @@
         .toolbar-right {
           grid-column: 2 / 3;
         }
-
-        .spread.double {
-          flex-wrap: wrap;
-        }
       }
 
       @media (max-width: 640px) {
@@ -552,18 +539,8 @@
           padding: 16px 8px 48px;
         }
 
-        .page-nav {
-          width: 34px;
-          height: 60px;
-          font-size: 22px;
-        }
-
-        .page-nav-prev {
-          left: 6px;
-        }
-
-        .page-nav-next {
-          right: 6px;
+        .spread-row {
+          flex-wrap: wrap;
         }
       }
     </style>
@@ -625,8 +602,6 @@
     </div>
 
     <button class="chrome-show" id="chromeShow" type="button" aria-label="툴바 펼치기" title="툴바 펼치기">▾</button>
-    <button class="page-nav page-nav-prev" id="pageNavPrev" type="button" aria-label="이전 페이지" title="이전 페이지">‹</button>
-    <button class="page-nav page-nav-next" id="pageNavNext" type="button" aria-label="다음 페이지" title="다음 페이지">›</button>
     <div class="page-indicator" id="pageIndicator" aria-hidden="true">1 / 0</div>
 
     <script type="module">
@@ -685,28 +660,7 @@
         toolbar: document.querySelector("#toolbar"),
         chromeToggle: document.querySelector("#chromeToggle"),
         chromeShow: document.querySelector("#chromeShow"),
-        pageNavPrev: document.querySelector("#pageNavPrev"),
-        pageNavNext: document.querySelector("#pageNavNext"),
         pageIndicator: document.querySelector("#pageIndicator"),
-      };
-
-      const setChromeHidden = (hidden) => {
-        elements.app.classList.toggle("chrome-hidden", hidden);
-        elements.chromeToggle.setAttribute("aria-expanded", String(!hidden));
-        try {
-          localStorage.setItem("reader.chromeHidden", hidden ? "1" : "0");
-        } catch (error) {}
-        if (pdfDocument) {
-          window.setTimeout(() => renderSpread(), 220);
-        }
-      };
-
-      const centerScrollSpread = () => {
-        if (!elements.reader) return;
-        const overflow = elements.reader.scrollWidth - elements.reader.clientWidth;
-        if (overflow > 0) {
-          elements.reader.scrollLeft = overflow / 2;
-        }
       };
 
       const params = new URLSearchParams(window.location.search);
@@ -717,9 +671,16 @@
       const fitParam = params.get("fit");
       let fitMode = fitParam === "width" || fitParam === "page" ? fitParam : "actual";
       let pdfDocument = null;
+      let firstPageDim = null;
+      const pageShells = new Map();
+      const renderedPages = new Set();
+      let lazyObserver = null;
       let renderToken = 0;
       let thumbToken = 0;
       const thumbCache = new Map();
+      let scrollRaf = 0;
+      let suppressScrollUntil = 0;
+      let urlUpdateTimer = 0;
 
       if (!Number.isFinite(pageNumber) || pageNumber < 1) {
         pageNumber = 1;
@@ -735,18 +696,30 @@
         elements.status.textContent = message;
       };
 
+      const isDoubleMode = () => viewMode === "double" && window.innerWidth > 920;
+
       const setBusy = (busy) => {
-        const prevDisabled = busy || !pdfDocument || pageNumber <= 1;
-        const nextDisabled = busy || !pdfDocument || pageNumber >= pdfDocument.numPages;
-        elements.prev.disabled = prevDisabled;
-        elements.next.disabled = nextDisabled;
-        elements.pageNavPrev.disabled = prevDisabled;
-        elements.pageNavNext.disabled = nextDisabled;
         elements.pageNumber.disabled = busy || !pdfDocument;
         elements.language.disabled = busy;
         elements.singleMode.disabled = busy;
         elements.doubleMode.disabled = busy;
         elements.fitToggle.disabled = busy;
+        if (busy) {
+          elements.prev.disabled = true;
+          elements.next.disabled = true;
+        } else {
+          updateNavState();
+        }
+      };
+
+      const updateNavState = () => {
+        if (!pdfDocument) {
+          elements.prev.disabled = true;
+          elements.next.disabled = true;
+          return;
+        }
+        elements.prev.disabled = pageNumber <= 1;
+        elements.next.disabled = pageNumber >= pdfDocument.numPages;
       };
 
       const fitLabel = {
@@ -773,36 +746,28 @@
       const updateModeButtons = () => {
         elements.singleMode.setAttribute("aria-pressed", String(viewMode === "single"));
         elements.doubleMode.setAttribute("aria-pressed", String(viewMode === "double"));
-        elements.spread.className = `spread ${viewMode}`;
       };
 
       const updateUrl = () => {
-        const nextParams = new URLSearchParams({
-          lang: currentLang,
-          page: String(pageNumber),
-          view: viewMode,
-        });
-        if (fitMode !== "actual") {
-          nextParams.set("fit", fitMode);
-        } else if (zoom !== 1) {
-          nextParams.set("zoom", zoom.toFixed(2));
-        }
-        window.history.replaceState(null, "", `${window.location.pathname}?${nextParams.toString()}`);
-      };
-
-      const visiblePages = () => {
-        if (!pdfDocument) {
-          return [];
-        }
-        const pages = [pageNumber];
-        if (viewMode === "double" && pageNumber < pdfDocument.numPages && window.innerWidth > 920) {
-          pages.push(pageNumber + 1);
-        }
-        return pages;
+        if (urlUpdateTimer) window.clearTimeout(urlUpdateTimer);
+        urlUpdateTimer = window.setTimeout(() => {
+          const nextParams = new URLSearchParams({
+            lang: currentLang,
+            page: String(pageNumber),
+            view: viewMode,
+          });
+          if (fitMode !== "actual") {
+            nextParams.set("fit", fitMode);
+          } else if (zoom !== 1) {
+            nextParams.set("zoom", zoom.toFixed(2));
+          }
+          window.history.replaceState(null, "", `${window.location.pathname}?${nextParams.toString()}`);
+        }, 250);
       };
 
       const STAGE_PAD_X = 18 * 2;
-      const STAGE_PAD_Y = 12 * 2;
+      const STAGE_PAD_Y = 12 + 32;
+      const PAGE_GAP = 14;
 
       const getAvailableArea = () => {
         const rect = elements.reader.getBoundingClientRect();
@@ -814,70 +779,149 @@
         };
       };
 
-      const computeCssScale = (page, visibleCount) => {
-        const unscaledViewport = page.getViewport({ scale: 1 });
+      const computeCssScale = (dim, visibleCount) => {
         const { width: availableWidth, height: availableHeight } = getAvailableArea();
-        const gap = 14;
-        const perPageWidthBudget = (availableWidth - gap * (visibleCount - 1)) / visibleCount;
+        const perPageWidthBudget = (availableWidth - PAGE_GAP * (visibleCount - 1)) / visibleCount;
 
         if (fitMode === "width") {
-          return perPageWidthBudget / unscaledViewport.width;
+          return perPageWidthBudget / dim.width;
         }
         if (fitMode === "page") {
-          const widthScale = perPageWidthBudget / unscaledViewport.width;
-          const heightScale = availableHeight / unscaledViewport.height;
+          const widthScale = perPageWidthBudget / dim.width;
+          const heightScale = availableHeight / dim.height;
           return Math.min(widthScale, heightScale);
         }
-        const baseAvailableWidth =
-          viewMode === "double" && window.innerWidth > 920
-            ? Math.min(580, perPageWidthBudget)
-            : Math.min(900, availableWidth);
-        return (baseAvailableWidth / unscaledViewport.width) * zoom;
+        const baseAvailableWidth = isDoubleMode()
+          ? Math.min(580, perPageWidthBudget)
+          : Math.min(900, availableWidth);
+        return (baseAvailableWidth / dim.width) * zoom;
       };
 
-      const renderPage = async (pageIndex, token, visibleCount) => {
-        const page = await pdfDocument.getPage(pageIndex);
-        if (token !== renderToken) {
-          return;
-        }
-
+      const createPageShell = (pageIndex, widthPx, heightPx) => {
         const shell = document.createElement("section");
         shell.className = "page-shell";
-        shell.setAttribute("aria-label", `Page ${pageIndex}`);
-
-        const canvas = document.createElement("canvas");
-        shell.append(canvas);
-        elements.spread.append(shell);
-
-        const cssScale = computeCssScale(page, visibleCount);
-        const viewport = page.getViewport({ scale: cssScale });
-        const widthPx = Math.floor(viewport.width);
-        const heightPx = Math.floor(viewport.height);
-
+        shell.dataset.page = String(pageIndex);
         shell.style.width = `${widthPx}px`;
         shell.style.height = `${heightPx}px`;
-        canvas.style.width = `${widthPx}px`;
-        canvas.style.height = `${heightPx}px`;
+        shell.setAttribute("aria-label", `Page ${pageIndex}`);
+        return shell;
+      };
 
-        const outputScale = Math.max(1, window.devicePixelRatio || 1);
-        canvas.width = Math.floor(viewport.width * outputScale);
-        canvas.height = Math.floor(viewport.height * outputScale);
+      const buildPageShells = () => {
+        if (lazyObserver) {
+          lazyObserver.disconnect();
+          lazyObserver = null;
+        }
+        elements.spread.replaceChildren();
+        elements.spread.className = `spread ${isDoubleMode() ? "double" : "single"}`;
+        pageShells.clear();
+        renderedPages.clear();
 
-        const context = canvas.getContext("2d", { alpha: false });
-        context.setTransform(outputScale, 0, 0, outputScale, 0, 0);
-        await page.render({ canvasContext: context, viewport }).promise;
+        if (!pdfDocument || !firstPageDim) return;
 
-        if (fitMode !== "actual") {
-          const unscaledViewport = page.getViewport({ scale: 1 });
-          const { width: availableWidth } = getAvailableArea();
-          const baseAvailableWidth =
-            viewMode === "double" && window.innerWidth > 920
-              ? Math.min(580, (availableWidth - 14) / 2)
-              : Math.min(900, availableWidth);
-          const baseScale = baseAvailableWidth / unscaledViewport.width;
-          const reflectedZoom = cssScale / baseScale;
-          elements.zoomRange.value = String(Math.round(clamp(reflectedZoom, 0.5, 2.0) * 100));
-          elements.zoomLabel.textContent = `${Math.round(reflectedZoom * 100)}%`;
+        const visibleCount = isDoubleMode() ? 2 : 1;
+        const cssScale = computeCssScale(firstPageDim, visibleCount);
+        const widthPx = Math.floor(firstPageDim.width * cssScale);
+        const heightPx = Math.floor(firstPageDim.height * cssScale);
+
+        if (isDoubleMode()) {
+          for (let i = 1; i <= pdfDocument.numPages; i += 2) {
+            const row = document.createElement("div");
+            row.className = "spread-row";
+            for (let j = i; j < i + 2 && j <= pdfDocument.numPages; j++) {
+              const shell = createPageShell(j, widthPx, heightPx);
+              row.append(shell);
+              pageShells.set(j, shell);
+            }
+            elements.spread.append(row);
+          }
+        } else {
+          for (let i = 1; i <= pdfDocument.numPages; i++) {
+            const shell = createPageShell(i, widthPx, heightPx);
+            elements.spread.append(shell);
+            pageShells.set(i, shell);
+          }
+        }
+
+        if (fitMode === "actual") {
+          const baseAvailableWidth = isDoubleMode()
+            ? Math.min(580, (getAvailableArea().width - PAGE_GAP) / 2)
+            : Math.min(900, getAvailableArea().width);
+          const baseScale = baseAvailableWidth / firstPageDim.width;
+          const reflected = cssScale / baseScale;
+          elements.zoomRange.value = String(Math.round(clamp(reflected, 0.5, 2.0) * 100));
+          elements.zoomLabel.textContent = `${Math.round(reflected * 100)}%`;
+        } else {
+          const baseAvailableWidth = isDoubleMode()
+            ? Math.min(580, (getAvailableArea().width - PAGE_GAP) / 2)
+            : Math.min(900, getAvailableArea().width);
+          const baseScale = baseAvailableWidth / firstPageDim.width;
+          const reflected = cssScale / baseScale;
+          elements.zoomRange.value = String(Math.round(clamp(reflected, 0.5, 2.0) * 100));
+          elements.zoomLabel.textContent = `${Math.round(reflected * 100)}%`;
+        }
+
+        lazyObserver = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                const idx = Number(entry.target.dataset.page);
+                renderPageCanvas(idx);
+              }
+            }
+          },
+          { root: elements.reader, rootMargin: "800px 0px" }
+        );
+        for (const shell of pageShells.values()) {
+          lazyObserver.observe(shell);
+        }
+      };
+
+      const renderPageCanvas = async (pageIndex) => {
+        if (renderedPages.has(pageIndex)) return;
+        const shell = pageShells.get(pageIndex);
+        if (!shell) return;
+        renderedPages.add(pageIndex);
+        const token = renderToken;
+
+        try {
+          const page = await pdfDocument.getPage(pageIndex);
+          if (token !== renderToken) {
+            renderedPages.delete(pageIndex);
+            return;
+          }
+
+          const unscaled = page.getViewport({ scale: 1 });
+          const dim = { width: unscaled.width, height: unscaled.height };
+          const visibleCount = isDoubleMode() ? 2 : 1;
+          const cssScale = computeCssScale(dim, visibleCount);
+          const viewport = page.getViewport({ scale: cssScale });
+          const widthPx = Math.floor(viewport.width);
+          const heightPx = Math.floor(viewport.height);
+
+          shell.style.width = `${widthPx}px`;
+          shell.style.height = `${heightPx}px`;
+
+          const canvas = document.createElement("canvas");
+          canvas.style.width = `${widthPx}px`;
+          canvas.style.height = `${heightPx}px`;
+          const outputScale = Math.max(1, window.devicePixelRatio || 1);
+          canvas.width = Math.floor(viewport.width * outputScale);
+          canvas.height = Math.floor(viewport.height * outputScale);
+
+          const context = canvas.getContext("2d", { alpha: false });
+          context.setTransform(outputScale, 0, 0, outputScale, 0, 0);
+          await page.render({ canvasContext: context, viewport }).promise;
+          if (token !== renderToken) {
+            renderedPages.delete(pageIndex);
+            return;
+          }
+
+          shell.replaceChildren(canvas);
+          shell.classList.add("rendered");
+        } catch (error) {
+          renderedPages.delete(pageIndex);
+          console.warn(`render page ${pageIndex} failed`, error);
         }
       };
 
@@ -890,16 +934,15 @@
       };
 
       const highlightActiveThumb = () => {
-        const activeNums = new Set(visiblePages().map(String));
         const thumbs = elements.sidebar.querySelectorAll(".thumb");
-        let firstActive = null;
+        let activeThumb = null;
         thumbs.forEach((thumb) => {
-          const isActive = activeNums.has(thumb.dataset.page);
+          const isActive = Number(thumb.dataset.page) === pageNumber;
           thumb.setAttribute("aria-current", isActive ? "true" : "false");
-          if (isActive && !firstActive) firstActive = thumb;
+          if (isActive) activeThumb = thumb;
         });
-        if (firstActive && typeof firstActive.scrollIntoView === "function") {
-          firstActive.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        if (activeThumb && typeof activeThumb.scrollIntoView === "function") {
+          activeThumb.scrollIntoView({ block: "nearest", behavior: "smooth" });
         }
       };
 
@@ -982,43 +1025,100 @@
         highlightActiveThumb();
       };
 
-      const renderSpread = async () => {
-        if (!pdfDocument) {
-          return;
+      const scrollToPage = (n, smooth = true) => {
+        const shell = pageShells.get(n);
+        if (!shell) return;
+        suppressScrollUntil = performance.now() + (smooth ? 700 : 200);
+        const targetTop = Math.max(0, shell.offsetTop - 12);
+        if (smooth) {
+          elements.reader.scrollTo({ top: targetTop, behavior: "smooth" });
+        } else {
+          elements.reader.scrollTop = targetTop;
         }
+      };
 
-        const token = ++renderToken;
-        pageNumber = clamp(pageNumber, 1, pdfDocument.numPages);
-        setBusy(true);
-        updateModeButtons();
-        updateFitButtons();
-        elements.spread.replaceChildren();
+      const setPageNumber = (n, { scroll = false, smooth = true } = {}) => {
+        if (!pdfDocument) return;
+        const target = clamp(n, 1, pdfDocument.numPages);
+        if (target === pageNumber && !scroll) return;
+        pageNumber = target;
         elements.pageNumber.value = String(pageNumber);
-        elements.pageNumber.max = String(pdfDocument.numPages);
-        elements.pageTotal.textContent = `/ ${pdfDocument.numPages}`;
-        if (fitMode === "actual") {
-          elements.zoomRange.value = String(Math.round(zoom * 100));
-          elements.zoomLabel.textContent = `${Math.round(zoom * 100)}%`;
-        }
-        setStatus(`${books[currentLang].nativeName} · ${pageNumber}/${pdfDocument.numPages}`);
         updatePageIndicator();
         highlightActiveThumb();
+        updateNavState();
+        updateUrl();
+        if (scroll) scrollToPage(pageNumber, smooth);
+      };
 
-        const pages = visiblePages();
+      const goToPage = (n) => {
+        if (!pdfDocument) return;
+        setPageNumber(n, { scroll: true, smooth: true });
+      };
+
+      const updateActivePageFromScroll = () => {
+        if (performance.now() < suppressScrollUntil || !pdfDocument || pageShells.size === 0) return;
+        const readerRect = elements.reader.getBoundingClientRect();
+        const refY = readerRect.top + Math.min(140, readerRect.height * 0.3);
+
+        let closestPage = pageNumber;
+        let closestDistance = Infinity;
+        for (const [idx, shell] of pageShells) {
+          const rect = shell.getBoundingClientRect();
+          if (rect.bottom < readerRect.top - 200 || rect.top > readerRect.bottom + 200) continue;
+          const distance = Math.abs(rect.top - refY);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestPage = idx;
+          }
+        }
+
+        if (closestPage !== pageNumber) {
+          pageNumber = closestPage;
+          elements.pageNumber.value = String(pageNumber);
+          updatePageIndicator();
+          highlightActiveThumb();
+          updateNavState();
+          updateUrl();
+        }
+      };
+
+      elements.reader.addEventListener("scroll", () => {
+        if (scrollRaf) return;
+        scrollRaf = requestAnimationFrame(() => {
+          scrollRaf = 0;
+          updateActivePageFromScroll();
+        });
+      });
+
+      const relayout = (preserveScrollPage = true) => {
+        if (!pdfDocument || !firstPageDim) return;
+        ++renderToken;
+        const target = preserveScrollPage ? pageNumber : 1;
+        buildPageShells();
+        updateModeButtons();
+        updateFitButtons();
+        elements.spread.className = `spread ${isDoubleMode() ? "double" : "single"}`;
+        elements.pageNumber.max = String(pdfDocument.numPages);
+        elements.pageTotal.textContent = `/ ${pdfDocument.numPages}`;
+        pageNumber = clamp(target, 1, pdfDocument.numPages);
+        elements.pageNumber.value = String(pageNumber);
+        updatePageIndicator();
+        highlightActiveThumb();
+        updateNavState();
+        requestAnimationFrame(() => {
+          scrollToPage(pageNumber, false);
+        });
+        updateUrl();
+      };
+
+      const setChromeHidden = (hidden) => {
+        elements.app.classList.toggle("chrome-hidden", hidden);
+        elements.chromeToggle.setAttribute("aria-expanded", String(!hidden));
         try {
-          for (const pageIndex of pages) {
-            await renderPage(pageIndex, token, pages.length);
-          }
-        } catch (error) {
-          console.error(error);
-          elements.spread.innerHTML =
-            '<div class="status"><strong>페이지 렌더링에 실패했습니다.</strong><br>브라우저를 새로고침하거나 원본 PDF 링크를 열어주세요.</div>';
-        } finally {
-          if (token === renderToken) {
-            setBusy(false);
-            updateUrl();
-            requestAnimationFrame(centerScrollSpread);
-          }
+          localStorage.setItem("reader.chromeHidden", hidden ? "1" : "0");
+        } catch (error) {}
+        if (pdfDocument) {
+          window.setTimeout(() => relayout(true), 220);
         }
       };
 
@@ -1029,7 +1129,14 @@
         ++renderToken;
         ++thumbToken;
         pdfDocument = null;
+        firstPageDim = null;
+        pageShells.clear();
+        renderedPages.clear();
         thumbCache.clear();
+        if (lazyObserver) {
+          lazyObserver.disconnect();
+          lazyObserver = null;
+        }
         elements.language.value = currentLang;
         elements.title.textContent = book.title;
         elements.sidebar.replaceChildren();
@@ -1039,9 +1146,15 @@
 
         try {
           pdfDocument = await pdfjsLib.getDocument(book.pdf).promise;
+          const firstPage = await pdfDocument.getPage(1);
+          const v = firstPage.getViewport({ scale: 1 });
+          firstPageDim = { width: v.width, height: v.height };
+
           pageNumber = clamp(pageNumber, 1, pdfDocument.numPages);
           buildSidebar();
-          await renderSpread();
+          relayout(true);
+          setBusy(false);
+          setStatus(`${books[currentLang].nativeName} · ${pdfDocument.numPages} 페이지`);
         } catch (error) {
           console.error(error);
           setBusy(false);
@@ -1050,20 +1163,10 @@
         }
       };
 
-      const goToPage = (nextPage) => {
-        if (!pdfDocument) {
-          return;
-        }
-        pageNumber = clamp(nextPage, 1, pdfDocument.numPages);
-        renderSpread();
-      };
-
       const setMode = (nextMode) => {
-        if (viewMode === nextMode) {
-          return;
-        }
+        if (viewMode === nextMode) return;
         viewMode = nextMode;
-        renderSpread();
+        relayout(true);
       };
 
       elements.language.addEventListener("change", () => {
@@ -1075,8 +1178,6 @@
       elements.doubleMode.addEventListener("click", () => setMode("double"));
       elements.prev.addEventListener("click", () => goToPage(pageNumber - 1));
       elements.next.addEventListener("click", () => goToPage(pageNumber + 1));
-      elements.pageNavPrev.addEventListener("click", () => goToPage(pageNumber - 1));
-      elements.pageNavNext.addEventListener("click", () => goToPage(pageNumber + 1));
 
       elements.pageNumber.addEventListener("change", () => {
         const requestedPage = Number.parseInt(elements.pageNumber.value, 10);
@@ -1092,13 +1193,12 @@
         }
       });
 
-      elements.zoomRange.addEventListener("change", () => renderSpread());
+      elements.zoomRange.addEventListener("change", () => relayout(true));
 
       const cycleFitMode = () => {
         fitMode = fitMode === "width" ? "page" : "width";
         updateFitButtons();
-        void elements.reader.offsetHeight;
-        requestAnimationFrame(() => renderSpread());
+        requestAnimationFrame(() => relayout(true));
       };
 
       elements.fitToggle.addEventListener("click", cycleFitMode);
@@ -1118,7 +1218,9 @@
       elements.fullscreenToggle.addEventListener("click", toggleFullscreen);
       document.addEventListener("fullscreenchange", () => {
         updateFullscreenButton();
-        if (pdfDocument) renderSpread();
+        if (pdfDocument) {
+          window.setTimeout(() => relayout(true), 120);
+        }
       });
 
       document.addEventListener("keydown", (event) => {
@@ -1141,12 +1243,22 @@
           event.preventDefault();
           goToPage(pageNumber - 1);
         }
+
+        if (event.key === "Home") {
+          event.preventDefault();
+          goToPage(1);
+        }
+
+        if (event.key === "End" && pdfDocument) {
+          event.preventDefault();
+          goToPage(pdfDocument.numPages);
+        }
       });
 
       let resizeTimer = 0;
       window.addEventListener("resize", () => {
         window.clearTimeout(resizeTimer);
-        resizeTimer = window.setTimeout(() => renderSpread(), 160);
+        resizeTimer = window.setTimeout(() => relayout(true), 160);
       });
 
       elements.chromeToggle.addEventListener("click", () => setChromeHidden(true));
