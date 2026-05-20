@@ -1,6 +1,17 @@
 <!-- markdownlint-disable -->
 
-<div class="book-cover"><img src="../assets/images/unity-dots-introduction-cover.png" alt="Unity DOTS Introduction cover"></div>
+<section class="book-cover" aria-label="Cover for Unity DOTS Introduction">
+  <img src="../assets/images/unity-dots-cover-background.png" alt="Abstract cover image representing Unity DOTS — ECS chunks, parallel jobs, and netcode synchronization">
+  <div class="book-cover__content">
+    <p class="book-cover__kicker">Unity 6000.5 &middot; Entities 6.5</p>
+    <h1>Unity DOTS<br>Introduction</h1>
+    <p class="book-cover__subtitle">Entities, Netcode, ECS workflows, jobs, debugging, optimization, and migration.</p>
+  </div>
+  <div class="book-cover__meta">
+    <p>Youngmin Cho (SillyToolValley)</p>
+    <p class="book-cover__edition">English Edition &middot; 2026</p>
+  </div>
+</section>
 
 <section class="copyright-page">
 <p class="copyright-page__title">Unity DOTS Introduction</p>
