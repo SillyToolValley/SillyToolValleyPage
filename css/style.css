@@ -1202,7 +1202,7 @@ a.contact-row:hover {
 .bookshelf-ring {
     position: absolute;
     left: 50%;
-    bottom: 100px;
+    bottom: 130px;
     width: 0;
     height: 0;
     transform-style: preserve-3d;
@@ -1216,30 +1216,45 @@ a.contact-row:hover {
 
 .bookshelf-topbar {
     flex: 0 0 auto;
-    height: 22px;
-    border-radius: 999px;
-    background:
-        linear-gradient(180deg, rgba(110, 148, 111, 0.45), rgba(51, 74, 57, 0.55)),
-        var(--accent-soft);
-    box-shadow: 0 12px 22px -16px rgba(36, 42, 36, 0.55);
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 16px;
     margin-bottom: 14px;
     pointer-events: none;
     z-index: 2;
 }
 
+.bookshelf-topbar::before,
+.bookshelf-topbar::after {
+    content: "";
+    flex: 1 1 0;
+    max-width: 160px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(36, 42, 36, 0.22), transparent);
+}
+
 .bookshelf-hint {
     margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
     font-family: var(--mono);
     font-size: 0.62rem;
-    letter-spacing: 0.22em;
+    font-weight: 700;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.92);
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+    color: rgba(36, 42, 36, 0.78);
     white-space: nowrap;
+}
+
+.bookshelf-hint::before,
+.bookshelf-hint::after {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(36, 42, 36, 0.38);
 }
 
 .library-book {
@@ -1257,6 +1272,18 @@ a.contact-row:hover {
     cursor: pointer;
     transform-style: preserve-3d;
     transform: rotateY(var(--slot-angle, 0deg)) translateZ(var(--ring-radius, 240px));
+    transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.library-book:focus,
+.library-book:focus-visible,
+.bookshelf-stage:focus,
+.bookshelf-stage:focus-visible {
+    outline: none;
+}
+
+.library-book.is-active {
+    transform: rotateY(var(--slot-angle, 0deg)) translateZ(calc(var(--ring-radius, 240px) + 70px));
 }
 
 .library-book .book-object {
@@ -1285,11 +1312,12 @@ a.contact-row:hover {
 }
 
 .library-book.is-active .book-object {
-    transform: rotateY(0deg) translateZ(32px);
+    transform: rotateY(0deg) scale(1.15);
 }
 
 @media (prefers-reduced-motion: reduce) {
     .bookshelf-ring,
+    .library-book,
     .book-object {
         transition: none !important;
     }
@@ -1370,11 +1398,14 @@ a.contact-row:hover {
     writing-mode: vertical-rl;
     text-orientation: mixed;
     font-family: var(--mono);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.32);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     white-space: nowrap;
     padding: 14px 0;
 }
@@ -1428,10 +1459,12 @@ a.contact-row:hover {
     min-height: 220px;
     margin-top: 14px;
     padding: 16px 20px;
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(36, 42, 36, 0.1);
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(51, 74, 57, 0.28);
     border-radius: calc(var(--radius) - 4px);
-    box-shadow: none;
+    box-shadow:
+        0 18px 32px -22px rgba(36, 42, 36, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     align-items: start;
@@ -1473,24 +1506,45 @@ a.contact-row:hover {
 .selected-book-actions {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    align-self: stretch;
+    gap: 10px;
+    align-self: center;
+    align-items: center;
     justify-content: center;
 }
 
 .selected-book-actions a {
-    padding: 8px 11px;
-    color: var(--text);
-    background: var(--surface-soft);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-size: 0.82rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 116px;
+    height: 116px;
+    padding: 0;
+    color: #fdfdf7;
+    background: linear-gradient(165deg, #7ea780, #5a7d5c);
+    border: 1px solid rgba(36, 42, 36, 0.18);
+    border-radius: 14px;
+    font-size: 0.96rem;
     font-weight: 800;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow:
+        0 16px 28px -14px rgba(51, 74, 57, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
 .selected-book-actions a:hover {
-    border-color: var(--accent);
-    background: rgba(110, 148, 111, 0.09);
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+    box-shadow:
+        0 20px 32px -14px rgba(51, 74, 57, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.selected-book-actions a:active {
+    transform: translateY(0);
+    filter: brightness(0.97);
 }
 
 .catalog-toolbar {

@@ -406,8 +406,23 @@ function initEbookLibrary() {
         event.preventDefault();
         noteActivity();
         cancelMomentum();
+        if (pointerId !== null) {
+            const capturedId = pointerId;
+            pointerId = null;
+            wheelZone.classList.remove("is-grabbing");
+            if (wheelZone.hasPointerCapture(capturedId)) {
+                wheelZone.releasePointerCapture(capturedId);
+            }
+            dragMoved = false;
+            trackedVelocity = 0;
+        }
         const direction = event.key === "ArrowRight" ? 1 : -1;
-        glideTo(ringAngle + direction * STEP);
+        const snap = findFrontSlot(ringAngle);
+        const current = ((ringAngle % 360) + 360) % 360;
+        let delta = snap.angle - current;
+        if (delta > 180) delta -= 360;
+        if (delta < -180) delta += 360;
+        glideTo(ringAngle + delta + direction * STEP);
     });
 
     const monitorActiveBook = () => {
