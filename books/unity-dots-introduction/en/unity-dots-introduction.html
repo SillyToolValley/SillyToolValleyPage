@@ -62,6 +62,12 @@
         text-decoration: none;
       }
 
+      .language-switcher a[aria-current="page"] {
+        border-color: #4f8f62;
+        background: #e9f3ec;
+        color: #1f4031;
+      }
+
       main {
         max-width: 920px;
         margin: 24px auto;
@@ -716,10 +722,12 @@
 </script>
   </head>
   <body>
-    <nav class="language-switcher" aria-label="Book links">
-      <a href="../reader.html?lang=en">Reader</a>
-      <a href="./unity-dots-introduction.pdf">PDF</a>
-      <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction" target="_blank" rel="noopener">Source</a>
+    <nav class="language-switcher" aria-label="Language selection">
+      <a href="./unity-dots-introduction.html" lang="en" hreflang="en" aria-current="page">English</a>
+      <a href="../ko/unity-dots-introduction.html" lang="ko" hreflang="ko">한국어</a>
+      <a href="../ja/unity-dots-introduction.html" lang="ja" hreflang="ja">日本語</a>
+      <a href="../zh-Hans/unity-dots-introduction.html" lang="zh-Hans" hreflang="zh-Hans">简体中文</a>
+      <a href="../es/unity-dots-introduction.html" lang="es" hreflang="es">Español</a>
     </nav>
     <main><!-- markdownlint-disable --><section class="book-cover" aria-label="Cover for Unity DOTS Introduction">
   <img src="../assets/images/unity-dots-cover-background.png" alt="Abstract cover image representing Unity DOTS — ECS chunks, parallel jobs, and netcode synchronization">
@@ -9550,8 +9558,7 @@ public partial struct AISystem : ISystem
 <p>The editable source manual lives at <a href="https://github.com/luke-youngmin-cho/unity-dots-introduction">github.com/luke-youngmin-cho/unity-dots-introduction</a>.</p>
 </main>
     <footer class="crawl-policy-footer">
-      © Silly Tool Valley. Public reading and citation are allowed.
-      Automated scraping, dataset inclusion, AI training, and AI answer ingestion are not permitted without written permission.
+      © Silly Tool Valley. Public reading and citation are allowed. Automated scraping, dataset inclusion, AI training, and AI answer ingestion are not permitted without written permission.
     </footer>
   </body>
 </html>

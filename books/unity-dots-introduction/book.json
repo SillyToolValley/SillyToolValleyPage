@@ -2,9 +2,7 @@
   "id": "unity-dots-introduction",
   "title": "Unity DOTS Introduction",
   "defaultLanguage": "en",
-  "languages": [
-    "en"
-  ],
+  "languages": ["en", "ko", "ja", "zh-Hans", "es"],
   "paths": {
     "reader": "reader.html",
     "html": "en/unity-dots-introduction.html",

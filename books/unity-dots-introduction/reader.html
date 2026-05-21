@@ -38,7 +38,7 @@
         margin: 0;
         background: var(--bg);
         color: var(--ink);
-        font-family: "Segoe UI", Arial, sans-serif;
+        font-family: "Segoe UI", "Malgun Gothic", "Yu Gothic", "Microsoft YaHei", Arial, sans-serif;
       }
 
       button,
@@ -80,6 +80,11 @@
       select:hover,
       input:hover {
         border-color: rgba(255, 255, 255, 0.32);
+      }
+
+      select option {
+        background: var(--toolbar-bg);
+        color: var(--ink);
       }
 
       .app {
@@ -573,6 +578,15 @@
           </div>
 
           <div class="toolbar-right">
+            <div class="control-group" aria-label="Language">
+              <select id="languageSelect" aria-label="Language">
+                <option value="en">English</option>
+                <option value="ko">한국어</option>
+                <option value="ja">日本語</option>
+                <option value="zh-Hans">简体中文</option>
+                <option value="es">Español</option>
+              </select>
+            </div>
             <button class="icon-button" id="chromeToggle" type="button" aria-label="Collapse toolbar" aria-expanded="true" title="Collapse toolbar">▴</button>
           </div>
         </div>
@@ -596,15 +610,39 @@
       pdfjsLib.GlobalWorkerOptions.workerSrc =
         "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.mjs";
 
-      const book = {
-        title: "Unity DOTS Introduction",
-        pdf: "en/unity-dots-introduction.pdf",
+      const books = {
+        en: {
+          title: "Unity DOTS Introduction",
+          nativeName: "English",
+          pdf: "en/unity-dots-introduction.pdf",
+        },
+        ko: {
+          title: "Unity DOTS 입문",
+          nativeName: "한국어",
+          pdf: "ko/unity-dots-introduction.pdf",
+        },
+        ja: {
+          title: "Unity DOTS 入門",
+          nativeName: "日本語",
+          pdf: "ja/unity-dots-introduction.pdf",
+        },
+        "zh-Hans": {
+          title: "Unity DOTS 入门",
+          nativeName: "简体中文",
+          pdf: "zh-Hans/unity-dots-introduction.pdf",
+        },
+        es: {
+          title: "Introducción a Unity DOTS",
+          nativeName: "Español",
+          pdf: "es/unity-dots-introduction.pdf",
+        },
       };
 
       const elements = {
         app: document.querySelector("#app"),
         title: document.querySelector("#bookTitle"),
         status: document.querySelector("#statusText"),
+        language: document.querySelector("#languageSelect"),
         singleMode: document.querySelector("#singleMode"),
         doubleMode: document.querySelector("#doubleMode"),
         prev: document.querySelector("#prevPage"),
@@ -626,6 +664,7 @@
       };
 
       const params = new URLSearchParams(window.location.search);
+      let currentLang = books[params.get("lang")] ? params.get("lang") : "en";
       let viewMode = params.get("view") === "double" ? "double" : "single";
       let pageNumber = Number.parseInt(params.get("page") || "1", 10);
       let zoom = Number.parseFloat(params.get("zoom") || "1");
@@ -661,6 +700,7 @@
 
       const setBusy = (busy) => {
         elements.pageNumber.disabled = busy || !pdfDocument;
+        elements.language.disabled = busy;
         elements.singleMode.disabled = busy;
         elements.doubleMode.disabled = busy;
         elements.fitToggle.disabled = busy;
@@ -712,6 +752,7 @@
         if (urlUpdateTimer) window.clearTimeout(urlUpdateTimer);
         urlUpdateTimer = window.setTimeout(() => {
           const nextParams = new URLSearchParams({
+            lang: currentLang,
             page: String(pageNumber),
             view: viewMode,
           });
@@ -1064,7 +1105,10 @@
         }
       };
 
-      const loadBook = async () => {
+      const loadBook = async (lang) => {
+        currentLang = books[lang] ? lang : "en";
+        const book = books[currentLang];
+
         ++renderToken;
         ++thumbToken;
         pdfDocument = null;
@@ -1076,6 +1120,7 @@
           lazyObserver.disconnect();
           lazyObserver = null;
         }
+        elements.language.value = currentLang;
         elements.title.textContent = book.title;
         elements.sidebar.replaceChildren();
         elements.spread.innerHTML = '<div class="status">Loading PDF pages.</div>';
@@ -1092,7 +1137,7 @@
           buildSidebar();
           relayout(true);
           setBusy(false);
-          setStatus(`${pdfDocument.numPages} pages`);
+          setStatus(`${books[currentLang].nativeName} · ${pdfDocument.numPages} pages`);
         } catch (error) {
           console.error(error);
           setBusy(false);
@@ -1106,6 +1151,11 @@
         viewMode = nextMode;
         relayout(true);
       };
+
+      elements.language.addEventListener("change", () => {
+        pageNumber = 1;
+        loadBook(elements.language.value);
+      });
 
       elements.singleMode.addEventListener("click", () => setMode("single"));
       elements.doubleMode.addEventListener("click", () => setMode("double"));
@@ -1201,10 +1251,11 @@
         setChromeHidden(false);
       }
 
+      elements.language.value = currentLang;
       updateModeButtons();
       updateFitButtons();
       updateFullscreenButton();
-      await loadBook();
+      await loadBook(currentLang);
     </script>
   </body>
 </html>
