@@ -314,7 +314,7 @@
 
       .book-cover__badges {
         display: flex;
-        gap: 12px;
+        margin-left: -7px;
       }
 
       .book-cover__badges img {
@@ -326,16 +326,8 @@
         filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
       }
 
-      .copyright-page__badges {
-        display: flex;
-        gap: 10px;
-        margin: 12px 0 2px;
-      }
-
-      .copyright-page__badges img {
-        width: auto;
-        height: 52px;
-        object-fit: contain;
+      .book-cover__badges img + img {
+        margin-left: -13px;
       }
 
       .copyright-page {
@@ -771,7 +763,7 @@
   <div class="book-cover__meta">
     <div class="book-cover__credits">
       <div class="book-cover__badges"><img src="../assets/images/badge-unity-certified-instructor.png" alt="Unity Certified Instructor"><img src="../assets/images/badge-unity-certified-professional-programmer.png" alt="Unity Certified Professional Programmer"></div>
-      <p>Youngmin Cho (SillyToolValley) / UCI (Unity Certified Instructor)</p>
+      <p>Youngmin Cho (SillyToolValley)</p>
     </div>
     <p class="book-cover__edition">简体中文版 &middot; 2026</p>
   </div>
@@ -780,7 +772,6 @@
 <p>涵盖 Entities 6.5、Netcode for Entities、ECS 工作流、优化与迁移的实战指南。</p>
 <p>本简体中文版于 2026-05-21 从 Unity DOTS Introduction 仓库生成。</p>
 <p>作者：Youngmin Cho (SillyToolValley) / UCI (Unity Certified Instructor)</p>
-<div class="copyright-page__badges"><img src="../assets/images/badge-unity-certified-instructor.png" alt="Unity Certified Instructor"><img src="../assets/images/badge-unity-certified-professional-programmer.png" alt="Unity Certified Professional Programmer"></div>
 <p>Unity、Entities、Netcode for Entities 及相关包名称是 Unity Technologies 的商标或产品名称。本书是社区学习总结资料，并非 Unity 官方文档。</p>
 <p>允许公开阅读和引用。未经书面许可，不得进行自动抓取、数据集收录、AI 训练以及 AI 答案采集。</p>
 </section><h1>Unity DOTS 入门</h1>

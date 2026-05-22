@@ -314,7 +314,7 @@
 
       .book-cover__badges {
         display: flex;
-        gap: 12px;
+        margin-left: -7px;
       }
 
       .book-cover__badges img {
@@ -326,16 +326,8 @@
         filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
       }
 
-      .copyright-page__badges {
-        display: flex;
-        gap: 10px;
-        margin: 12px 0 2px;
-      }
-
-      .copyright-page__badges img {
-        width: auto;
-        height: 52px;
-        object-fit: contain;
+      .book-cover__badges img + img {
+        margin-left: -13px;
       }
 
       .copyright-page {
@@ -771,7 +763,7 @@
   <div class="book-cover__meta">
     <div class="book-cover__credits">
       <div class="book-cover__badges"><img src="../assets/images/badge-unity-certified-instructor.png" alt="Unity Certified Instructor"><img src="../assets/images/badge-unity-certified-professional-programmer.png" alt="Unity Certified Professional Programmer"></div>
-      <p>Youngmin Cho (SillyToolValley) / UCI (Unity Certified Instructor)</p>
+      <p>Youngmin Cho (SillyToolValley)</p>
     </div>
     <p class="book-cover__edition">English Edition &middot; 2026</p>
   </div>
@@ -780,7 +772,6 @@
 <p>A field guide to Entities 6.5, Netcode for Entities, ECS workflows, optimization, and migration.</p>
 <p>English edition generated from the Unity DOTS Introduction repository on 2026-05-19.</p>
 <p>Author: Youngmin Cho (SillyToolValley) / UCI (Unity Certified Instructor)</p>
-<div class="copyright-page__badges"><img src="../assets/images/badge-unity-certified-instructor.png" alt="Unity Certified Instructor"><img src="../assets/images/badge-unity-certified-professional-programmer.png" alt="Unity Certified Professional Programmer"></div>
 <p>Unity, Entities, Netcode for Entities, and related package names are trademarks or product names of Unity Technologies. This book is a community learning summary and is not official Unity documentation.</p>
 <p>Public reading and citation are allowed. Automated scraping, dataset inclusion, AI training, and AI answer ingestion are not permitted without written permission.</p>
 </section><h1>Unity DOTS Introduction</h1>
