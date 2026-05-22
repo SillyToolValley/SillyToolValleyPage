@@ -317,16 +317,19 @@
         margin-left: -7px;
       }
 
-      .book-cover__badges img {
+      .book-cover .book-cover__badges img {
         position: static;
         inset: auto;
-        width: auto;
+        flex: 0 0 66px;
+        width: 66px;
         height: 66px;
+        max-width: none;
+        margin: 0;
         object-fit: contain;
         filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
       }
 
-      .book-cover__badges img + img {
+      .book-cover .book-cover__badges img + img {
         margin-left: -13px;
       }
 
