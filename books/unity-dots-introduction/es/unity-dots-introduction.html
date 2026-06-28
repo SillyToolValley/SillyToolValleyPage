@@ -985,7 +985,7 @@
 </tbody></table>
 <div class="page-break"></div><section class="part-page"><h2>Parte I. Primeros pasos</h2></section><div class="page-break"></div><h2>Capítulo 1. Configuración del entorno — Unity 6000.5 + Entities 6.5.0</h2>
 <h3>1. Introducción</h3>
-<p>Desde <strong>Unity 6000.4+</strong>, Entities es un <strong>paquete core</strong>: viene dentro del Editor y no hace falta añadirlo desde el Package Manager. Esta guía explica cómo instalar el Editor, crear un proyecto preparado para DOTS y comprobar que Entities está activo.</p>
+<p>Desde <strong>Unity 6000.4+</strong>, Entities es un <strong>paquete core</strong>: viene <em>con</em> el Editor y su versión queda fijada a la versión del Editor, de modo que ya no se elige a mano una versión de Entities. Eso sí, <strong>no</strong> se añade automáticamente a los proyectos nuevos: hay que añadirlo una vez por proyecto desde el Package Manager (Unity Registry). Esta guía explica cómo instalar el Editor, crear un proyecto, añadir Entities y comprobar que está activo.</p>
 <blockquote>
 <p><strong>Entorno de referencia del proyecto:</strong> Unity 6000.5.0b2 · Entities 6.5.0 · Collections / Mathematics / Entities Graphics (todos ellos Core Packages).</p>
 </blockquote>
@@ -998,7 +998,7 @@
 <li>Módulos: dejar los valores por defecto. ECS no necesita ningún módulo adicional.</li>
 </ol>
 <blockquote>
-<p>No hace falta seleccionar ningún módulo &quot;DOTS&quot;: Entities viene integrado en el Editor desde la versión 6000.4.</p>
+<p><strong>No</strong> hace falta marcar ningún módulo &quot;DOTS&quot; al instalar el Editor: el paquete Entities viene con el Editor desde la versión 6000.4. Aun así, hay que añadirlo a cada proyecto más adelante (ver los siguientes pasos).</p>
 </blockquote>
 <hr>
 <h3>3. Crear un nuevo proyecto</h3>
@@ -1028,15 +1028,9 @@
 <p>La antigua plantilla específica para DOTS ya no es necesaria en 6000.4+. Cualquier plantilla sirve como base para un flujo de trabajo con Entities.</p>
 </blockquote>
 <hr>
-<h3>4. Verificar que los paquetes core están activos</h3>
-<p>Abrir <strong>Window → Package Manager</strong> y cambiar el filtro a <strong>In Project</strong>. Deben aparecer marcados como <strong>&quot;Built-in&quot;</strong> los paquetes:</p>
-<ul>
-<li><strong>Entities</strong></li>
-<li><strong>Collections</strong></li>
-<li><strong>Mathematics</strong></li>
-<li><strong>Entities Graphics</strong></li>
-</ul>
-<p>Para comprobarlo desde los archivos, revisar <code>Packages/manifest.json</code>: <strong>no</strong> debe figurar ninguna entrada <code>com.unity.entities</code>, ya que se distribuye con el Editor.</p>
+<h3>4. Añadir el paquete Entities y comprobar que está activo</h3>
+<p>Abrir <strong>Window → Package Manager</strong>, cambiar el filtro a <strong>Unity Registry</strong>, seleccionar <strong>Entities</strong> y hacer clic en <strong>Install</strong> (o usar <strong>+ → Add package by name…</strong> e introducir <code>com.unity.entities</code>). Como Entities es un paquete core, no se elige una versión: el Editor instala la que trae integrada (Entities 6.5 en Unity 6000.5). Al instalar Entities también se incorporan <strong>Collections</strong>, <strong>Mathematics</strong> y <strong>Entities Graphics</strong> como dependencias.</p>
+<p>Ahora cambiar el filtro a <strong>In Project</strong> y confirmar que aparecen <strong>Entities</strong>, <strong>Collections</strong>, <strong>Mathematics</strong> y <strong>Entities Graphics</strong>. Para comprobarlo desde los archivos, abrir <code>Packages/manifest.json</code>: ahora figura una entrada <code>com.unity.entities</code> (las dependencias que arrastra se resuelven automáticamente y puede que no tengan cada una su propia entrada).</p>
 <p>A continuación, abrir las ventanas de ECS:</p>
 <ul>
 <li><strong>Window → Entities → Hierarchy</strong> — muestra las entidades en tiempo de ejecución.</li>
@@ -1067,7 +1061,7 @@
 </thead>
 <tbody><tr>
 <td>El menú <code>Window → Entities</code> no aparece</td>
-<td>El Editor es anterior a 6000.4, donde Entities todavía no es un paquete core. Actualizar el Editor.</td>
+<td>Entities aún no está instalado (añadirlo desde <strong>Package Manager → Unity Registry → Entities</strong>) o el Editor es anterior a 6000.4 (actualizarlo).</td>
 </tr>
 <tr>
 <td>No se encuentra <code>Baker&lt;T&gt;</code> / <code>IComponentData</code></td>
@@ -1083,12 +1077,12 @@
 </tr>
 <tr>
 <td>Error de compilación: <code>com.unity.entities not found</code></td>
-<td>El archivo <code>manifest.json</code> conserva una entrada <code>com.unity.entities</code> heredada de un proyecto 1.x; basta con eliminarla. Ver <code>Migration/02_Package Manager → Core Package.md</code>.</td>
+<td>El paquete no está instalado o <code>manifest.json</code> fija una versión 1.x que no existe en este Editor. Instalar Entities desde el Package Manager para que la entrada se resuelva a la versión Core del Editor. Ver <code>Migration/02_Package Manager → Core Package.md</code>.</td>
 </tr>
 </tbody></table>
 <div class="page-break"></div><h2>Capítulo 2. Los paquetes core explicados</h2>
 <h3>1. Introducción</h3>
-<p>Con la llegada del <strong>paquete Entities 6.4.0</strong> (que acompaña a Unity Editor 6000.4), los principales paquetes DOTS dejaron el Package Manager y pasaron al propio Editor como <strong>paquetes core</strong>. El registro de cambios del paquete lo expresa así:</p>
+<p>Con la llegada del <strong>paquete Entities 6.4.0</strong> (que acompaña a Unity Editor 6000.4), los principales paquetes DOTS pasaron a ser <strong>paquetes core</strong>: ahora vienen <em>con</em> el Editor (se instalan desde el propio paquete del Editor en lugar de descargarse de un registro remoto) y su versión queda ligada al Editor. El registro de cambios del paquete lo expresa así:</p>
 <blockquote>
 <p><em>&quot;Package is now a core package embedded in Unity.&quot;</em></p>
 </blockquote>
@@ -1102,7 +1096,7 @@
 </ul>
 <hr>
 <h3>2. ¿Qué es un paquete core?</h3>
-<p>Un <strong>paquete core</strong> es un paquete que viene <strong>dentro del Editor</strong>. No se añade desde el Package Manager, su versión no se puede cambiar al margen del Editor y su ritmo de publicación es el del propio Editor.</p>
+<p>Un <strong>paquete core</strong> es un paquete que viene <strong>con el Editor</strong>. Se sigue añadiendo a un proyecto desde el Package Manager como cualquier otro paquete, pero se instala desde el propio paquete del Editor en lugar de un registro remoto, su versión no se puede cambiar al margen del Editor y su ritmo de publicación es el del propio Editor. (Esto <em>no</em> es lo mismo que un <strong>paquete Built-in</strong>: un módulo del motor como Physics que solo se activa o se desactiva.)</p>
 <table>
 <thead>
 <tr>
@@ -1114,7 +1108,7 @@
 <tbody><tr>
 <td>Paso de instalación</td>
 <td>Añadir mediante UPM</td>
-<td>Ninguno — presente con el Editor</td>
+<td>Añadir mediante el Package Manager (se instala desde el propio paquete del Editor)</td>
 </tr>
 <tr>
 <td>Versión elegida por</td>
@@ -1129,7 +1123,7 @@
 <tr>
 <td>Aparece en <code>manifest.json</code></td>
 <td>Sí</td>
-<td>No</td>
+<td>Sí — se añade al instalarlo</td>
 </tr>
 <tr>
 <td>Aparece en <code>packages-lock.json</code></td>
@@ -1139,7 +1133,7 @@
 <tr>
 <td>Se muestra en Package Manager</td>
 <td>Bajo &quot;In Project&quot;</td>
-<td>Bajo &quot;In Project&quot; etiquetado como <strong>Built-in</strong></td>
+<td>Bajo &quot;Unity Registry&quot; para instalarlo y luego &quot;In Project&quot;</td>
 </tr>
 </tbody></table>
 <hr>
@@ -1225,7 +1219,7 @@
 <hr>
 <h3>5. Efecto en los archivos del proyecto</h3>
 <h4><code>manifest.json</code></h4>
-<p>Ya no hacen falta las entradas <code>com.unity.entities</code>, <code>com.unity.collections</code>, <code>com.unity.mathematics</code> ni <code>com.unity.entities.graphics</code>. Al actualizar un proyecto 1.x conviene eliminarlas; ver <code>Migration/02_Package Manager → Core Package.md</code>.</p>
+<p>Al añadir Entities, aquí aparece una entrada <code>com.unity.entities</code>. Los paquetes que arrastra (<code>com.unity.collections</code>, <code>com.unity.mathematics</code>, <code>com.unity.entities.graphics</code>) se resuelven como dependencias y normalmente no necesitan su propia entrada. Al actualizar un proyecto 1.x, reemplazar las versiones antiguas fijadas y dejar que el Package Manager las resuelva a las versiones Core del Editor; ver <code>Migration/02_Package Manager → Core Package.md</code>.</p>
 <h4><code>packages-lock.json</code></h4>
 <p>Los paquetes core aparecen con <code>&quot;source&quot;: &quot;builtin&quot;</code> en lugar de una URL de versión.</p>
 <h4>Definiciones de ensamblado (.asmdef)</h4>
@@ -1243,11 +1237,11 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>Package Manager sigue mostrando <code>Entities</code> en &quot;Unity Registry&quot; con una versión antigua</td>
+<td>El Package Manager solo ofrece <code>Entities</code> en una versión <strong>1.x</strong> antigua</td>
 <td>El Editor en uso es anterior a 6000.4. Actualizar el Editor o seguir en la línea 1.x.</td>
 </tr>
 <tr>
-<td>Error al resolver <code>manifest.json</code> después de eliminar <code>com.unity.entities</code></td>
+<td>Error al resolver <code>manifest.json</code> después de cambiar la versión de <code>com.unity.entities</code></td>
 <td>Borrar <code>packages-lock.json</code> y dejar que el Editor lo regenere.</td>
 </tr>
 <tr>
@@ -7991,11 +7985,11 @@ public struct EnemyVisual : IComponentData
 </tbody></table>
 <div class="page-break"></div><h2>Capítulo 33. Package Manager → Core Package</h2>
 <h3>1. Qué cambia</h3>
-<p>En Unity 6000.4+, Entities (y sus paquetes DOTS complementarios) ya no se instalan desde el Package Manager. Se distribuyen dentro del Editor como <strong>Core Packages</strong>. Los archivos del proyecto cambian en tres sitios:</p>
+<p>En Unity 6000.4+, Entities (y sus paquetes DOTS complementarios) pasan a ser <strong>Core Packages</strong>: se instalan desde el propio Editor en lugar de descargarse de un registro remoto, y su versión la fija el Editor. <strong>Se siguen añadiendo desde el Package Manager</strong> y permanecen listados como dependencias en el proyecto: ser un Core Package cambia <em>de dónde viene el paquete y quién elige su versión</em>, no si el proyecto tiene que solicitarlo. Lo que cambia al migrar un proyecto 1.x:</p>
 <ul>
-<li><strong><code>Packages/manifest.json</code></strong>: se eliminan las entradas <code>com.unity.entities*</code>.</li>
-<li><strong><code>Packages/packages-lock.json</code></strong>: el grafo resuelto se reduce y los paquetes afectados aparecen con <code>&quot;source&quot;: &quot;builtin&quot;</code>.</li>
-<li><strong>Ventana del Package Manager</strong>: los paquetes ahora figuran en "In Project" etiquetados como <strong>Built-in</strong>.</li>
+<li><strong><code>Packages/manifest.json</code></strong>: las entradas <code>com.unity.entities*</code> <strong>se mantienen</strong>, pero sus versiones <strong>1.x</strong> fijadas se reemplazan por las versiones Core del Editor (volver a añadirlas desde el Package Manager).</li>
+<li><strong><code>Packages/packages-lock.json</code></strong>: los paquetes afectados ahora se resuelven con <code>&quot;source&quot;: &quot;builtin&quot;</code>.</li>
+<li><strong>Ventana del Package Manager</strong>: los paquetes siguen figurando en "In Project"; ya no se puede elegir su versión (sigue a la del Editor).</li>
 </ul>
 <p>El código C# <strong>no</strong> cambia. Los nombres de ensamblado (<code>Unity.Entities</code>, <code>Unity.Collections</code>, etc.) siguen siendo los mismos y las referencias de los <code>.asmdef</code> no se tocan.</p>
 <hr>
@@ -8055,21 +8049,24 @@ public struct EnemyVisual : IComponentData
   }
 }
 </code></pre>
-<p>Eliminar las cinco líneas que ya son Core Packages:</p>
+<p>En un Editor 6000.4+, esas versiones <strong>1.x</strong> fijadas ya no se resuelven: el registro deja de servirlas para este Editor. <strong>No</strong> basta con eliminar las líneas (eso quita la dependencia, y un Core Package <em>no</em> se vuelve a añadir automáticamente). En su lugar, apuntar cada Core Package a la versión del Editor. Hay dos formas, y ambas mantienen los paquetes como dependencias:</p>
+<p><strong>Recomendado — volver a añadir desde el Package Manager.</strong> Para cada Core Package, quitar su versión <code>1.x</code> obsoleta y volver a añadirlo desde <strong>Window → Package Manager → Unity Registry → Install</strong> (o <strong>+ → Add package by name…</strong>, p. ej. <code>com.unity.entities</code>). El Package Manager escribe por ti la versión Core del Editor en <code>manifest.json</code> e incorpora automáticamente los Core Packages dependientes.</p>
+<p><strong>A mano.</strong> Reemplazar la versión <code>1.x</code> de cada Core Package por la versión Core del Editor (por ejemplo <code>6.5.0</code> en Unity 6000.5):</p>
 <pre><code class="language-diff"> {
    &quot;dependencies&quot;: {
 -    &quot;com.unity.entities&quot;: &quot;1.4.2&quot;,
--    &quot;com.unity.collections&quot;: &quot;2.4.5&quot;,
--    &quot;com.unity.mathematics&quot;: &quot;1.3.2&quot;,
++    &quot;com.unity.entities&quot;: &quot;6.5.0&quot;,
 -    &quot;com.unity.entities.graphics&quot;: &quot;1.4.2&quot;,
++    &quot;com.unity.entities.graphics&quot;: &quot;6.5.0&quot;,
 -    &quot;com.unity.netcode&quot;: &quot;1.12.0&quot;,
++    &quot;com.unity.netcode&quot;: &quot;6.5.0&quot;,
      &quot;com.unity.physics&quot;: &quot;1.3.14&quot;,
      &quot;com.unity.render-pipelines.universal&quot;: &quot;17.0.4&quot;,
      ...
    }
  }
 </code></pre>
-<p>Dejar <code>com.unity.physics</code> y cualquier otro paquete que siga siendo UPM.</p>
+<p><code>com.unity.collections</code> y <code>com.unity.mathematics</code> entran como dependencias de Entities, así que normalmente no hace falta listarlos a mano. Dejar <code>com.unity.physics</code> y cualquier otro paquete que siga siendo de registro (UPM) tal cual.</p>
 <p>Guardar el archivo.</p>
 <hr>
 <h3>4. Reconstrucción de <code>packages-lock.json</code></h3>
@@ -8077,7 +8074,7 @@ public struct EnemyVisual : IComponentData
 <h4>4.1 Dejar que el Editor lo regenere</h4>
 <p>Cerrar el Editor, borrar <code>Packages/packages-lock.json</code> y volver a abrirlo. Unity lo regenera. Es la opción más limpia.</p>
 <h4>4.2 Editar manualmente</h4>
-<p>Abrir <code>packages-lock.json</code> y quitar las entradas de los cinco paquetes anteriores. El Editor lo reconcilia en la siguiente apertura. Es algo más rápido con archivos lock complejos, pero más propenso a errores.</p>
+<p>Abrir <code>packages-lock.json</code> y actualizar las entradas obsoletas de los paquetes anteriores (eliminarlas y dejar que el Editor las vuelva a resolver). El Editor lo reconcilia en la siguiente apertura. Es algo más rápido con archivos lock complejos, pero más propenso a errores.</p>
 <p>Las dos opciones dan como resultado un archivo lock final con entradas como esta:</p>
 <pre><code class="language-json">&quot;com.unity.entities&quot;: {
   &quot;version&quot;: &quot;6.5.0&quot;,
@@ -8086,11 +8083,11 @@ public struct EnemyVisual : IComponentData
   &quot;dependencies&quot;: {}
 }
 </code></pre>
-<p>El <code>&quot;source&quot;: &quot;builtin&quot;</code> es la señal de que el paquete ya es un Core Package.</p>
+<p>El <code>&quot;source&quot;: &quot;builtin&quot;</code> es la señal de que el paquete ya es un Core Package (suministrado por el Editor), mientras que <code>&quot;depth&quot;: 0</code> muestra que sigue siendo una <strong>dependencia directa</strong> declarada en <code>manifest.json</code>: la entrada no desapareció.</p>
 <hr>
 <h3>5. Verificación del resultado</h3>
 <ol>
-<li><strong>Ventana del Package Manager</strong> (<code>Window → Package Manager</code> → "In Project") — Entities, Collections, Mathematics, Entities Graphics (y Netcode for Entities si se usa) deben aparecer etiquetados como <strong>Built-in</strong>.</li>
+<li><strong>Ventana del Package Manager</strong> (<code>Window → Package Manager</code> → "In Project") — Entities, Collections, Mathematics, Entities Graphics (y Netcode for Entities si se usa) deben aparecer en la lista, con su versión fijada por el Editor (sin desplegable de versión).</li>
 <li><strong>Menús del Editor</strong> — <code>Window → Entities → Hierarchy/Systems/Archetypes</code> existen y funcionan.</li>
 <li><strong>Compilación</strong> — pulsar Play; el proyecto debe entrar en modo Play sin errores de compilación por ensamblados que falten.</li>
 </ol>
@@ -8104,16 +8101,16 @@ public struct EnemyVisual : IComponentData
 </tr>
 </thead>
 <tbody><tr>
-<td><code>Unable to find package &#39;com.unity.entities@1.x.y&#39;</code> tras editar el manifest</td>
-<td><code>packages-lock.json</code> sigue referenciando la versión antigua. Borrarlo y dejar que el Editor lo regenere.</td>
+<td><code>Unable to find package &#39;com.unity.entities@1.x.y&#39;</code> tras actualizar el Editor</td>
+<td>El manifest aún fija una versión 1.x. Actualizarla a la versión Core (volver a añadirla desde el Package Manager), luego borrar <code>packages-lock.json</code> y dejar que el Editor lo regenere.</td>
 </tr>
 <tr>
 <td><code>The type or namespace Unity.Entities could not be found</code></td>
-<td>El Editor es anterior a 6000.4, donde el Core Package no está disponible. Actualizar el Editor o volver a añadir el paquete UPM.</td>
+<td>Entities no está añadido al proyecto (añadirlo desde el Package Manager) o el Editor es anterior a 6000.4 (actualizarlo).</td>
 </tr>
 <tr>
-<td>El Package Manager muestra tanto Entities Built-in como UPM</td>
-<td>El manifest aún conserva la entrada <code>com.unity.entities</code>. Eliminarla.</td>
+<td>El Package Manager muestra una versión de Entities obsoleta o en conflicto</td>
+<td>Aún queda una versión <code>1.x</code> fijada en <code>manifest.json</code>. Actualizarla a la versión Core (volver a añadirla desde el Package Manager) y regenerar <code>packages-lock.json</code>.</td>
 </tr>
 <tr>
 <td>Un asset de terceros no compila porque fija <code>com.unity.entities@1.x</code></td>
@@ -8128,8 +8125,8 @@ public struct EnemyVisual : IComponentData
 <td>Un problema de red o un registro privado fijado. Revisar los logs del Editor para ver el fallo de resolución concreto.</td>
 </tr>
 <tr>
-<td>Netcode for Entities sigue apareciendo como UPM</td>
-<td>En 6000.5+, Netcode 6.5 es Built-in. Si <code>com.unity.netcode</code> sigue en el manifest, eliminarlo y regenerar el lock.</td>
+<td>Netcode for Entities sigue resolviéndose a una versión <code>1.x</code> antigua</td>
+<td>En 6000.5+, Netcode es un Core Package 6.5. Actualizar <code>com.unity.netcode</code> a la versión 6.5 (volver a añadirlo desde el Package Manager) y regenerar.</td>
 </tr>
 </tbody></table>
 <div class="page-break"></div><h2>Capítulo 34. Referencias a objetos administrados → UnityObjectRef</h2>
@@ -8740,7 +8737,7 @@ public partial struct AISystem : ISystem
 </thead>
 <tbody><tr>
 <td>Instalación</td>
-<td><code>com.unity.entities</code> ya no se añade manualmente a <code>manifest.json</code> en Unity 6000.4+.</td>
+<td>En Unity 6000.4+ se sigue añadiendo <code>com.unity.entities</code> desde el Package Manager, pero se instala desde el propio paquete del Editor: no hay versión que elegir.</td>
 </tr>
 <tr>
 <td>Elección de versión</td>
@@ -8752,7 +8749,7 @@ public partial struct AISystem : ISystem
 </tr>
 <tr>
 <td>Flujo de actualización</td>
-<td>Eliminar las entradas antiguas del Package Manager y dejar que el Editor regenere la resolución de paquetes.</td>
+<td>Reemplazar cualquier versión 1.x fijada de <code>com.unity.entities</code> (volver a añadirlo desde el Package Manager) y dejar que el Editor la resuelva a la versión Core.</td>
 </tr>
 </tbody></table>
 <p>Ver <code>../Migration/02_Package Manager → Core Package.md</code>.</p>
@@ -8860,7 +8857,7 @@ public partial struct AISystem : ISystem
 <hr>
 <h3>6. Lista de verificación de migración</h3>
 <ul>
-<li><input disabled="" type="checkbox"> Eliminar entradas antiguas del Package Manager para Core Packages en Unity 6000.4+.</li>
+<li><input disabled="" type="checkbox"> En Unity 6000.4+, volver a añadir los Core Packages de DOTS desde el Package Manager, reemplazando cualquier versión 1.x fijada en <code>manifest.json</code>.</li>
 <li><input disabled="" type="checkbox"> Reemplazar los <code>Entities.ForEach</code> restantes con <code>IJobEntity</code> o <code>SystemAPI.Query</code>.</li>
 <li><input disabled="" type="checkbox"> Reemplazar el uso de <code>IAspect</code> con acceso directo a componentes.</li>
 <li><input disabled="" type="checkbox"> Reemplazar <code>GetRefRWOptional</code> / <code>GetRefROOptional</code> con <code>TryGetRefRW&lt;T&gt;()</code> / <code>TryGetRefRO&lt;T&gt;()</code>.</li>

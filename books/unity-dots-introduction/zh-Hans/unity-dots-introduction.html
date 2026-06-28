@@ -985,7 +985,7 @@
 </tbody></table>
 <div class="page-break"></div><section class="part-page"><h2>第一部分. 入门</h2></section><div class="page-break"></div><h2>第 1 章. 环境搭建 — Unity 6000.5 + Entities 6.5.0</h2>
 <h3>1. 概述</h3>
-<p>从 <strong>Unity 6000.4+</strong> 起，Entities 成为 <strong>Core Package</strong>，随编辑器一同发布，不必再通过 Package Manager 添加。本章将带你安装编辑器、创建一个支持 DOTS 的项目，并确认 Entities 已经正常启用。</p>
+<p>从 <strong>Unity 6000.4+</strong> 起，Entities 成为 <strong>Core Package</strong>，随编辑器一同发布，其版本与编辑器版本绑定，因此你不必再手动选择 Entities 的版本。不过它<strong>不会</strong>被自动添加到新项目中：你仍需在每个项目里通过 Package Manager（Unity Registry）添加一次。本章将带你安装编辑器、创建项目、添加 Entities，并确认它已正常启用。</p>
 <blockquote>
 <p><strong>本书环境参考：</strong>Unity 6000.5.0b2 · Entities 6.5.0 · Collections / Mathematics / Entities Graphics（均为 Core Package）。</p>
 </blockquote>
@@ -998,7 +998,7 @@
 <li>模块保持默认即可，ECS 本身不需要额外模块。</li>
 </ol>
 <blockquote>
-<p><strong>不需要</strong>勾选任何叫"DOTS"的模块——从 6000.4 起，Entities 已经内置在编辑器里。</p>
+<p>在安装编辑器时<strong>不需要</strong>勾选任何叫"DOTS"的模块——从 6000.4 起，Entities 包随编辑器一同发布。你仍需稍后把它添加到每个项目中（见后续步骤）。</p>
 </blockquote>
 <hr>
 <h3>3. 创建新项目</h3>
@@ -1028,15 +1028,9 @@
 <p>在 6000.4+ 上，过去那个专用的"DOTS 模板"已经不再需要，任何模板都能承载 Entities 工作流。</p>
 </blockquote>
 <hr>
-<h3>4. 验证核心包已激活</h3>
-<p>打开 <strong>Window → Package Manager</strong>，把范围切换到 <strong>In Project</strong>。下列包应该都带有 <strong>"Built-in"</strong> 标记：</p>
-<ul>
-<li><strong>Entities</strong></li>
-<li><strong>Collections</strong></li>
-<li><strong>Mathematics</strong></li>
-<li><strong>Entities Graphics</strong></li>
-</ul>
-<p>若想从文件层面确认，可以查看 <code>Packages/manifest.json</code>：里面<strong>不会</strong>有 <code>com.unity.entities</code> 条目，因为它随编辑器一同发布。</p>
+<h3>4. 添加 Entities 包并验证其已激活</h3>
+<p>打开 <strong>Window → Package Manager</strong>，把范围切换到 <strong>Unity Registry</strong>，选中 <strong>Entities</strong>，然后点击 <strong>Install</strong>（也可以用 <strong>+ → Add package by name…</strong> 并输入 <code>com.unity.entities</code>）。由于 Entities 是 Core Package，你无需选择版本——编辑器会安装与之捆绑的那个版本（在 Unity 6000.5 上为 Entities 6.5）。安装 Entities 时还会一并引入 <strong>Collections</strong>、<strong>Mathematics</strong> 和 <strong>Entities Graphics</strong> 作为依赖。</p>
+<p>接着把范围切换到 <strong>In Project</strong>，确认 <strong>Entities</strong>、<strong>Collections</strong>、<strong>Mathematics</strong> 和 <strong>Entities Graphics</strong> 都列在其中。若想从文件层面确认，可以打开 <code>Packages/manifest.json</code>：现在里面会有一个 <code>com.unity.entities</code> 条目（它所引入的依赖会被自动解析，可能不会各自单独出现条目）。</p>
 <p>接着打开几个 ECS 窗口：</p>
 <ul>
 <li><strong>Window → Entities → Hierarchy</strong>——运行时显示 Entity 列表。</li>
@@ -1067,7 +1061,7 @@
 </thead>
 <tbody><tr>
 <td><code>Window → Entities</code> 菜单缺失</td>
-<td>编辑器版本低于 6000.4，Entities 还不是 Core Package。升级编辑器即可。</td>
+<td>Entities 尚未安装（通过 <strong>Package Manager → Unity Registry → Entities</strong> 添加），或者编辑器版本低于 6000.4（升级编辑器即可）。</td>
 </tr>
 <tr>
 <td><code>Baker&lt;T&gt;</code> / <code>IComponentData</code> 未找到</td>
@@ -1083,12 +1077,12 @@
 </tr>
 <tr>
 <td>构建错误：<code>com.unity.entities not found</code></td>
-<td><code>manifest.json</code> 里还残留着 1.x 项目遗留的 <code>com.unity.entities</code> 条目，删掉它即可。详见 <code>Migration/02_Package Manager → Core Package.md</code>。</td>
+<td>该包尚未安装，或者 <code>manifest.json</code> 中固定的是此编辑器上并不存在的 1.x 版本。从 Package Manager 安装 Entities，让该条目解析到编辑器的 Core 版本。详见 <code>Migration/02_Package Manager → Core Package.md</code>。</td>
 </tr>
 </tbody></table>
 <div class="page-break"></div><h2>第 2 章. 核心包详解</h2>
 <h3>1. 概述</h3>
-<p>随着 <strong>Entities 6.4.0</strong> 发布（与 Unity Editor 6000.4 一同推出），几个主要的 DOTS 包从 Package Manager 移入编辑器内部，成为 <strong>Core Package</strong>。包变更日志的原话是：</p>
+<p>随着 <strong>Entities 6.4.0</strong> 发布（与 Unity Editor 6000.4 一同推出），几个主要的 DOTS 包成为 <strong>Core Package</strong>——它们现在随编辑器一同发布（从编辑器安装包中安装，而非从远程注册表下载），其版本与编辑器绑定。包变更日志的原话是：</p>
 <blockquote>
 <p><em>"Package is now a core package embedded in Unity."</em></p>
 </blockquote>
@@ -1102,7 +1096,7 @@
 </ul>
 <hr>
 <h3>2. 什么是 Core Package？</h3>
-<p><strong>Core Package</strong> 指<strong>内置于编辑器</strong>的包。你不必通过 Package Manager 添加它，也无法脱离编辑器单独调整它的版本，它的发布节奏与编辑器一致。</p>
+<p><strong>Core Package</strong> 指<strong>随编辑器一同发布</strong>的包。你仍要像添加其他包一样，通过 Package Manager 把它添加到项目中，但它从编辑器安装包中安装，而非从远程注册表下载；你无法脱离编辑器单独调整它的版本，它的发布节奏也与编辑器一致。（这与 <strong>Built-in 包</strong>不同——后者指像 Physics 那样、你只能启用或禁用的引擎模块。）</p>
 <table>
 <thead>
 <tr>
@@ -1114,7 +1108,7 @@
 <tbody><tr>
 <td>安装步骤</td>
 <td>通过 UPM 添加</td>
-<td>无需安装，随编辑器提供</td>
+<td>通过 Package Manager 添加（从编辑器安装包中安装）</td>
 </tr>
 <tr>
 <td>版本由谁决定</td>
@@ -1129,7 +1123,7 @@
 <tr>
 <td>出现在 <code>manifest.json</code> 中</td>
 <td>是</td>
-<td>否</td>
+<td>是——安装时会写入</td>
 </tr>
 <tr>
 <td>出现在 <code>packages-lock.json</code> 中</td>
@@ -1139,7 +1133,7 @@
 <tr>
 <td>在 Package Manager 中显示</td>
 <td>在"In Project"下</td>
-<td>在"In Project"下，标为 <strong>Built-in</strong></td>
+<td>在"Unity Registry"下安装，随后出现在"In Project"下</td>
 </tr>
 </tbody></table>
 <hr>
@@ -1225,7 +1219,7 @@
 <hr>
 <h3>5. 对项目文件的影响</h3>
 <h4><code>manifest.json</code></h4>
-<p>不再需要 <code>com.unity.entities</code>、<code>com.unity.collections</code>、<code>com.unity.mathematics</code> 或 <code>com.unity.entities.graphics</code> 条目。升级 1.x 项目时把它们删掉即可，详见 <code>Migration/02_Package Manager → Core Package.md</code>。</p>
+<p>当你添加 Entities 时，这里会出现一个 <code>com.unity.entities</code> 条目。它所引入的包（<code>com.unity.collections</code>、<code>com.unity.mathematics</code>、<code>com.unity.entities.graphics</code>）会作为依赖被解析，通常无需各自单独的条目。升级 1.x 项目时，替换掉旧的固定版本，让 Package Manager 把它们解析到编辑器的 Core 版本，详见 <code>Migration/02_Package Manager → Core Package.md</code>。</p>
 <h4><code>packages-lock.json</code></h4>
 <p>Core Package 会以 <code>&quot;source&quot;: &quot;builtin&quot;</code> 的形式出现，而不是一个版本 URL。</p>
 <h4>程序集定义（.asmdef）</h4>
@@ -1243,11 +1237,11 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>Package Manager 的"Unity Registry"下仍列着旧版本的 <code>Entities</code></td>
+<td>Package Manager 只提供旧的 <strong>1.x</strong> 版本的 <code>Entities</code></td>
 <td>你用的是 6000.4 之前的编辑器。要么升级编辑器，要么继续留在 1.x 系列。</td>
 </tr>
 <tr>
-<td>删掉 <code>com.unity.entities</code> 后，<code>manifest.json</code> 报解析错误</td>
+<td>修改 <code>com.unity.entities</code> 版本后，<code>manifest.json</code> 报解析错误</td>
 <td>删除 <code>packages-lock.json</code>，让编辑器重新生成一份。</td>
 </tr>
 <tr>
@@ -7991,11 +7985,11 @@ public struct EnemyVisual : IComponentData
 </tbody></table>
 <div class="page-break"></div><h2>Chapter 33. Package Manager → Core Package</h2>
 <h3>1. 变化内容</h3>
-<p>在 Unity 6000.4+ 上，Entities（及其配套 DOTS 包）不再通过 Package Manager 安装。它们作为 <strong>Core Package</strong> 内嵌于 Editor 中发布。你的项目文件在三处发生变化：</p>
+<p>在 Unity 6000.4+ 上，Entities（及其配套 DOTS 包）成为 <strong>Core Package</strong>：它们从 Editor 本身安装，而非从远程注册表下载，其版本由 Editor 固定。你<strong>仍要通过 Package Manager 添加它们</strong>，它们也仍会作为依赖列在你的项目中——成为 Core Package 改变的是<em>包从何而来、由谁决定其版本</em>，而不是你的项目是否需要声明它。迁移 1.x 项目时会发生以下变化：</p>
 <ul>
-<li><strong><code>Packages/manifest.json</code></strong>——<code>com.unity.entities*</code> 条目被删除。</li>
-<li><strong><code>Packages/packages-lock.json</code></strong>——解析图缩小；受影响的包以 <code>"source": "builtin"</code> 出现。</li>
-<li><strong>Package Manager 窗口</strong>——包现在显示在"In Project"下，标记为 <strong>Built-in</strong>。</li>
+<li><strong><code>Packages/manifest.json</code></strong>——<code>com.unity.entities*</code> 条目<strong>保留</strong>，但其固定的 <strong>1.x</strong> 版本被替换为 Editor 的 Core 版本（从 Package Manager 重新添加它们）。</li>
+<li><strong><code>Packages/packages-lock.json</code></strong>——受影响的包现在以 <code>"source": "builtin"</code> 解析。</li>
+<li><strong>Package Manager 窗口</strong>——包仍显示在"In Project"下；你不能再选择它们的版本（版本跟随 Editor）。</li>
 </ul>
 <p>你的 C# 代码<strong>不会</strong>改变。程序集名称（<code>Unity.Entities</code>、<code>Unity.Collections</code> 等）相同；<code>.asmdef</code> 引用不变。</p>
 <hr>
@@ -8055,21 +8049,24 @@ public struct EnemyVisual : IComponentData
   }
 }
 </code></pre>
-<p>删除现在是 Core Package 的五行：</p>
+<p>在 6000.4+ 的 Editor 上，那些固定的 <strong>1.x</strong> 版本不再能解析——注册表不再为此 Editor 提供它们。<strong>不要</strong>直接删除这些行（那会移除依赖，而 Core Package <em>不会</em>被自动添加回来）。正确做法是让每个 Core Package 指向 Editor 的版本。有两种方式，两者都会把这些包保留为依赖：</p>
+<p><strong>推荐——通过 Package Manager 重新添加。</strong>对每个 Core Package，先移除其过时的 <code>1.x</code> 固定版本，然后通过 <strong>Window → Package Manager → Unity Registry → Install</strong>（或 <strong>+ → Add package by name…</strong>，例如 <code>com.unity.entities</code>）把它添加回来。Package Manager 会替你把 Editor 的 Core 版本写入 <code>manifest.json</code>，并自动引入依赖的 Core Package。</p>
+<p><strong>手动操作。</strong>把每个 Core Package 的 <code>1.x</code> 版本替换为 Editor 的 Core 版本（例如在 Unity 6000.5 上为 <code>6.5.0</code>）：</p>
 <pre><code class="language-diff"> {
    &quot;dependencies&quot;: {
 -    &quot;com.unity.entities&quot;: &quot;1.4.2&quot;,
--    &quot;com.unity.collections&quot;: &quot;2.4.5&quot;,
--    &quot;com.unity.mathematics&quot;: &quot;1.3.2&quot;,
++    &quot;com.unity.entities&quot;: &quot;6.5.0&quot;,
 -    &quot;com.unity.entities.graphics&quot;: &quot;1.4.2&quot;,
++    &quot;com.unity.entities.graphics&quot;: &quot;6.5.0&quot;,
 -    &quot;com.unity.netcode&quot;: &quot;1.12.0&quot;,
++    &quot;com.unity.netcode&quot;: &quot;6.5.0&quot;,
      &quot;com.unity.physics&quot;: &quot;1.3.14&quot;,
      &quot;com.unity.render-pipelines.universal&quot;: &quot;17.0.4&quot;,
      ...
    }
  }
 </code></pre>
-<p>保留 <code>com.unity.physics</code> 及其他仍为 UPM 的内容。</p>
+<p><code>com.unity.collections</code> 和 <code>com.unity.mathematics</code> 会作为 Entities 的依赖被引入，因此通常无需自己列出它们。保留 <code>com.unity.physics</code> 以及其他仍为注册表（UPM）包的内容不变。</p>
 <p>保存文件。</p>
 <hr>
 <h3>4. 重建 <code>packages-lock.json</code></h3>
@@ -8077,7 +8074,7 @@ public struct EnemyVisual : IComponentData
 <h4>4.1 让 Editor 重新生成</h4>
 <p>关闭 Editor，删除 <code>Packages/packages-lock.json</code>，重新打开。Unity 重新生成它。这是最干净的选择。</p>
 <h4>4.2 就地编辑</h4>
-<p>打开 <code>packages-lock.json</code> 并删除与上述五个包匹配的条目。Editor 下次打开时进行协调。如果你有复杂的锁定文件，速度稍快，但更容易出错。</p>
+<p>打开 <code>packages-lock.json</code> 并更新上述各包的过时条目（删除它们，让 Editor 重新解析）。Editor 下次打开时进行协调。如果你有复杂的锁定文件，速度稍快，但更容易出错。</p>
 <p>两种方式最终的锁定文件都包含类似以下的条目：</p>
 <pre><code class="language-json">&quot;com.unity.entities&quot;: {
   &quot;version&quot;: &quot;6.5.0&quot;,
@@ -8086,11 +8083,11 @@ public struct EnemyVisual : IComponentData
   &quot;dependencies&quot;: {}
 }
 </code></pre>
-<p>注意 <code>"source": "builtin"</code>——这是包现在是 Core Package 的标志。</p>
+<p>注意 <code>"source": "builtin"</code> 是包现在已成为 Core Package（由 Editor 提供）的标志，而 <code>"depth": 0</code> 表明它仍是 <code>manifest.json</code> 中声明的<strong>直接依赖</strong>——该条目并未消失。</p>
 <hr>
 <h3>5. 验证结果</h3>
 <ol>
-<li><strong>Package Manager 窗口</strong>（<code>Window → Package Manager</code> → "In Project"）——Entities、Collections、Mathematics、Entities Graphics（如果使用，还有 Netcode for Entities）应显示 <strong>Built-in</strong> 标签。</li>
+<li><strong>Package Manager 窗口</strong>（<code>Window → Package Manager</code> → "In Project"）——Entities、Collections、Mathematics、Entities Graphics（如果使用，还有 Netcode for Entities）应列在其中，其版本由 Editor 固定（没有版本下拉菜单）。</li>
 <li><strong>Editor 菜单</strong>——<code>Window → Entities → Hierarchy/Systems/Archetypes</code> 存在并正常工作。</li>
 <li><strong>编译</strong>——按下 Play；项目应在没有引用缺失程序集的编译错误的情况下进入 Play 模式。</li>
 </ol>
@@ -8104,16 +8101,16 @@ public struct EnemyVisual : IComponentData
 </tr>
 </thead>
 <tbody><tr>
-<td>编辑 manifest 后出现 <code>Unable to find package 'com.unity.entities@1.x.y'</code></td>
-<td><code>packages-lock.json</code> 仍引用旧版本。删除它并让 Editor 重新生成。</td>
+<td>升级 Editor 后出现 <code>Unable to find package 'com.unity.entities@1.x.y'</code></td>
+<td>manifest 仍固定着 1.x 版本。把它更新为 Core 版本（通过 Package Manager 重新添加），然后删除 <code>packages-lock.json</code> 并让 Editor 重新生成。</td>
 </tr>
 <tr>
 <td><code>The type or namespace Unity.Entities could not be found</code></td>
-<td>Editor 版本低于 6000.4——Core Package 不可用。升级 Editor，或重新添加 UPM 包。</td>
+<td>项目中尚未添加 Entities（通过 Package Manager 添加），或者你使用的 Editor 版本低于 6000.4（升级它）。</td>
 </tr>
 <tr>
-<td>Package Manager 同时显示 Built-in 和 UPM 的 Entities</td>
-<td>manifest 中仍有 <code>com.unity.entities</code> 条目。删除它。</td>
+<td>Package Manager 显示过时或冲突的 Entities 版本</td>
+<td><code>manifest.json</code> 中仍残留着 1.x 固定版本。把它更新为 Core 版本（通过 Package Manager 重新添加），并重新生成 <code>packages-lock.json</code>。</td>
 </tr>
 <tr>
 <td>第三方资源无法编译，因为它固定了 <code>com.unity.entities@1.x</code></td>
@@ -8128,8 +8125,8 @@ public struct EnemyVisual : IComponentData
 <td>网络问题或固定的私有注册表。检查 Editor 日志中的具体解析失败信息。</td>
 </tr>
 <tr>
-<td>Netcode for Entities 仍显示为 UPM</td>
-<td>在 6000.5+ 上，Netcode 6.5 是 Built-in。如果 <code>com.unity.netcode</code> 仍在 manifest 中，请删除它并重新生成。</td>
+<td>Netcode for Entities 仍解析为旧的 <code>1.x</code> 版本</td>
+<td>在 6000.5+ 上，Netcode 是 6.5 Core Package。把 <code>com.unity.netcode</code> 更新为 6.5 版本（通过 Package Manager 重新添加）并重新生成。</td>
 </tr>
 </tbody></table>
 <div class="page-break"></div><h2>Chapter 34. Managed Object References → UnityObjectRef</h2>
@@ -8740,7 +8737,7 @@ public partial struct AISystem : ISystem
 </thead>
 <tbody><tr>
 <td>安装</td>
-<td>在 Unity 6000.4+ 上，不必再把 <code>com.unity.entities</code> 手动加进 <code>manifest.json</code>。</td>
+<td>在 Unity 6000.4+ 上，你仍要从 Package Manager 添加 <code>com.unity.entities</code>，但它从编辑器安装包中安装——没有版本可供选择。</td>
 </tr>
 <tr>
 <td>版本选择</td>
@@ -8752,7 +8749,7 @@ public partial struct AISystem : ISystem
 </tr>
 <tr>
 <td>升级流程</td>
-<td>删掉旧的 Package Manager 条目，让 Editor 重新生成包解析。</td>
+<td>替换掉 <code>com.unity.entities</code> 的任何固定 1.x 版本（从 Package Manager 重新添加），让 Editor 把它解析到 Core 版本。</td>
 </tr>
 </tbody></table>
 <p>参见 <code>../Migration/02_Package Manager → Core Package.md</code>。</p>
@@ -8860,7 +8857,7 @@ public partial struct AISystem : ISystem
 <hr>
 <h3>6. 迁移检查清单</h3>
 <ul>
-<li><input disabled="" type="checkbox"> 在 Unity 6000.4+ 上，删掉那些已成 Core Package 的旧 Package Manager 条目。</li>
+<li><input disabled="" type="checkbox"> 在 Unity 6000.4+ 上，从 Package Manager 重新添加 DOTS Core Package，替换掉 <code>manifest.json</code> 中固定的任何 1.x 版本。</li>
 <li><input disabled="" type="checkbox"> 把残留的 <code>Entities.ForEach</code> 换成 <code>IJobEntity</code> 或 <code>SystemAPI.Query</code>。</li>
 <li><input disabled="" type="checkbox"> 把 <code>IAspect</code> 的用法换成直接的 component 访问。</li>
 <li><input disabled="" type="checkbox"> 把 <code>GetRefRWOptional</code> / <code>GetRefROOptional</code> 换成 <code>TryGetRefRW&lt;T&gt;()</code> / <code>TryGetRefRO&lt;T&gt;()</code>。</li>

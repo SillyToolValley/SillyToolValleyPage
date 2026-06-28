@@ -985,7 +985,7 @@
 </tbody></table>
 <div class="page-break"></div><section class="part-page"><h2>Part I. はじめに</h2></section><div class="page-break"></div><h2>Chapter 1. 環境構築 — Unity 6000.5 + Entities 6.5.0</h2>
 <h3>1. 概要</h3>
-<p><strong>Unity 6000.4 以降</strong>、Entities は <strong>Core Package</strong> になった。エディターに同梱されるため、Package Manager から追加する必要はない。本章ではエディターのインストールから、DOTS 対応プロジェクトの作成、Entities が有効になっているかの確認までを順に追っていく。</p>
+<p><strong>Unity 6000.4 以降</strong>、Entities は <strong>Core Package</strong> になった。エディターに同梱され、そのバージョンはエディターのバージョンに固定されるため、Entities のバージョンを自分で選ぶことはもうない。ただし新規プロジェクトに自動で追加されるわけ<strong>ではない</strong>。プロジェクトごとに一度、Package Manager（Unity Registry）から追加する必要がある。本章ではエディターのインストールから、プロジェクトの作成、Entities の追加、そして有効になっているかの確認までを順に追っていく。</p>
 <blockquote>
 <p><strong>動作確認環境：</strong> Unity 6000.5.0b2 · Entities 6.5.0 · Collections / Mathematics / Entities Graphics（いずれも Core Package）。</p>
 </blockquote>
@@ -998,7 +998,7 @@
 <li>モジュールはデフォルトのままでよい。ECS そのものに追加モジュールは要らない。</li>
 </ol>
 <blockquote>
-<p>&quot;DOTS&quot; モジュールを選ぶ必要は<strong>ない</strong>。Entities は 6000.4 からエディターに組み込まれている。</p>
+<p>エディターをインストールするとき、&quot;DOTS&quot; モジュールにチェックを入れる必要は<strong>ない</strong>。Entities パッケージは 6000.4 からエディターに同梱されている。各プロジェクトへの追加はあとで行う（次のステップを参照）。</p>
 </blockquote>
 <hr>
 <h3>3. 新規プロジェクトの作成</h3>
@@ -1028,15 +1028,9 @@
 <p>6000.4 以降では、専用の「DOTS テンプレート」はもう要らない。どのテンプレートでも Entities ワークフローを動かせる。</p>
 </blockquote>
 <hr>
-<h3>4. Core Package が有効であることの確認</h3>
-<p><strong>Window → Package Manager</strong> を開き、スコープを <strong>In Project</strong> に切り替える。次のパッケージに <strong>「Built-in」</strong> のマークが付いているはずだ。</p>
-<ul>
-<li><strong>Entities</strong></li>
-<li><strong>Collections</strong></li>
-<li><strong>Mathematics</strong></li>
-<li><strong>Entities Graphics</strong></li>
-</ul>
-<p>ファイルで確かめたいなら <code>Packages/manifest.json</code> を見る。エディターに同梱されているため、<code>com.unity.entities</code> のエントリは<strong>存在しない</strong>。</p>
+<h3>4. Entities パッケージの追加と有効化の確認</h3>
+<p><strong>Window → Package Manager</strong> を開き、スコープを <strong>Unity Registry</strong> に切り替え、<strong>Entities</strong> を選んで <strong>Install</strong> をクリックする（または <strong>+ → Add package by name…</strong> から <code>com.unity.entities</code> を入力する）。Entities は Core Package なのでバージョンは選ばない。エディターに同梱されているもの（Unity 6000.5 では Entities 6.5）がインストールされる。Entities をインストールすると、依存関係として <strong>Collections</strong>、<strong>Mathematics</strong>、<strong>Entities Graphics</strong> も一緒に取り込まれる。</p>
+<p>続いてスコープを <strong>In Project</strong> に切り替え、<strong>Entities</strong>、<strong>Collections</strong>、<strong>Mathematics</strong>、<strong>Entities Graphics</strong> が並んでいることを確認する。ファイルで確かめたいなら <code>Packages/manifest.json</code> を開く。いまは <code>com.unity.entities</code> のエントリが存在する（それが取り込む依存関係は自動的に解決され、必ずしもそれぞれ専用のエントリを持つとは限らない）。</p>
 <p>続いて ECS のウィンドウを開く。</p>
 <ul>
 <li><strong>Window → Entities → Hierarchy</strong> — 実行時の Entity を表示する。</li>
@@ -1067,7 +1061,7 @@
 </thead>
 <tbody><tr>
 <td><code>Window → Entities</code> メニューが見当たらない</td>
-<td>エディターが 6000.4 より古く、Entities がまだ Core Package になっていない。エディターをアップグレードする。</td>
+<td>Entities がまだインストールされていない（<strong>Package Manager → Unity Registry → Entities</strong> から追加する）。あるいはエディターが 6000.4 より古い（アップグレードする）。</td>
 </tr>
 <tr>
 <td><code>Baker&lt;T&gt;</code> / <code>IComponentData</code> が見つからない</td>
@@ -1083,12 +1077,12 @@
 </tr>
 <tr>
 <td>ビルドエラー：<code>com.unity.entities not found</code></td>
-<td>1.x プロジェクト時代の <code>com.unity.entities</code> エントリが <code>manifest.json</code> に残っている。削除する。<code>Migration/02_Package Manager → Core Package.md</code> を参照。</td>
+<td>パッケージがインストールされていないか、<code>manifest.json</code> がこのエディターには存在しない 1.x のバージョンを固定している。Package Manager から Entities をインストールし、エントリがエディターの Core バージョンに解決されるようにする。<code>Migration/02_Package Manager → Core Package.md</code> を参照。</td>
 </tr>
 </tbody></table>
 <div class="page-break"></div><h2>Chapter 2. コアパッケージ解説</h2>
 <h3>1. 概要</h3>
-<p><strong>Entities パッケージ 6.4.0</strong> のリリース（Unity Editor 6000.4 に同梱）を境に、主要な DOTS パッケージは Package Manager からエディター本体へと移り、<strong>Core Package</strong> になった。パッケージの変更履歴には、こう書かれている。</p>
+<p><strong>Entities パッケージ 6.4.0</strong> のリリース（Unity Editor 6000.4 に同梱）を境に、主要な DOTS パッケージは <strong>Core Package</strong> になった。これらはエディターに同梱され（リモートレジストリからダウンロードするのではなく、エディターのバンドルからインストールされる）、そのバージョンはエディターに紐づく。パッケージの変更履歴には、こう書かれている。</p>
 <blockquote>
 <p><em>&quot;Package is now a core package embedded in Unity.&quot;</em></p>
 </blockquote>
@@ -1102,7 +1096,7 @@
 </ul>
 <hr>
 <h3>2. Core Package とは何か</h3>
-<p><strong>Core Package</strong> とは、<strong>エディターに同梱される</strong> パッケージのことだ。Package Manager から追加する必要はなく、バージョンをエディターとは別に変えることもできない。リリースサイクルもエディターに従う。</p>
+<p><strong>Core Package</strong> とは、<strong>エディターに同梱される</strong> パッケージのことだ。他のパッケージと同じように Package Manager からプロジェクトに追加するが、リモートレジストリではなくエディターのバンドルからインストールされ、バージョンをエディターとは別に変えることはできず、リリースサイクルもエディターに従う。（これは <strong>Built-in パッケージ</strong> — Physics のような、有効・無効を切り替えるだけのエンジンモジュール — とは別物だ。）</p>
 <table>
 <thead>
 <tr>
@@ -1114,7 +1108,7 @@
 <tbody><tr>
 <td>インストール手順</td>
 <td>UPM 経由で追加</td>
-<td>不要 — エディターに同梱</td>
+<td>Package Manager から追加（エディターのバンドルからインストールされる）</td>
 </tr>
 <tr>
 <td>バージョンの決定者</td>
@@ -1129,7 +1123,7 @@
 <tr>
 <td><code>manifest.json</code> に掲載</td>
 <td>あり</td>
-<td>なし</td>
+<td>あり — インストール時に追加される</td>
 </tr>
 <tr>
 <td><code>packages-lock.json</code> に掲載</td>
@@ -1139,7 +1133,7 @@
 <tr>
 <td>Package Manager に表示</td>
 <td>「In Project」の下</td>
-<td>「In Project」の下に <strong>Built-in</strong> タグ付きで表示</td>
+<td>インストール時は「Unity Registry」、その後は「In Project」</td>
 </tr>
 </tbody></table>
 <hr>
@@ -1225,7 +1219,7 @@
 <hr>
 <h3>5. プロジェクトファイルへの影響</h3>
 <h4><code>manifest.json</code></h4>
-<p><code>com.unity.entities</code>、<code>com.unity.collections</code>、<code>com.unity.mathematics</code>、<code>com.unity.entities.graphics</code> の各エントリは要らない。1.x プロジェクトをアップグレードするなら、これらを削除する。詳しくは <code>Migration/02_Package Manager → Core Package.md</code> を参照。</p>
+<p>Entities を追加すると、ここに <code>com.unity.entities</code> のエントリが現れる。それが取り込むパッケージ（<code>com.unity.collections</code>、<code>com.unity.mathematics</code>、<code>com.unity.entities.graphics</code>）は依存関係として解決され、通常は専用のエントリを持つ必要はない。1.x プロジェクトをアップグレードするなら、古い固定バージョンを置き換え、Package Manager にエディターの Core バージョンへ解決させる。詳しくは <code>Migration/02_Package Manager → Core Package.md</code> を参照。</p>
 <h4><code>packages-lock.json</code></h4>
 <p>Core Package は、バージョン URL ではなく <code>&quot;source&quot;: &quot;builtin&quot;</code> として記載される。</p>
 <h4>アセンブリ定義（.asmdef）</h4>
@@ -1243,11 +1237,11 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>Package Manager に旧バージョンで「Unity Registry」の <code>Entities</code> が表示される</td>
+<td>Package Manager で <code>Entities</code> が古い <strong>1.x</strong> バージョンでしか提供されない</td>
 <td>エディターが 6000.4 より古い。エディターをアップグレードするか、1.x ラインに留まる。</td>
 </tr>
 <tr>
-<td><code>com.unity.entities</code> を削除した後に <code>manifest.json</code> の解決エラーが出る</td>
+<td><code>com.unity.entities</code> のバージョンを変更した後に <code>manifest.json</code> の解決エラーが出る</td>
 <td><code>packages-lock.json</code> を削除し、エディターに再生成させる。</td>
 </tr>
 <tr>
@@ -7991,11 +7985,11 @@ public struct EnemyVisual : IComponentData
 </tbody></table>
 <div class="page-break"></div><h2>Chapter 33. Package Manager → Core Package</h2>
 <h3>1. What changes</h3>
-<p>Unity 6000.4 以降では、Entities（と、その仲間の DOTS パッケージ）を Package Manager からインストールする必要がなくなる。これらは <strong>Core Package</strong> として Editor に同梱される。プロジェクトファイルは、次の 3 箇所が変わる。</p>
+<p>Unity 6000.4 以降では、Entities（と、その仲間の DOTS パッケージ）は <strong>Core Package</strong> になる。これらはリモートレジストリからダウンロードするのではなく Editor 自体からインストールされ、そのバージョンは Editor によって固定される。それでも <strong>Package Manager から追加することに変わりはなく</strong>、プロジェクトの依存関係としてリストに載りつづける。Core Package になっても変わるのは <em>パッケージがどこから来るのか、誰がそのバージョンを決めるのか</em> であって、プロジェクトがそれを要求しなければならないかどうかではない。1.x プロジェクトを移行するときに変わるのは次のとおり。</p>
 <ul>
-<li><strong><code>Packages/manifest.json</code></strong> — <code>com.unity.entities*</code> のエントリがなくなる。</li>
-<li><strong><code>Packages/packages-lock.json</code></strong> — 解決後のグラフが小さくなる。対象のパッケージは <code>&quot;source&quot;: &quot;builtin&quot;</code> として記載される。</li>
-<li><strong>Package Manager ウィンドウ</strong> — パッケージが「In Project」に <strong>Built-in</strong> のラベル付きで並ぶ。</li>
+<li><strong><code>Packages/manifest.json</code></strong> — <code>com.unity.entities*</code> のエントリは<strong>残る</strong>が、固定された <strong>1.x</strong> バージョンは Editor の Core バージョンに置き換わる（Package Manager から追加し直す）。</li>
+<li><strong><code>Packages/packages-lock.json</code></strong> — 対象のパッケージは <code>&quot;source&quot;: &quot;builtin&quot;</code> として解決されるようになる。</li>
+<li><strong>Package Manager ウィンドウ</strong> — パッケージは引き続き「In Project」に並ぶ。ただしバージョンを選ぶことはできなくなる（Editor に従う）。</li>
 </ul>
 <p>C# のコードは変わらない。アセンブリ名（<code>Unity.Entities</code>、<code>Unity.Collections</code> など）は同じで、<code>.asmdef</code> の参照にも手を入れる必要はない。</p>
 <hr>
@@ -8055,21 +8049,24 @@ public struct EnemyVisual : IComponentData
   }
 }
 </code></pre>
-<p>Core Package になった 5 行を削除する。</p>
+<p>6000.4 以降の Editor では、これら固定された <strong>1.x</strong> バージョンはもう解決できない。レジストリがこの Editor 向けには提供しなくなるからだ。行をただ削除しては<strong>いけない</strong>（依存関係が消えてしまい、Core Package は自動では追加し直されない）。そうではなく、各 Core Package を Editor のバージョンに向ける。方法は 2 つあり、どちらもパッケージを依存関係として残す。</p>
+<p><strong>推奨 — Package Manager から追加し直す。</strong> 各 Core Package について、古くなった <code>1.x</code> の固定を取り除き、<strong>Window → Package Manager → Unity Registry → Install</strong> から追加し直す（または <strong>+ → Add package by name…</strong> で、たとえば <code>com.unity.entities</code> を指定する）。Package Manager が Editor の Core バージョンを <code>manifest.json</code> に書き込み、依存する Core Package も自動で取り込んでくれる。</p>
+<p><strong>手動で行う。</strong> 各 Core Package の <code>1.x</code> バージョンを、Editor の Core バージョン（たとえば Unity 6000.5 では <code>6.5.0</code>）に置き換える。</p>
 <pre><code class="language-diff"> {
    &quot;dependencies&quot;: {
 -    &quot;com.unity.entities&quot;: &quot;1.4.2&quot;,
--    &quot;com.unity.collections&quot;: &quot;2.4.5&quot;,
--    &quot;com.unity.mathematics&quot;: &quot;1.3.2&quot;,
++    &quot;com.unity.entities&quot;: &quot;6.5.0&quot;,
 -    &quot;com.unity.entities.graphics&quot;: &quot;1.4.2&quot;,
++    &quot;com.unity.entities.graphics&quot;: &quot;6.5.0&quot;,
 -    &quot;com.unity.netcode&quot;: &quot;1.12.0&quot;,
++    &quot;com.unity.netcode&quot;: &quot;6.5.0&quot;,
      &quot;com.unity.physics&quot;: &quot;1.3.14&quot;,
      &quot;com.unity.render-pipelines.universal&quot;: &quot;17.0.4&quot;,
      ...
    }
  }
 </code></pre>
-<p><code>com.unity.physics</code> をはじめ、UPM のまま残すものはそのままにしておく。</p>
+<p><code>com.unity.collections</code> と <code>com.unity.mathematics</code> は Entities の依存関係として取り込まれるため、通常は自分で記載する必要はない。<code>com.unity.physics</code> をはじめ、まだレジストリ（UPM）パッケージであるものはそのままにしておく。</p>
 <p>ファイルを保存する。</p>
 <hr>
 <h3>4. Rebuilding <code>packages-lock.json</code></h3>
@@ -8077,7 +8074,7 @@ public struct EnemyVisual : IComponentData
 <h4>4.1 Editor に再生成させる</h4>
 <p>Editor を閉じ、<code>Packages/packages-lock.json</code> を削除して、もう一度開く。Unity が作り直してくれる。これがいちばん確実だ。</p>
 <h4>4.2 直接編集する</h4>
-<p><code>packages-lock.json</code> を開き、上記 5 つのパッケージに対応するエントリを削除する。Editor が次回の起動時に整合性を取る。ロックファイルが複雑な場合は少し速いが、ミスが入り込みやすい。</p>
+<p><code>packages-lock.json</code> を開き、上記のパッケージの古くなったエントリを更新する（削除して Editor に再解決させる）。Editor が次回の起動時に整合性を取る。ロックファイルが複雑な場合は少し速いが、ミスが入り込みやすい。</p>
 <p>どちらの方法でも、最終的なロックファイルには次のようなエントリが入る。</p>
 <pre><code class="language-json">&quot;com.unity.entities&quot;: {
   &quot;version&quot;: &quot;6.5.0&quot;,
@@ -8086,11 +8083,11 @@ public struct EnemyVisual : IComponentData
   &quot;dependencies&quot;: {}
 }
 </code></pre>
-<p><code>&quot;source&quot;: &quot;builtin&quot;</code> こそが、そのパッケージが Core Package になった証だ。</p>
+<p><code>&quot;source&quot;: &quot;builtin&quot;</code> こそが、そのパッケージが Core Package（Editor から供給される）になった証だ。一方で <code>&quot;depth&quot;: 0</code> は、それが <code>manifest.json</code> で宣言された <strong>直接の依存関係</strong> であることを示している。エントリがなくなったわけではない。</p>
 <hr>
 <h3>5. Verifying the result</h3>
 <ol>
-<li><strong>Package Manager ウィンドウ</strong>（<code>Window → Package Manager</code> → 「In Project」）— Entities、Collections、Mathematics、Entities Graphics（使っていれば Netcode for Entities も）が <strong>Built-in</strong> タグ付きで並んでいるはずだ。</li>
+<li><strong>Package Manager ウィンドウ</strong>（<code>Window → Package Manager</code> → 「In Project」）— Entities、Collections、Mathematics、Entities Graphics（使っていれば Netcode for Entities も）が並んでいて、そのバージョンが Editor によって固定されている（バージョンのドロップダウンがない）はずだ。</li>
 <li><strong>Editor のメニュー</strong> — <code>Window → Entities → Hierarchy / Systems / Archetypes</code> が存在し、動作する。</li>
 <li><strong>コンパイル</strong> — Play を押す。アセンブリ不足を訴えるコンパイルエラーなしに Play モードへ入れるはずだ。</li>
 </ol>
@@ -8104,16 +8101,16 @@ public struct EnemyVisual : IComponentData
 </tr>
 </thead>
 <tbody><tr>
-<td>manifest を編集した後に <code>Unable to find package 'com.unity.entities@1.x.y'</code> が出る</td>
-<td><code>packages-lock.json</code> がまだ古いバージョンを参照している。削除して Editor に再生成させる。</td>
+<td>Editor をアップグレードした後に <code>Unable to find package 'com.unity.entities@1.x.y'</code> が出る</td>
+<td>manifest がまだ 1.x のバージョンを固定している。Core バージョンに更新し（Package Manager から追加し直す）、続いて <code>packages-lock.json</code> を削除して Editor に再生成させる。</td>
 </tr>
 <tr>
 <td><code>The type or namespace Unity.Entities could not be found</code></td>
-<td>Editor が 6000.4 より古く、Core Package を使えない。Editor をアップグレードするか、UPM パッケージを戻す。</td>
+<td>Entities がプロジェクトに追加されていない（Package Manager から追加する）。あるいは Editor が 6000.4 より古い（アップグレードする）。</td>
 </tr>
 <tr>
-<td>Package Manager に、Built-in と UPM の Entities が両方表示される</td>
-<td>manifest にまだ <code>com.unity.entities</code> のエントリが残っている。削除する。</td>
+<td>Package Manager に、古い、あるいは競合する Entities のバージョンが表示される</td>
+<td><code>manifest.json</code> に <code>1.x</code> の固定が残っている。Core バージョンに更新し（Package Manager から追加し直す）、<code>packages-lock.json</code> を再生成する。</td>
 </tr>
 <tr>
 <td>サードパーティ製アセットが <code>com.unity.entities@1.x</code> に固定しているため、コンパイルできない</td>
@@ -8128,8 +8125,8 @@ public struct EnemyVisual : IComponentData
 <td>ネットワークの問題か、固定されたプライベートレジストリが原因。Editor のログで、具体的な解決失敗の内容を確認する。</td>
 </tr>
 <tr>
-<td>Netcode for Entities がまだ UPM として表示される</td>
-<td>6000.5 以降では Netcode 6.5 は Built-in だ。<code>com.unity.netcode</code> が manifest に残っているなら削除して再生成する。</td>
+<td>Netcode for Entities がまだ古い <code>1.x</code> バージョンに解決される</td>
+<td>6000.5 以降では Netcode は 6.5 の Core Package だ。<code>com.unity.netcode</code> を 6.5 のバージョンに更新し（Package Manager から追加し直す）、再生成する。</td>
 </tr>
 </tbody></table>
 <div class="page-break"></div><h2>Chapter 34. Managed Object References → UnityObjectRef</h2>
@@ -8740,7 +8737,7 @@ public partial struct AISystem : ISystem
 </thead>
 <tbody><tr>
 <td>インストール</td>
-<td>Unity 6000.4 以降では、<code>com.unity.entities</code> を <code>manifest.json</code> に手動で追加する必要がなくなった。</td>
+<td>Unity 6000.4 以降でも <code>com.unity.entities</code> は Package Manager から追加するが、Editor のバンドルからインストールされる。選ぶべきバージョンはない。</td>
 </tr>
 <tr>
 <td>バージョン選択</td>
@@ -8752,7 +8749,7 @@ public partial struct AISystem : ISystem
 </tr>
 <tr>
 <td>アップグレードワークフロー</td>
-<td>古い Package Manager のエントリを削除し、パッケージ解決を Editor に再生成させる。</td>
+<td><code>com.unity.entities</code> の固定された 1.x バージョンを置き換え（Package Manager から追加し直す）、Editor に Core バージョンへ解決させる。</td>
 </tr>
 </tbody></table>
 <p>詳しくは <code>../Migration/02_Package Manager → Core Package.md</code> を参照。</p>
@@ -8860,7 +8857,7 @@ public partial struct AISystem : ISystem
 <hr>
 <h3>6. Migration checklist</h3>
 <ul>
-<li><input disabled="" type="checkbox"> Unity 6000.4 以降では、Core Package となった古い Package Manager エントリを削除する。</li>
+<li><input disabled="" type="checkbox"> Unity 6000.4 以降では、DOTS の Core Package を Package Manager から追加し直し、<code>manifest.json</code> の固定された 1.x バージョンを置き換える。</li>
 <li><input disabled="" type="checkbox"> 残っている <code>Entities.ForEach</code> を <code>IJobEntity</code> または <code>SystemAPI.Query</code> に置き換える。</li>
 <li><input disabled="" type="checkbox"> <code>IAspect</code> の利用を、直接の Component アクセスに置き換える。</li>
 <li><input disabled="" type="checkbox"> <code>GetRefRWOptional</code> / <code>GetRefROOptional</code> を <code>TryGetRefRW&lt;T&gt;()</code> / <code>TryGetRefRO&lt;T&gt;()</code> に置き換える。</li>

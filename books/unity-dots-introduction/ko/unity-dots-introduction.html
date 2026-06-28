@@ -985,7 +985,7 @@
 </tbody></table>
 <div class="page-break"></div><section class="part-page"><h2>Part I. 시작하기</h2></section><div class="page-break"></div><h2>Chapter 1. 환경 설정 — Unity 6000.5 + Entities 6.5.0</h2>
 <h3>1. 개요</h3>
-<p><strong>Unity 6000.4</strong>부터 Entities는 <strong>Core Package</strong>로 Editor에 포함되어 나온다. 따라서 Package Manager로 따로 추가할 필요가 없다. 이번 장에서는 Editor 설치부터 DOTS 프로젝트 생성, Entities 활성화 확인까지 순서대로 짚는다.</p>
+<p><strong>Unity 6000.4</strong>부터 Entities는 <strong>Core Package</strong>다. Editor와 <em>함께</em> 제공되며 버전이 Editor 버전에 고정되므로, 더 이상 Entities 버전을 직접 고르지 않는다. 다만 새 프로젝트에 자동으로 추가되지는 <strong>않는다</strong>. 프로젝트마다 한 번씩 Package Manager(Unity Registry)로 직접 추가해야 한다. 이번 장에서는 Editor 설치부터 프로젝트 생성, Entities 추가, 활성화 확인까지 순서대로 짚는다.</p>
 <blockquote>
 <p><strong>기준 프로젝트 환경:</strong> Unity 6000.5.0b2 · Entities 6.5.0 · Collections / Mathematics / Entities Graphics (모두 Core Package).</p>
 </blockquote>
@@ -998,7 +998,7 @@
 <li>모듈은 기본값 그대로 둔다. ECS만 쓴다면 추가 모듈이 필요 없다.</li>
 </ol>
 <blockquote>
-<p>&quot;DOTS&quot; 모듈을 따로 선택할 필요는 <strong>없다</strong>. Entities는 6000.4부터 Editor에 내장되어 있다.</p>
+<p>Editor를 설치할 때 &quot;DOTS&quot; 모듈을 따로 체크할 필요는 <strong>없다</strong>. Entities 패키지는 6000.4부터 Editor와 함께 제공된다. 다만 프로젝트마다 나중에 직접 추가해야 한다(다음 단계 참조).</p>
 </blockquote>
 <hr>
 <h3>3. 새 프로젝트 생성</h3>
@@ -1028,15 +1028,9 @@
 <p>6000.4부터는 전용 &quot;DOTS template&quot;이 필요 없다. 어떤 템플릿에서든 Entities 워크플로를 쓸 수 있다.</p>
 </blockquote>
 <hr>
-<h3>4. Core Package 활성화 확인</h3>
-<p><strong>Window → Package Manager</strong>를 열고 범위를 <strong>In Project</strong>로 바꾼다. 다음 패키지가 <strong>&quot;Built-in&quot;</strong>으로 표시되어야 한다.</p>
-<ul>
-<li><strong>Entities</strong></li>
-<li><strong>Collections</strong></li>
-<li><strong>Mathematics</strong></li>
-<li><strong>Entities Graphics</strong></li>
-</ul>
-<p>파일로 확인하려면 <code>Packages/manifest.json</code>을 열어 본다. Editor에 함께 들어 있으므로 <code>com.unity.entities</code> 항목이 <strong>없어야</strong> 정상이다.</p>
+<h3>4. Entities 패키지 추가 및 활성화 확인</h3>
+<p><strong>Window → Package Manager</strong>를 열고 범위를 <strong>Unity Registry</strong>로 바꾼 뒤 <strong>Entities</strong>를 선택하고 <strong>Install</strong>을 누른다(또는 <strong>+ → Add package by name…</strong>로 <code>com.unity.entities</code>를 입력한다). Entities는 Core Package이므로 버전을 직접 고르지 않는다. Editor에 함께 들어 있는 버전이 설치된다(Unity 6000.5에서는 Entities 6.5). Entities를 설치하면 <strong>Collections</strong>, <strong>Mathematics</strong>, <strong>Entities Graphics</strong>도 의존성으로 함께 딸려 온다.</p>
+<p>이제 범위를 <strong>In Project</strong>로 바꿔 <strong>Entities</strong>, <strong>Collections</strong>, <strong>Mathematics</strong>, <strong>Entities Graphics</strong>가 목록에 보이는지 확인한다. 파일로 확인하려면 <code>Packages/manifest.json</code>을 열어 본다. 이제 <code>com.unity.entities</code> 항목이 들어 있다(함께 딸려 오는 의존성들은 자동으로 해석되며 각각 별도 항목으로 나타나지 않을 수 있다).</p>
 <p>다음으로 ECS 창을 연다.</p>
 <ul>
 <li><strong>Window → Entities → Hierarchy</strong> — 런타임의 Entity를 보여 준다.</li>
@@ -1067,7 +1061,7 @@
 </thead>
 <tbody><tr>
 <td><code>Window → Entities</code> 메뉴가 없음</td>
-<td>Editor가 6000.4보다 낮은 버전이다. Entities가 아직 Core Package가 아니므로 Editor를 업그레이드한다.</td>
+<td>Entities가 아직 설치되지 않았다(<strong>Package Manager → Unity Registry → Entities</strong>로 추가한다). 또는 Editor가 6000.4보다 낮은 버전이다(업그레이드한다).</td>
 </tr>
 <tr>
 <td><code>Baker&lt;T&gt;</code> / <code>IComponentData</code>를 찾을 수 없음</td>
@@ -1083,12 +1077,12 @@
 </tr>
 <tr>
 <td>빌드 오류: <code>com.unity.entities not found</code></td>
-<td>1.x 프로젝트에서 넘어온 <code>com.unity.entities</code> 항목이 <code>manifest.json</code>에 남아 있다. 삭제한다. <code>Migration/02_Package Manager → Core Package.md</code> 참조.</td>
+<td>패키지가 설치되지 않았거나, <code>manifest.json</code>이 이 Editor에 없는 1.x 버전을 고정하고 있다. Package Manager에서 Entities를 설치해 항목이 Editor의 Core 버전으로 해석되도록 한다. <code>Migration/02_Package Manager → Core Package.md</code> 참조.</td>
 </tr>
 </tbody></table>
 <div class="page-break"></div><h2>Chapter 2. 핵심 패키지 설명</h2>
 <h3>1. 개요</h3>
-<p><strong>Entities 패키지 6.4.0</strong> 릴리스를 기점으로(Unity Editor 6000.4와 함께 출시) 주요 DOTS 패키지가 Package Manager에서 Editor 안으로 들어와 <strong>Core Package</strong>가 되었다. 패키지 변경 이력에는 이렇게 적혀 있다.</p>
+<p><strong>Entities 패키지 6.4.0</strong> 릴리스를 기점으로(Unity Editor 6000.4와 함께 출시) 주요 DOTS 패키지가 <strong>Core Package</strong>가 되었다. 이제 이 패키지들은 Editor와 <em>함께</em> 제공되고(원격 레지스트리에서 내려받는 대신 Editor 번들에서 설치된다) 버전이 Editor에 묶인다. 패키지 변경 이력에는 이렇게 적혀 있다.</p>
 <blockquote>
 <p><em>&quot;Package is now a core package embedded in Unity.&quot;</em></p>
 </blockquote>
@@ -1102,7 +1096,7 @@
 </ul>
 <hr>
 <h3>2. Core Package란?</h3>
-<p><strong>Core Package</strong>는 <strong>Editor 안에 함께 들어 있는</strong> 패키지다. Package Manager로 추가할 필요가 없고, Editor와 따로 버전을 바꿀 수 없으며, 릴리스 주기도 Editor를 따른다.</p>
+<p><strong>Core Package</strong>는 <strong>Editor와 함께 제공되는</strong> 패키지다. 다른 패키지와 마찬가지로 Package Manager로 프로젝트에 추가하지만, 원격 레지스트리가 아니라 Editor 번들에서 설치되고, Editor와 따로 버전을 바꿀 수 없으며, 릴리스 주기도 Editor를 따른다. (이는 <strong>Built-in 패키지</strong>와는 <em>다르다</em>. Built-in 패키지는 Physics처럼 켜고 끄기만 하는 엔진 모듈이다.)</p>
 <table>
 <thead>
 <tr>
@@ -1114,7 +1108,7 @@
 <tbody><tr>
 <td>설치 단계</td>
 <td>UPM으로 추가</td>
-<td>없음 — Editor에 포함</td>
+<td>Package Manager로 추가(Editor 번들에서 설치)</td>
 </tr>
 <tr>
 <td>버전을 정하는 주체</td>
@@ -1129,7 +1123,7 @@
 <tr>
 <td><code>manifest.json</code>에 표시</td>
 <td>표시됨</td>
-<td>표시 안 됨</td>
+<td>표시됨 — 설치할 때 추가됨</td>
 </tr>
 <tr>
 <td><code>packages-lock.json</code>에 표시</td>
@@ -1139,7 +1133,7 @@
 <tr>
 <td>Package Manager 표시</td>
 <td>&quot;In Project&quot; 아래</td>
-<td>&quot;In Project&quot; 아래 <strong>Built-in</strong> 태그</td>
+<td>설치는 &quot;Unity Registry&quot; 아래, 설치 후에는 &quot;In Project&quot; 아래</td>
 </tr>
 </tbody></table>
 <hr>
@@ -1225,7 +1219,7 @@
 <hr>
 <h3>5. 프로젝트 파일에 미치는 영향</h3>
 <h4><code>manifest.json</code></h4>
-<p><code>com.unity.entities</code>, <code>com.unity.collections</code>, <code>com.unity.mathematics</code>, <code>com.unity.entities.graphics</code> 항목이 더는 필요 없다. 1.x 프로젝트를 업그레이드하는 경우 이 항목들을 지운다. <code>Migration/02_Package Manager → Core Package.md</code>를 참고한다.</p>
+<p>Entities를 추가하면 여기에 <code>com.unity.entities</code> 항목이 생긴다. 함께 딸려 오는 패키지(<code>com.unity.collections</code>, <code>com.unity.mathematics</code>, <code>com.unity.entities.graphics</code>)는 의존성으로 해석되며 보통 각각의 항목이 필요하지 않다. 1.x 프로젝트를 업그레이드하는 경우, 기존에 고정된 버전을 교체하고 Package Manager가 이를 Editor의 Core 버전으로 해석하도록 둔다. <code>Migration/02_Package Manager → Core Package.md</code>를 참고한다.</p>
 <h4><code>packages-lock.json</code></h4>
 <p>Core Package는 버전 URL 대신 <code>&quot;source&quot;: &quot;builtin&quot;</code>으로 적힌다.</p>
 <h4>어셈블리 정의 파일 (.asmdef)</h4>
@@ -1243,12 +1237,12 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>Package Manager의 &quot;Unity Registry&quot;에 오래된 버전의 <code>Entities</code>가 보임</td>
+<td>Package Manager가 <code>Entities</code>를 오래된 <strong>1.x</strong> 버전으로만 제공함</td>
 <td>6000.4 이전 버전의 Editor를 쓰고 있다. Editor를 업그레이드하거나 1.x 라인을 그대로 쓴다.</td>
 </tr>
 <tr>
-<td><code>com.unity.entities</code>를 지운 뒤 <code>manifest.json</code> 해석 오류</td>
-<td><code>packages-lock.json</code>을 삭제해 Editor가 다시 만들도록 한다.</td>
+<td><code>com.unity.entities</code> 버전을 바꾼 뒤 <code>manifest.json</code> 해석 오류</td>
+<td><code>packages-lock.json</code>을 삭제하고 Editor가 다시 만들도록 한다.</td>
 </tr>
 <tr>
 <td>샘플이나 애셋 스토어 패키지가 <code>com.unity.entities@1.x</code>를 요구함</td>
@@ -7991,11 +7985,11 @@ public struct EnemyVisual : IComponentData
 </tbody></table>
 <div class="page-break"></div><h2>Chapter 33. Package Manager → Core Package</h2>
 <h3>1. 무엇이 바뀌는가</h3>
-<p>Unity 6000.4 이상에서는 Entities(와 함께 다니는 DOTS 패키지들)를 Package Manager로 설치하지 않는다. Editor 안에 <strong>Core Package</strong>로 들어 있다. 프로젝트 파일은 세 곳이 바뀐다.</p>
+<p>Unity 6000.4 이상에서 Entities(와 함께 다니는 DOTS 패키지들)는 <strong>Core Package</strong>가 된다. 원격 레지스트리에서 내려받는 대신 Editor 자체에서 설치되고, 버전은 Editor가 정한다. 그래도 <strong>여전히 Package Manager로 추가</strong>해야 하며, 프로젝트의 의존성 목록에도 그대로 남는다. Core Package가 된다는 것은 <em>패키지가 어디서 오고 누가 버전을 정하는가</em>가 바뀌는 것이지, 프로젝트가 그 패키지를 요청해야 하는지 여부가 바뀌는 것은 아니다. 1.x 프로젝트를 마이그레이션할 때 바뀌는 부분은 다음과 같다.</p>
 <ul>
-<li><strong><code>Packages/manifest.json</code></strong> — <code>com.unity.entities*</code> 항목이 사라진다.</li>
-<li><strong><code>Packages/packages-lock.json</code></strong> — 해석된 그래프가 줄고, 해당 패키지는 <code>&quot;source&quot;: &quot;builtin&quot;</code>으로 나타난다.</li>
-<li><strong>Package Manager 창</strong> — 이제 패키지가 "In Project" 아래에 <strong>Built-in</strong>으로 표시된다.</li>
+<li><strong><code>Packages/manifest.json</code></strong> — <code>com.unity.entities*</code> 항목은 <strong>그대로 남지만</strong>, 고정된 <strong>1.x</strong> 버전이 Editor의 Core 버전으로 교체된다(Package Manager에서 다시 추가한다).</li>
+<li><strong><code>Packages/packages-lock.json</code></strong> — 해당 패키지가 이제 <code>&quot;source&quot;: &quot;builtin&quot;</code>으로 해석된다.</li>
+<li><strong>Package Manager 창</strong> — 패키지는 여전히 "In Project" 아래에 나타나지만, 더 이상 버전을 직접 고를 수 없다(Editor를 따라간다).</li>
 </ul>
 <p>C# 코드는 <strong>바뀌지 않는다</strong>. 어셈블리 이름(<code>Unity.Entities</code>, <code>Unity.Collections</code> 등)도 그대로고, <code>.asmdef</code> 참조도 그대로다.</p>
 <hr>
@@ -8055,21 +8049,24 @@ public struct EnemyVisual : IComponentData
   }
 }
 </code></pre>
-<p>이제 Core Package가 된 다섯 줄을 지운다.</p>
+<p>6000.4 이상 Editor에서는 고정된 <strong>1.x</strong> 버전이 더 이상 해석되지 않는다. 레지스트리가 이 Editor용으로 더는 제공하지 않기 때문이다. 그렇다고 줄을 <strong>그냥 지우면 안 된다</strong>(의존성이 사라지고, Core Package는 자동으로 다시 추가되지 <em>않는다</em>). 대신 각 Core Package가 Editor의 버전을 가리키도록 한다. 방법은 두 가지이며, 둘 다 패키지를 의존성으로 유지한다.</p>
+<p><strong>권장 — Package Manager로 다시 추가하기.</strong> 각 Core Package마다 오래된 <code>1.x</code> 고정을 제거한 뒤, <strong>Window → Package Manager → Unity Registry → Install</strong>로 다시 추가한다(또는 <strong>+ → Add package by name…</strong>, 예: <code>com.unity.entities</code>). Package Manager가 Editor의 Core 버전을 <code>manifest.json</code>에 대신 기록해 주고, 의존하는 Core Package들도 자동으로 딸려 온다.</p>
+<p><strong>직접 편집하기.</strong> 각 Core Package의 <code>1.x</code> 버전을 Editor의 Core 버전으로 교체한다(예: Unity 6000.5에서는 <code>6.5.0</code>).</p>
 <pre><code class="language-diff"> {
    &quot;dependencies&quot;: {
 -    &quot;com.unity.entities&quot;: &quot;1.4.2&quot;,
--    &quot;com.unity.collections&quot;: &quot;2.4.5&quot;,
--    &quot;com.unity.mathematics&quot;: &quot;1.3.2&quot;,
++    &quot;com.unity.entities&quot;: &quot;6.5.0&quot;,
 -    &quot;com.unity.entities.graphics&quot;: &quot;1.4.2&quot;,
++    &quot;com.unity.entities.graphics&quot;: &quot;6.5.0&quot;,
 -    &quot;com.unity.netcode&quot;: &quot;1.12.0&quot;,
++    &quot;com.unity.netcode&quot;: &quot;6.5.0&quot;,
      &quot;com.unity.physics&quot;: &quot;1.3.14&quot;,
      &quot;com.unity.render-pipelines.universal&quot;: &quot;17.0.4&quot;,
      ...
    }
  }
 </code></pre>
-<p><code>com.unity.physics</code>처럼 아직 UPM인 항목은 그대로 둔다.</p>
+<p><code>com.unity.collections</code>와 <code>com.unity.mathematics</code>는 Entities의 의존성으로 딸려 오므로 보통 직접 적을 필요가 없다. <code>com.unity.physics</code>처럼 아직 레지스트리(UPM) 패키지인 항목은 그대로 둔다.</p>
 <p>파일을 저장한다.</p>
 <hr>
 <h3>4. <code>packages-lock.json</code> 재빌드</h3>
@@ -8077,7 +8074,7 @@ public struct EnemyVisual : IComponentData
 <h4>4.1 Editor가 다시 만들게 하기</h4>
 <p>Editor를 닫고 <code>Packages/packages-lock.json</code>을 삭제한 다음 다시 연다. Unity가 새로 만든다. 가장 깔끔한 방법이다.</p>
 <h4>4.2 직접 편집하기</h4>
-<p><code>packages-lock.json</code>을 열어 위 다섯 패키지에 해당하는 항목을 지운다. Editor가 다음에 열릴 때 정리한다. lock 파일이 복잡하다면 조금 빠르지만, 실수할 여지가 더 크다.</p>
+<p><code>packages-lock.json</code>을 열어 위 패키지들의 오래된 항목을 갱신한다(지우고 Editor가 다시 해석하도록 둔다). Editor가 다음에 열릴 때 정리한다. lock 파일이 복잡하다면 조금 빠르지만, 실수할 여지가 더 크다.</p>
 <p>어느 쪽이든 최종 lock 파일에는 다음 같은 항목이 생긴다.</p>
 <pre><code class="language-json">&quot;com.unity.entities&quot;: {
   &quot;version&quot;: &quot;6.5.0&quot;,
@@ -8086,11 +8083,11 @@ public struct EnemyVisual : IComponentData
   &quot;dependencies&quot;: {}
 }
 </code></pre>
-<p><code>&quot;source&quot;: &quot;builtin&quot;</code>을 눈여겨본다. 패키지가 이제 Core Package라는 표시다.</p>
+<p><code>&quot;source&quot;: &quot;builtin&quot;</code>은 패키지가 이제 Core Package(Editor가 제공)라는 표시이고, <code>&quot;depth&quot;: 0</code>은 그것이 여전히 <code>manifest.json</code>에 선언된 <strong>직접 의존성</strong>임을 보여 준다. 즉 항목이 사라진 것이 아니다.</p>
 <hr>
 <h3>5. 결과 확인</h3>
 <ol>
-<li><strong>Package Manager 창</strong>(<code>Window → Package Manager</code> → "In Project") — Entities, Collections, Mathematics, Entities Graphics(쓴다면 Netcode for Entities도)가 <strong>Built-in</strong>으로 표시되어야 한다.</li>
+<li><strong>Package Manager 창</strong>(<code>Window → Package Manager</code> → "In Project") — Entities, Collections, Mathematics, Entities Graphics(쓴다면 Netcode for Entities도)가 목록에 보이고, 버전이 Editor에 고정되어 있어야 한다(버전 드롭다운 없음).</li>
 <li><strong>Editor 메뉴</strong> — <code>Window → Entities → Hierarchy/Systems/Archetypes</code>가 있고 제대로 동작한다.</li>
 <li><strong>컴파일</strong> — Play를 누르면, 빠진 어셈블리를 참조하는 컴파일 오류 없이 Play 모드에 들어가야 한다.</li>
 </ol>
@@ -8104,16 +8101,16 @@ public struct EnemyVisual : IComponentData
 </tr>
 </thead>
 <tbody><tr>
-<td>manifest 편집 후 <code>Unable to find package 'com.unity.entities@1.x.y'</code></td>
-<td><code>packages-lock.json</code>이 아직 옛 버전을 참조하고 있다. 삭제해 Editor가 다시 만들도록 한다.</td>
+<td>Editor 업그레이드 후 <code>Unable to find package 'com.unity.entities@1.x.y'</code></td>
+<td>manifest가 아직 1.x 버전을 고정하고 있다. Core 버전으로 갱신하고(Package Manager에서 다시 추가) <code>packages-lock.json</code>을 삭제해 Editor가 다시 만들도록 한다.</td>
 </tr>
 <tr>
 <td><code>The type or namespace Unity.Entities could not be found</code></td>
-<td>Editor가 6000.4보다 낮은 버전이라 Core Package를 쓸 수 없다. Editor를 업그레이드하거나 UPM 패키지를 다시 추가한다.</td>
+<td>Entities가 프로젝트에 추가되지 않았거나(Package Manager로 추가한다), Editor가 6000.4보다 낮은 버전이다(업그레이드한다).</td>
 </tr>
 <tr>
-<td>Package Manager에 Built-in과 UPM Entities가 둘 다 보임</td>
-<td>manifest에 <code>com.unity.entities</code> 항목이 아직 남아 있다. 지운다.</td>
+<td>Package Manager에 오래되었거나 충돌하는 Entities 버전이 보임</td>
+<td><code>manifest.json</code>에 오래된 <code>1.x</code> 고정이 아직 남아 있다. Core 버전으로 갱신하고(Package Manager에서 다시 추가) <code>packages-lock.json</code>을 다시 생성한다.</td>
 </tr>
 <tr>
 <td>서드파티 에셋이 <code>com.unity.entities@1.x</code>를 고정해 컴파일되지 않음</td>
@@ -8128,8 +8125,8 @@ public struct EnemyVisual : IComponentData
 <td>네트워크 문제이거나 고정된 사설 레지스트리 때문이다. 구체적인 해석 실패는 Editor 로그에서 확인한다.</td>
 </tr>
 <tr>
-<td>Netcode for Entities가 아직 UPM으로 나타남</td>
-<td>6000.5 이상에서 Netcode 6.5는 Built-in이다. <code>com.unity.netcode</code>가 manifest에 남아 있다면 지우고 다시 생성한다.</td>
+<td>Netcode for Entities가 아직 오래된 <code>1.x</code> 버전으로 해석됨</td>
+<td>6000.5 이상에서 Netcode는 6.5 Core Package다. <code>com.unity.netcode</code>를 6.5 버전으로 갱신하고(Package Manager에서 다시 추가) 다시 생성한다.</td>
 </tr>
 </tbody></table>
 <div class="page-break"></div><h2>Chapter 34. 관리형 객체 참조 → UnityObjectRef</h2>
@@ -8740,7 +8737,7 @@ public partial struct AISystem : ISystem
 </thead>
 <tbody><tr>
 <td>설치</td>
-<td>Unity 6000.4+에서 <code>com.unity.entities</code>는 더 이상 <code>manifest.json</code>에 수동으로 추가되지 않는다.</td>
+<td>Unity 6000.4+에서도 <code>com.unity.entities</code>는 여전히 Package Manager로 추가하지만, Editor 번들에서 설치되므로 고를 버전이 없다.</td>
 </tr>
 <tr>
 <td>버전 선택</td>
@@ -8752,7 +8749,7 @@ public partial struct AISystem : ISystem
 </tr>
 <tr>
 <td>업그레이드 워크플로</td>
-<td>이전 Package Manager 항목을 제거하고 Editor가 패키지 해석을 재생성하도록 한다.</td>
+<td><code>com.unity.entities</code>에 고정된 1.x 버전이 있으면 교체하고(Package Manager에서 다시 추가) Editor가 이를 Core 버전으로 해석하도록 한다.</td>
 </tr>
 </tbody></table>
 <p><code>../Migration/02_Package Manager → Core Package.md</code> 참조.</p>
@@ -8860,7 +8857,7 @@ public partial struct AISystem : ISystem
 <hr>
 <h3>6. 마이그레이션 체크리스트</h3>
 <ul>
-<li><input disabled="" type="checkbox"> Unity 6000.4+에서 Core Package의 이전 Package Manager 항목 제거.</li>
+<li><input disabled="" type="checkbox"> Unity 6000.4+에서 DOTS Core Package를 Package Manager로 다시 추가하고, <code>manifest.json</code>에 고정된 1.x 버전을 교체한다.</li>
 <li><input disabled="" type="checkbox"> 남은 <code>Entities.ForEach</code>를 <code>IJobEntity</code> 또는 <code>SystemAPI.Query</code>로 교체.</li>
 <li><input disabled="" type="checkbox"> <code>IAspect</code> 사용을 직접 Component 접근으로 교체.</li>
 <li><input disabled="" type="checkbox"> <code>GetRefRWOptional</code> / <code>GetRefROOptional</code>을 <code>TryGetRefRW&lt;T&gt;()</code> / <code>TryGetRefRO&lt;T&gt;()</code>로 교체.</li>

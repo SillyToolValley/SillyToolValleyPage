@@ -126,7 +126,7 @@ The target stack is Unity 6000.5+, Entities 6.5.0, Netcode for Entities 6.5.0, a
 
 ### 1. Overview
 
-From **Unity 6000.4+**, Entities is a **Core Package** — it ships inside the Editor and does not need to be added through the Package Manager. This guide walks through installing the Editor, creating a DOTS-ready project, and confirming that Entities is active.
+From **Unity 6000.4+**, Entities is a **Core Package** — it ships *with* the Editor and its version is pinned to the Editor version, so you no longer pick an Entities version by hand. It is **not** auto-added to new projects, though: you still add it once per project through the Package Manager (Unity Registry). This guide walks through installing the Editor, creating a project, adding Entities, and confirming it is active.
 
 > **Project Environment reference:** Unity 6000.5.0b2 · Entities 6.5.0 · Collections / Mathematics / Entities Graphics (all Core Packages).
 
@@ -139,7 +139,7 @@ From **Unity 6000.4+**, Entities is a **Core Package** — it ships inside the E
 3. Pick any **6000.5.x** version (b-series beta or newer). Entities 6.5 is only available on 6000.5+.
 4. Modules: leave the defaults. No extra module is required for ECS itself.
 
-> You do **not** need to select any "DOTS" module — Entities is built into the Editor starting from 6000.4.
+> You do **not** need to tick any "DOTS" module when installing the Editor — the Entities package ships with the Editor from 6000.4. You still add it to each project later (see the next steps).
 
 ---
 
@@ -159,16 +159,11 @@ Click **Create project**. The Editor opens on an empty scene.
 
 ---
 
-### 4. Verify Core Packages are active
+### 4. Add the Entities package and verify it's active
 
-Open **Window → Package Manager** and switch the scope to **In Project**. You should see packages marked **"Built-in"** for:
+Open **Window → Package Manager**, switch the scope to **Unity Registry**, select **Entities**, and click **Install** (or use **+ → Add package by name…** and enter `com.unity.entities`). Because Entities is a Core Package you do not pick a version — the Editor installs the one bundled with it (Entities 6.5 on Unity 6000.5). Installing Entities also pulls in **Collections**, **Mathematics**, and **Entities Graphics** as dependencies.
 
-- **Entities**
-- **Collections**
-- **Mathematics**
-- **Entities Graphics**
-
-If you prefer to verify via files, check `Packages/manifest.json`: there is **no** `com.unity.entities` entry because it ships with the Editor.
+Now switch the scope to **In Project** and confirm **Entities**, **Collections**, **Mathematics**, and **Entities Graphics** are listed. If you prefer to verify via files, open `Packages/manifest.json`: a `com.unity.entities` entry is now present (the dependencies it pulls in are resolved automatically and may not each get their own entry).
 
 Next, open the ECS windows:
 
@@ -196,11 +191,11 @@ If all three menus exist, Entities is wired up correctly.
 
 | Symptom | Cause / Fix |
 |---------|-------------|
-| `Window → Entities` menu is missing | Editor is older than 6000.4 — Entities is not yet a Core Package. Upgrade the Editor. |
+| `Window → Entities` menu is missing | Entities isn't installed yet (add it via **Package Manager → Unity Registry → Entities**), or the Editor is older than 6000.4 (upgrade it). |
 | `Baker<T>` / `IComponentData` not found | Assembly-definition file excludes `Unity.Entities`. Add it as a reference, or delete the asmdef for a quick test. |
 | SubScene stays as a GameObject and never bakes | The SubScene must be **closed** (the yellow icon) for baked entities to appear. Open/close via the checkbox next to its name in the Hierarchy. |
 | Entities Hierarchy window shows nothing in Play mode | Check that the SubScene is included in the current scene and that **Window → Entities → Hierarchy**'s "World" dropdown is set to `DefaultGameObjectInjectionWorld`. |
-| Build error: `com.unity.entities not found` | Your `manifest.json` still has a leftover `com.unity.entities` entry from a 1.x project — delete it. See [`Migration/02_Package Manager → Core Package.md`](https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/02_Package%20Manager%20%E2%86%92%20Core%20Package.md). |
+| Build error: `com.unity.entities not found` | The package isn't installed, or `manifest.json` pins a 1.x version that doesn't exist on this Editor. Install Entities from the Package Manager so the entry resolves to the Editor's Core version. See [`Migration/02_Package Manager → Core Package.md`](https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/02_Package%20Manager%20%E2%86%92%20Core%20Package.md). |
 
 <div class="page-break"></div>
 
@@ -208,7 +203,7 @@ If all three menus exist, Entities is wired up correctly.
 
 ### 1. Overview
 
-With the **Entities package 6.4.0** release (shipping alongside Unity Editor 6000.4), the major DOTS packages transitioned from the Package Manager into the Editor itself as **Core Packages**. The exact wording from the package changelog is:
+With the **Entities package 6.4.0** release (shipping alongside Unity Editor 6000.4), the major DOTS packages became **Core Packages** — they now ship *with* the Editor (installed from the Editor bundle rather than downloaded from a remote registry) and their version is bound to the Editor. The exact wording from the package changelog is:
 
 > *"Package is now a core package embedded in Unity."*
 
@@ -224,16 +219,16 @@ This page explains:
 
 ### 2. What is a Core Package?
 
-A **Core Package** is a package that ships **inside the Editor**. You do not add it via the Package Manager, you cannot change its version independently of the Editor, and its release cadence is the Editor's.
+A **Core Package** is a package that ships **with the Editor**. You still add it to a project through the Package Manager like any other package, but it installs from the Editor bundle instead of a remote registry, you cannot change its version independently of the Editor, and its release cadence is the Editor's. (This is *not* the same as a **Built-in package** — an engine module such as Physics that you only enable or disable.)
 
 | Trait | Package Manager package | Core Package |
 |-------|-------------------------|--------------|
-| Install step | Add via UPM | None — present with the Editor |
+| Install step | Add via UPM | Add via Package Manager (installs from the Editor bundle) |
 | Version chosen by | You, in `manifest.json` | Unity, per Editor version |
 | Release cadence | UPM independent | Editor releases |
-| Appears in `manifest.json` | Yes | No |
+| Appears in `manifest.json` | Yes | Yes — added when you install |
 | Appears in `packages-lock.json` | Yes | Yes, marked as `builtin` |
-| Shown in Package Manager | Under "In Project" | Under "In Project" tagged **Built-in** |
+| Shown in Package Manager | Under "In Project" | Under "Unity Registry" to install, then "In Project" |
 
 ---
 
@@ -274,7 +269,7 @@ See [`Changelog/Entities 1.4 → 6.5 Key Changes.md`](https://github.com/luke-yo
 
 #### `manifest.json`
 
-No `com.unity.entities`, `com.unity.collections`, `com.unity.mathematics`, or `com.unity.entities.graphics` entries are needed. If you upgrade a 1.x project, you remove them — see [`Migration/02_Package Manager → Core Package.md`](https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/02_Package%20Manager%20%E2%86%92%20Core%20Package.md).
+When you add Entities, a `com.unity.entities` entry appears here. The packages it pulls in (`com.unity.collections`, `com.unity.mathematics`, `com.unity.entities.graphics`) are resolved as dependencies and usually don't need their own entries. If you upgrade a 1.x project, replace the old pinned versions and let the Package Manager resolve them to the Editor's Core versions — see [`Migration/02_Package Manager → Core Package.md`](https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/02_Package%20Manager%20%E2%86%92%20Core%20Package.md).
 
 #### `packages-lock.json`
 
@@ -296,8 +291,8 @@ The stated goal is to let the ECS team ship features faster and more incremental
 
 | Symptom | Cause / Fix |
 |---------|-------------|
-| Package Manager still lists `Entities` under "Unity Registry" with an old version | You are on a pre-6000.4 Editor. Either upgrade the Editor, or stay on the 1.x line. |
-| `manifest.json` resolve error after removing `com.unity.entities` | Delete `packages-lock.json`, let the Editor regenerate it. |
+| Package Manager only offers `Entities` at an old **1.x** version | You are on a pre-6000.4 Editor. Either upgrade the Editor, or stay on the 1.x line. |
+| `manifest.json` resolve error after changing the `com.unity.entities` version | Delete `packages-lock.json` and let the Editor regenerate it. |
 | A sample or asset store package targets `com.unity.entities@1.x` | On 6000.5+ the 1.x API has mostly been superseded; check the Migration folder for equivalents. |
 | Two Editor installs report different Entities versions | Expected. Version is per Editor install. |
 
@@ -6098,11 +6093,11 @@ Migrations that have partially completed but are stuck should be abandoned clean
 
 ### 1. What changes
 
-On Unity 6000.4+, Entities (and its companion DOTS packages) stop being installed via the Package Manager. They ship inside the Editor as **Core Packages**. Your project files change in three places:
+On Unity 6000.4+, Entities (and its companion DOTS packages) become **Core Packages**: they install from the Editor itself instead of downloading from a remote registry, and their version is fixed by the Editor. You **still add them through the Package Manager**, and they stay listed as dependencies in your project — being a Core Package changes *where the package comes from and who picks its version*, not whether your project has to request it. What changes when you migrate a 1.x project:
 
-- **`Packages/manifest.json`** — the `com.unity.entities*` entries are removed.
-- **`Packages/packages-lock.json`** — the resolved graph shrinks; affected packages appear with `"source": "builtin"`.
-- **Package Manager window** — the packages now appear under "In Project" labelled **Built-in**.
+- **`Packages/manifest.json`** — the `com.unity.entities*` entries **stay**, but their pinned **1.x** versions are replaced by the Editor's Core versions (re-add them from the Package Manager).
+- **`Packages/packages-lock.json`** — the affected packages now resolve with `"source": "builtin"`.
+- **Package Manager window** — the packages still appear under "In Project"; you can no longer pick their version (it follows the Editor).
 
 Your C# code does **not** change. Assembly names (`Unity.Entities`, `Unity.Collections`, etc.) are the same; `.asmdef` references are unchanged.
 
@@ -6151,16 +6146,21 @@ Open `Packages/manifest.json`. It looks something like:
 }
 ```
 
-Remove the five lines that are now Core Packages:
+On a 6000.4+ Editor those pinned **1.x** versions no longer resolve — the registry no longer serves them for this Editor. Do **not** simply delete the lines (that removes the dependency, and a Core Package is *not* auto-added back). Instead, point each Core Package at the Editor's version. Two ways, both of which keep the packages as dependencies:
+
+**Recommended — re-add through the Package Manager.** For each Core Package, remove its stale `1.x` pin, then add it back via **Window → Package Manager → Unity Registry → Install** (or **+ → Add package by name…**, e.g. `com.unity.entities`). The Package Manager writes the Editor's Core version into `manifest.json` for you, and pulls in the dependent Core Packages automatically.
+
+**By hand.** Replace each Core Package's `1.x` version with the Editor's Core version (for example `6.5.0` on Unity 6000.5):
 
 ```diff
  {
    "dependencies": {
 -    "com.unity.entities": "1.4.2",
--    "com.unity.collections": "2.4.5",
--    "com.unity.mathematics": "1.3.2",
++    "com.unity.entities": "6.5.0",
 -    "com.unity.entities.graphics": "1.4.2",
++    "com.unity.entities.graphics": "6.5.0",
 -    "com.unity.netcode": "1.12.0",
++    "com.unity.netcode": "6.5.0",
      "com.unity.physics": "1.3.14",
      "com.unity.render-pipelines.universal": "17.0.4",
      ...
@@ -6168,7 +6168,7 @@ Remove the five lines that are now Core Packages:
  }
 ```
 
-Leave `com.unity.physics` and anything else that is still UPM.
+`com.unity.collections` and `com.unity.mathematics` come in as dependencies of Entities, so you usually don't need to list them yourself. Leave `com.unity.physics` and anything else that is still a registry (UPM) package as-is.
 
 Save the file.
 
@@ -6184,7 +6184,7 @@ Close the Editor, delete `Packages/packages-lock.json`, reopen. Unity regenerate
 
 #### 4.2 Edit in place
 
-Open `packages-lock.json` and remove entries matching the five packages above. The Editor reconciles on next open. Slightly faster if you have a complex lock file, but more error-prone.
+Open `packages-lock.json` and update the stale entries for the packages above (delete them and let the Editor re-resolve). The Editor reconciles on next open. Slightly faster if you have a complex lock file, but more error-prone.
 
 Both result in the final lock file containing entries like:
 
@@ -6197,13 +6197,13 @@ Both result in the final lock file containing entries like:
 }
 ```
 
-Note the `"source": "builtin"` — that's the tell that the package is now a Core Package.
+Note that `"source": "builtin"` is the tell that the package is now a Core Package (supplied by the Editor), while `"depth": 0` shows it is still a **direct dependency** declared in `manifest.json` — the entry did not go away.
 
 ---
 
 ### 5. Verifying the result
 
-1. **Package Manager window** (`Window → Package Manager` → "In Project") — Entities, Collections, Mathematics, Entities Graphics (and Netcode for Entities if you use it) should appear tagged **Built-in**.
+1. **Package Manager window** (`Window → Package Manager` → "In Project") — Entities, Collections, Mathematics, Entities Graphics (and Netcode for Entities if you use it) should be listed, with their version fixed by the Editor (no version dropdown).
 2. **Editor menus** — `Window → Entities → Hierarchy/Systems/Archetypes` exist and work.
 3. **Compile** — press Play; the project should enter Play mode with no compile errors referencing missing assemblies.
 
@@ -6213,13 +6213,13 @@ Note the `"source": "builtin"` — that's the tell that the package is now a Cor
 
 | Symptom | Cause / Fix |
 |---------|-------------|
-| `Unable to find package 'com.unity.entities@1.x.y'` after editing manifest | `packages-lock.json` still references the old version. Delete it and let the Editor regenerate. |
-| `The type or namespace Unity.Entities could not be found` | You're on an Editor older than 6000.4 — Core Package isn't available. Upgrade Editor, or add the UPM package back. |
-| Package Manager shows both Built-in and UPM Entities | Manifest still has `com.unity.entities` entry. Remove it. |
+| `Unable to find package 'com.unity.entities@1.x.y'` after upgrading the Editor | The manifest still pins a 1.x version. Update it to the Core version (re-add via the Package Manager), then delete `packages-lock.json` and let the Editor regenerate. |
+| `The type or namespace Unity.Entities could not be found` | Entities isn't added to the project (add it via the Package Manager), or you're on an Editor older than 6000.4 (upgrade it). |
+| Package Manager shows a stale or conflicting Entities version | A leftover `1.x` pin is still in `manifest.json`. Update it to the Core version (re-add via the Package Manager) and regenerate `packages-lock.json`. |
 | Third-party asset won't compile because it pins `com.unity.entities@1.x` | The asset needs updating. Either wait, fork, or stay on the 1.x line for this project. |
 | Unity Physics breaks because it wanted a specific Entities version | Upgrade Unity Physics to a version compatible with Entities 6.5. Check the package's changelog on docs.unity3d.com. |
 | `packages-lock.json` regeneration fails | Network issue or a pinned private registry. Check Editor logs for the specific resolution failure. |
-| Netcode for Entities still appears as UPM | On 6000.5+, Netcode 6.5 is Built-in. If `com.unity.netcode` is still in manifest, remove it and regenerate. |
+| Netcode for Entities still resolves to an old `1.x` version | On 6000.5+, Netcode is a 6.5 Core Package. Update `com.unity.netcode` to the 6.5 version (re-add via the Package Manager) and regenerate. |
 
 <div class="page-break"></div>
 
@@ -6811,10 +6811,10 @@ Practical effects:
 
 | Area | Change |
 |------|--------|
-| Installation | `com.unity.entities` is no longer added manually to `manifest.json` on Unity 6000.4+. |
+| Installation | On Unity 6000.4+ you still add `com.unity.entities` from the Package Manager, but it installs from the Editor bundle — there is no version to choose. |
 | Version choice | The Entities version comes from the Editor install. |
 | Lock file | `packages-lock.json` marks the package as built-in/core rather than a registry dependency. |
-| Upgrade workflow | Remove old Package Manager entries and let the Editor regenerate package resolution. |
+| Upgrade workflow | Replace any pinned 1.x version of `com.unity.entities` (re-add it from the Package Manager) and let the Editor resolve it to the Core version. |
 
 See [`../Migration/02_Package Manager → Core Package.md`](https://github.com/luke-youngmin-cho/unity-dots-introduction/blob/main/Migration/02_Package%20Manager%20%E2%86%92%20Core%20Package.md).
 
@@ -6862,7 +6862,7 @@ The 1.4.0 preview/pre-release history is where the important ECS API direction a
 
 ### 6. Migration checklist
 
-- [ ] Remove old Package Manager entries for Core Packages on Unity 6000.4+.
+- [ ] On Unity 6000.4+, re-add the DOTS Core Packages from the Package Manager, replacing any pinned 1.x versions in `manifest.json`.
 - [ ] Replace remaining `Entities.ForEach` with `IJobEntity` or `SystemAPI.Query`.
 - [ ] Replace `IAspect` usage with direct component access.
 - [ ] Replace `GetRefRWOptional` / `GetRefROOptional` with `TryGetRefRW<T>()` / `TryGetRefRO<T>()`.
