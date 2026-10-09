@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse Silly Tool Valley developer tools and game development assets.">
+    <meta name="robots" content="index, follow, noarchive">
+    <meta name="tdm-reservation" content="1">
+    <meta name="ai-training" content="disallow">
+    <meta name="ai-policy" content="Public reading and citation are allowed. Automated scraping, dataset inclusion, AI training, and AI answer ingestion are not permitted without written permission.">
+    <meta property="og:title" content="Catalog | Silly Tool Valley">
+    <meta property="og:description" content="Unity editor tools, AI workflow utilities, and game development assets.">
+    <meta property="og:image" content="images/uterminal/hero.png">
+    <meta property="og:type" content="website">
+    <title>Catalog | Silly Tool Valley</title>
+    <link rel="icon" type="image/png" href="Profile.png">
+
+
+
+    <link rel="stylesheet" href="css/style.css?v={{ASSET_REV}}">
+    <link rel="stylesheet" href="css/site.css?v={{ASSET_REV}}">
+<link rel="preload" href="fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css?v={{ASSET_REV}}">
+</head>
+<body class="assets-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    {{SITE_HEADER}}
+
+    <main id="main">
+        <header class="page-header">
+            <div class="container">
+                <a href="index.html" class="back-link">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                    홈으로
+                </a>
+                <p class="page-kicker">SILLY TOOL VALLEY / TOOLS</p><h1>개발 도구</h1>
+                <p>직접 쓰기 위해 만들고, 함께 쓰기 위해 다듬습니다.</p>
+            </div>
+        </header>
+
+        <section class="catalog-shell section">
+            <div class="container catalog-layout">
+                <aside class="catalog-sidebar" aria-label="Catalog filters">
+                    <div class="sidebar-block">
+                        <h2>분류</h2>
+                        <div class="sidebar-nav" id="categoryNav">
+                            <button class="sidebar-item is-active" type="button" data-category="all">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>
+                                All
+                                <span>1</span>
+                            </button>
+                            <button class="sidebar-item" type="button" data-category="gameengine">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/></svg>
+                                Game Engine
+                                <span>1</span>
+                            </button>
+                        </div>
+                        <div class="sidebar-subnav" id="engineSubnav">
+                            <button class="sub-filter" type="button" data-engine="unity">
+                                <span></span>
+                                Unity
+                                <em>1</em>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sidebar-block">
+                        <h2>출시 상태</h2>
+                        <ul class="status-list">
+                            <li><span class="status-dot soon"></span>Coming soon</li>
+                            <li><span class="status-dot live"></span>Live</li>
+                            <li><span class="status-dot beta"></span>Beta</li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <div class="catalog-main">
+                    <div class="catalog-toolbar">
+                        <label class="search-box">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 19a8 8 0 1 1 5.65-2.35L21 21"/></svg>
+                            <input id="catalogSearch" type="search" aria-label="개발 도구 검색" placeholder="개발 도구 검색" autocomplete="off">
+                            <button id="catalogSearchClear" class="search-clear" type="button" aria-label="검색어 지우기">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                            </button>
+                        </label>
+                        <div class="view-toggle" aria-label="Catalog view">
+                            <button class="is-active" type="button" data-view="grid">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>
+                                Grid
+                            </button>
+                            <button type="button" data-view="list">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+                                List
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="catalog-meta">
+                        <span id="catalogCount" aria-live="polite">Showing 1 of 1 tools</span>
+                        <span>최근 업데이트 순</span>
+                    </div>
+
+                    <div class="catalog-grid" id="catalogGrid">
+                        <article class="tool-card fade-in" data-category="gameengine" data-engine="unity" data-search="uterminal unity terminal ai mcp editor shell powershell bash conpty cli workflow">
+                            <a href="asset.html?id=uterminal" class="tool-card-cover" aria-label="Open UTerminal detail page"></a>
+                            <div class="tool-thumb">
+                                <img src="images/uterminal/hero.png" alt="">
+                                <span>UNITY / V1.0.0</span>
+                            </div>
+                            <div class="tool-body">
+                                <div class="card-meta">
+                                    <span class="pill pill-unity">unity</span>
+                                    <span class="status"><span class="status-dot soon"></span>출시 준비 중</span>
+                                </div>
+                                <h2>UTerminal</h2>
+                                <p class="tool-sub">Unity 에디터 안의 터미널</p>
+                                <p>PowerShell, Bash, vim부터 Claude CLI, Codex CLI까지. Unity 에디터 안에서 셸과 AI 작업을 이어가세요.</p>
+                            </div>
+                            <div class="tool-foot">
+                                <span>terminal / ai / mcp</span>
+                                <strong>자세히 보기</strong>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="empty-state" id="catalogEmpty" hidden>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 19a8 8 0 1 1 5.65-2.35L21 21"/></svg>
+                        <p>검색 조건에 맞는 도구가 없습니다.</p>
+                        <button class="btn btn-ghost btn-sm" type="button" id="resetFilters">필터 초기화</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {{SITE_FOOTER}}
+
+    <button class="scroll-top" id="scrollTop" aria-label="맨 위로">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+
+    <script src="js/main.js?v={{ASSET_REV}}"></script>
+</body>
+</html>

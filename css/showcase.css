@@ -1,0 +1,44 @@
+/* A continuous image sequence, using the game's own art. No decorative geometry. */
+.feature-journey{position:relative}
+.journey-ready .feature-journey{height:245svh}
+.homepage .feature-stage{height:calc(100svh - 88px);min-height:540px}
+.journey-ready .feature-stage{position:sticky;top:88px}
+.homepage .hero-logo{bottom:112px;width:clamp(420px,44vw,720px);opacity:var(--logo-opacity,1)}
+.homepage .hero-art:after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 58%,#1529329c);pointer-events:none}
+.homepage .film-link{right:5vw;bottom:112px}
+.scene-navigation{position:absolute;bottom:30px;left:5vw;display:flex;gap:28px;color:#fff;z-index:3}
+.scene-navigation button{display:flex;gap:12px;align-items:center;border:0;border-top:1px solid #ffffff66;padding:14px 0 0;background:none;color:#ffffffa6;font:500 12px/1.3 var(--sans);text-align:left;min-width:140px;cursor:pointer}
+.scene-navigation button[aria-pressed=true]{border-color:#fff;color:#fff}
+.scene-navigation button span{font-size:14px;letter-spacing:.035em}
+.scene-scroll{position:absolute;bottom:35px;right:5vw;color:#fff;font-size:13px;z-index:3}
+.scene-scroll span{margin-left:18px}
+.homepage .feature-info{padding-top:40px;padding-bottom:40px}
+.homepage .unreleased-art:before,.homepage .studio-section:before,.homepage .studio-section:after{content:none}
+.homepage .games-section,.homepage .studio-section{background:var(--paper)}
+.homepage .library-section{background:#e7ece8}
+.homepage .section-pad{padding-top:76px;padding-bottom:76px}
+.homepage .game-art{border-radius:0;aspect-ratio:1.7}
+.homepage .game-art>img{transition:transform 800ms cubic-bezier(.22,.7,.2,1),filter 650ms;filter:saturate(.8)}
+.homepage .game-art:hover>img,.homepage .game-art:focus-visible>img{transform:scale(1.06);filter:saturate(1)}
+.homepage .room-dialog{opacity:1}
+::view-transition-old(root),::view-transition-new(root){animation:none}
+::view-transition-group(game-cover){animation-duration:650ms;animation-timing-function:cubic-bezier(.22,.75,.18,1)}
+::view-transition-old(game-cover),::view-transition-new(game-cover){height:100%;object-fit:cover;mix-blend-mode:normal}
+::view-transition-old(game-cover){animation:none}
+::view-transition-new(game-cover){animation:cover-arrives 650ms both}
+@keyframes cover-arrives{from{opacity:0}to{opacity:1}}
+@media(max-width:1050px){.scene-scroll{display:none}.scene-navigation{right:5vw;gap:20px}.scene-navigation button{flex:1;min-width:0}.homepage .film-link{bottom:110px}.homepage .hero-logo{bottom:175px}}
+@media(max-width:700px){
+ .journey-ready .feature-journey{height:210svh}
+ .homepage .feature-stage{height:calc(100svh - 108px);min-height:500px}
+ .journey-ready .feature-stage{top:108px}
+ .homepage .hero-logo{width:94%;bottom:180px}
+ .homepage .film-link{left:22px;right:auto;bottom:95px}
+ .scene-navigation{left:22px;right:22px;bottom:25px;gap:18px}
+ .scene-navigation button{display:block;padding-top:10px;font-size:11px}
+ .scene-navigation button span{display:block;margin-top:6px;font-size:11px}
+ .homepage .section-pad{padding-top:54px;padding-bottom:54px}
+ .homepage .game-art{aspect-ratio:1.7}
+}
+
+html:not(.journey-ready) .scene-navigation,html:not(.journey-ready) .scene-scroll{display:none}

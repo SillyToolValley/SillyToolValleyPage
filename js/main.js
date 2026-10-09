@@ -197,6 +197,14 @@ function initEbookLibrary() {
 
     const glideTo = (target, opts) => {
         if (momentumRaf) cancelAnimationFrame(momentumRaf);
+        if (reduceMotion) {
+            ringAngle = target;
+            recentSpeed = 0;
+            momentumRaf = null;
+            applyRingAngle(false);
+            setSelected(findFrontSlot(ringAngle));
+            return;
+        }
         const start = ringAngle;
         const distance = target - start;
         if (Math.abs(distance) < 0.3) {
@@ -412,9 +420,7 @@ function initEbookLibrary() {
         }
     });
 
-    stage.addEventListener("keydown", (event) => {
-        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-        event.preventDefault();
+    const stepShelf = (direction) => {
         noteActivity();
         cancelMomentum();
         if (pointerId !== null) {
@@ -427,13 +433,20 @@ function initEbookLibrary() {
             dragMoved = false;
             trackedVelocity = 0;
         }
-        const direction = event.key === "ArrowRight" ? 1 : -1;
         const snap = findFrontSlot(ringAngle);
         const current = ((ringAngle % 360) + 360) % 360;
         let delta = snap.angle - current;
         if (delta > 180) delta -= 360;
         if (delta < -180) delta += 360;
         glideTo(ringAngle + delta + direction * STEP);
+    };
+    stage.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+        event.preventDefault();
+        stepShelf(event.key === "ArrowRight" ? 1 : -1);
+    });
+    stage.querySelectorAll('.shelf-step').forEach(button => {
+        button.addEventListener('click', () => stepShelf(Number(button.dataset.direction)));
     });
 
     const monitorActiveBook = () => {

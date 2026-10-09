@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,104 +14,44 @@
     <meta property="og:type" content="website">
     <title>E-Books | Silly Tool Valley</title>
     <link rel="icon" type="image/png" href="Profile.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+
+
+
+    <link rel="stylesheet" href="css/style.css?v=c18b9381c9f6">
+    <link rel="stylesheet" href="css/site.css?v=c18b9381c9f6">
+<link rel="preload" href="fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css?v=c18b9381c9f6">
 </head>
-<body>
+<body class="ebooks-page">
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <nav class="site-nav" id="nav" aria-label="Primary navigation">
-        <div class="container nav-inner">
-            <a href="index.html" class="brand" aria-label="Silly Tool Valley home">
-                <img src="Profile.png" alt="" class="brand-mark">
-                <span>Silly Tool Valley</span>
-                <em>/ studio</em>
-            </a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="nav-menu" id="navMenu">
-                <a href="index.html">Home</a>
-                <a href="assets.html">Catalog</a>
-                <a href="ebooks.html" class="is-active">E-Book</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#contact">Contact</a>
-                <a href="https://github.com/SillyToolValley" class="nav-cta" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                    GitHub
-                </a>
-            </div>
-        </div>
-    </nav>
+    <header class="site-header" id="nav">
+  <a class="site-wordmark" href="index.html" aria-label="Silly Tool Valley 홈">Silly Tool<br>Valley</a>
+  <nav class="top-nav" aria-label="주 메뉴">
+    <a href="index.html#games" data-section="games">게임</a>
+    <a href="assets.html" data-section="tools" >개발 도구</a>
+    <a href="ebooks.html" data-section="books" aria-current="page">전자책</a>
+    <a href="index.html#studio" data-section="studio">스튜디오</a>
+  </nav>
+</header>
+
 
     <main id="main">
         <header class="page-header">
             <div class="container">
                 <a href="index.html" class="back-link">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-                    Back to home
+                    홈으로
                 </a>
-                <h1>E-Book</h1>
-                <p>Practical books, field notes, and multilingual handbooks for developers, designers, and AI practitioners.</p>
+                <p class="page-kicker">SILLY TOOL VALLEY / BOOKS</p><h1>개발자의 책장</h1>
+                <p>AI 실무부터 Unity DOTS까지. 직접 개발하며 정리한 지식과 경험을 담았습니다.</p>
             </div>
         </header>
 
-        <section class="catalog-shell section">
-            <div class="container catalog-layout">
-                <aside class="catalog-sidebar" aria-label="E-book filters">
-                    <div class="sidebar-block">
-                        <h2>Types</h2>
-                        <div class="sidebar-nav" id="categoryNav">
-                            <button class="sidebar-item is-active" type="button" data-category="all">
-                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>
-                                All
-                                <span>2</span>
-                            </button>
-                            <button class="sidebar-item" type="button" data-category="ai">
-                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18"/><path d="M7 7h10v10H7z"/></svg>
-                                AI Practice
-                                <span>1</span>
-                            </button>
-                            <button class="sidebar-item" type="button" data-category="unity">
-                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                                Unity / Game Tech
-                                <span>1</span>
-                            </button>
-                            <button class="sidebar-item" type="button" data-category="workflow">
-                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg>
-                                Workflow
-                                <span>0</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="sidebar-block">
-                        <h2>Formats</h2>
-                        <ul class="status-list">
-                            <li><span class="status-dot live"></span>Page reader</li>
-                            <li><span class="status-dot live"></span>PDF (in reader)</li>
-                        </ul>
-                    </div>
-                    <div class="sidebar-block">
-                        <h2>Languages</h2>
-                        <ul class="status-list">
-                            <li>English</li>
-                            <li>Korean</li>
-                            <li>Japanese</li>
-                            <li>Simplified Chinese</li>
-                            <li>Spanish</li>
-                        </ul>
-                    </div>
-                </aside>
-
-                <div class="catalog-main">
-                    <section class="ebook-library" aria-label="E-Book Library">
+        <section class="shelf-section"><div class="container"><section class="ebook-library" aria-label="E-Book Library">
                         <div class="bookshelf-stage" id="bookshelfStage" aria-label="3D rotating E-book shelf" role="region" tabindex="0">
-                            <div class="bookshelf-topbar" aria-hidden="true">
-                                <span class="bookshelf-hint">scroll · drag · ← →</span>
+                            <div class="bookshelf-topbar">
+                                <button type="button" class="shelf-step" data-direction="-1" aria-label="이전 책">←</button><span class="bookshelf-hint">드래그하거나 방향키로 책을 골라보세요</span><button type="button" class="shelf-step" data-direction="1" aria-label="다음 책">→</button>
                             </div>
                             <div class="bookshelf-row">
                                 <div class="bookshelf-ring" id="bookshelfRing"></div>
@@ -124,10 +64,10 @@
                                         <span class="status" id="selectedBookMeta">AI / handbook / multilingual</span>
                                     </div>
                                     <h2 id="selectedBookTitle">A Shared Language for AI Practitioners</h2>
-                                    <p class="tool-sub" id="selectedBookSubtitle">Multilingual handbook for LLM-based AI work</p>
+                                    <p class="tool-sub" id="selectedBookSubtitle">LLM 기반 AI 실무를 위한 다국어 핸드북</p>
                                 </div>
                                 <div class="selected-info-body">
-                                    <p id="selectedBookSummary">A practical handbook for discussing LLM systems, agents, RAG, safety, and AI workflows with clearer shared terms.</p>
+                                    <p id="selectedBookSummary">LLM, 에이전트, RAG, 안전과 워크플로를 함께 이해하기 위한 AI 실무 핸드북.</p>
                                     <div class="tag-row" id="selectedBookTags">
                                         <span>LLM</span>
                                         <span>RAG</span>
@@ -137,7 +77,7 @@
                                     </div>
                                 </div>
                                 <div class="selected-book-actions">
-                                    <a id="selectedBookReader" href="books/ai-practitioner-handbook/reader.html?lang=en">Read Book</a>
+                                    <a id="selectedBookReader" href="books/ai-practitioner-handbook/reader.html?lang=en">책 읽기</a>
                                 </div>
                             </article>
                         </div>
@@ -146,8 +86,8 @@
                             <button class="library-book" type="button"
                                 data-book-id="ai-practitioner-handbook"
                                 data-title="A Shared Language for AI Practitioners"
-                                data-subtitle="Multilingual handbook for LLM-based AI work"
-                                data-summary="A practical handbook for discussing LLM systems, agents, RAG, safety, and AI workflows with clearer shared terms."
+                                data-subtitle="LLM 기반 AI 실무를 위한 다국어 핸드북"
+                                data-summary="LLM, 에이전트, RAG, 안전과 워크플로를 함께 이해하기 위한 AI 실무 핸드북."
                                 data-meta="AI / handbook / multilingual"
                                 data-tags="LLM,RAG,Agents,AI Security,Workflow"
                                 data-cover="images/ebooks/ai-practitioner-handbook-en-cover.png"
@@ -173,7 +113,7 @@
                             <button class="library-book" type="button"
                                 data-book-id="unity-dots-introduction"
                                 data-title="Unity DOTS Introduction"
-                                data-subtitle="Entities 6.5 and Netcode field guide"
+                                data-subtitle="Entities 6.5와 Netcode 실무 가이드"
                                 data-summary="A practical book for Unity DOTS workflows: SubScene baking, ECS components, systems, jobs, EntityCommandBuffer, Netcode for Entities, optimization, debugging, and migration."
                                 data-meta="Unity / DOTS / multilingual"
                                 data-tags="Unity,DOTS,ECS,Netcode,Entities 6.5"
@@ -198,13 +138,62 @@
                                 <span class="book-label">Unity DOTS</span>
                             </button>
                         </template>
-                    </section>
+                    </section></div></section>
+        <section class="catalog-shell section">
+            <div class="container catalog-layout">
+                <aside class="catalog-sidebar" aria-label="E-book filters">
+                    <div class="sidebar-block">
+                        <h2>분류</h2>
+                        <div class="sidebar-nav" id="categoryNav">
+                            <button class="sidebar-item is-active" type="button" data-category="all">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>
+                                All
+                                <span>2</span>
+                            </button>
+                            <button class="sidebar-item" type="button" data-category="ai">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18"/><path d="M7 7h10v10H7z"/></svg>
+                                AI Practice
+                                <span>1</span>
+                            </button>
+                            <button class="sidebar-item" type="button" data-category="unity">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                                Unity / Game Tech
+                                <span>1</span>
+                            </button>
+                            <button class="sidebar-item" type="button" data-category="workflow">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg>
+                                Workflow
+                                <span>0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sidebar-block">
+                        <h2>읽기 방식</h2>
+                        <ul class="status-list">
+                            <li><span class="status-dot live"></span>Page reader</li>
+                            <li><span class="status-dot live"></span>PDF (in reader)</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-block">
+                        <h2>지원 언어</h2>
+                        <ul class="status-list">
+                            <li>English</li>
+                            <li>Korean</li>
+                            <li>Japanese</li>
+                            <li>Simplified Chinese</li>
+                            <li>Spanish</li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <div class="catalog-main">
+
 
                     <div class="catalog-toolbar">
                         <label class="search-box">
                             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 19a8 8 0 1 1 5.65-2.35L21 21"/></svg>
-                            <input id="catalogSearch" type="search" placeholder="Search E-books..." autocomplete="off">
-                            <button id="catalogSearchClear" class="search-clear" type="button" aria-label="Clear search">
+                            <input id="catalogSearch" type="search" aria-label="전자책 검색" placeholder="전자책 검색" autocomplete="off">
+                            <button id="catalogSearchClear" class="search-clear" type="button" aria-label="검색어 지우기">
                                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
                             </button>
                         </label>
@@ -222,7 +211,7 @@
 
                     <div class="catalog-meta">
                         <span id="catalogCount" aria-live="polite">Showing 2 of 2 books</span>
-                        <span>Sorted by most recent</span>
+                        <span>최근 업데이트 순</span>
                     </div>
 
                     <div class="catalog-grid" id="catalogGrid" data-item-label="book" data-item-label-plural="books">
@@ -237,8 +226,8 @@
                                     <span class="status"><span class="status-dot live"></span>published</span>
                                 </div>
                                 <h2>A Shared Language for AI Practitioners</h2>
-                                <p class="tool-sub">Multilingual handbook for LLM-based AI work</p>
-                                <p>A practical handbook for discussing LLM systems, agents, RAG, safety, and AI workflows with clearer shared terms.</p>
+                                <p class="tool-sub">LLM 기반 AI 실무를 위한 다국어 핸드북</p>
+                                <p>LLM, 에이전트, RAG, 안전과 워크플로를 함께 이해하기 위한 AI 실무 핸드북.</p>
                                 <div class="tag-row">
                                     <span>ko/en/ja/zh/es</span>
                                 </div>
@@ -246,7 +235,7 @@
                             <div class="tool-foot">
                                 <span>AI / handbook / multilingual</span>
                                 <div class="ebook-actions">
-                                    <a href="books/ai-practitioner-handbook/reader.html?lang=en">Read Book</a>
+                                    <a href="books/ai-practitioner-handbook/reader.html?lang=en">책 읽기</a>
                                 </div>
                             </div>
                         </article>
@@ -261,7 +250,7 @@
                                     <span class="status"><span class="status-dot live"></span>published</span>
                                 </div>
                                 <h2>Unity DOTS Introduction</h2>
-                                <p class="tool-sub">Entities 6.5 and Netcode field guide</p>
+                                <p class="tool-sub">Entities 6.5와 Netcode 실무 가이드</p>
                                 <p>A practical book for SubScene baking, ECS components, systems, jobs, EntityCommandBuffer, Netcode for Entities, optimization, debugging, and migration.</p>
                                 <div class="tag-row">
                                     <span>en/ko/ja/zh/es</span>
@@ -270,62 +259,31 @@
                             <div class="tool-foot">
                                 <span>Unity / DOTS / multilingual</span>
                                 <div class="ebook-actions">
-                                    <a href="books/unity-dots-introduction/reader.html?lang=en">Read Book</a>
+                                    <a href="books/unity-dots-introduction/reader.html?lang=en">책 읽기</a>
                                 </div>
                             </div>
                         </article>
                     </div>
                     <div class="empty-state" id="catalogEmpty" hidden>
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 19a8 8 0 1 1 5.65-2.35L21 21"/></svg>
-                        <p>No E-books match your filters.</p>
-                        <button class="btn btn-ghost btn-sm" type="button" id="resetFilters">Reset filters</button>
+                        <p>검색 조건에 맞는 전자책이 없습니다.</p>
+                        <button class="btn btn-ghost btn-sm" type="button" id="resetFilters">필터 초기화</button>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container footer-main">
-            <div>
-                <a href="index.html" class="footer-brand">
-                    <img src="Profile.png" alt="">
-                    <span>Silly Tool Valley</span>
-                </a>
-                <p>A small studio shipping editor utilities and oddly specific dev tools.</p>
-            </div>
-            <div class="footer-cols">
-                <div>
-                    <h3>Site</h3>
-                    <a href="index.html">Home</a>
-                    <a href="assets.html">Catalog</a>
-                    <a href="ebooks.html">E-Book</a>
-                    <a href="index.html#about">About</a>
-                </div>
-                <div>
-                    <h3>Books</h3>
-                    <a href="ebooks.html?cat=ai">AI Practice</a>
-                    <a href="ebooks.html?cat=unity">Unity / Game Tech</a>
-                    <a href="books/ai-practitioner-handbook/reader.html?lang=en">AI Handbook reader</a>
-                    <a href="books/unity-dots-introduction/reader.html?lang=en">Unity DOTS Introduction reader</a>
-                </div>
-                <div>
-                    <h3>Connect</h3>
-                    <a href="https://github.com/SillyToolValley" target="_blank" rel="noopener">GitHub</a>
-                    <a href="mailto:lukechodev@gmail.com">Email</a>
-                </div>
-            </div>
-        </div>
-        <div class="container footer-bottom">
-            <span>&copy; 2026 Silly Tool Valley</span>
-            <span>v1.0 / static build</span>
-        </div>
-    </footer>
+    <footer class="site-footer">
+  <div class="footer-top"><a class="site-wordmark" href="index.html">Silly Tool<br>Valley</a><p>게임과 도구를 만들고,<br>그 과정에서 배운 것을 나눕니다.</p><a class="footer-contact" href="mailto:lukechodev@gmail.com">lukechodev@gmail.com ↗</a></div>
+  <div class="footer-bottom"><span>© 2026 Silly Tool Valley</span><nav aria-label="하단 메뉴"><a href="index.html#games">게임</a><a href="assets.html">개발 도구</a><a href="ebooks.html">전자책</a><a href="https://github.com/SillyToolValley" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav></div>
+</footer>
 
-    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+
+    <button class="scroll-top" id="scrollTop" aria-label="맨 위로">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
     </button>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=c18b9381c9f6"></script>
 </body>
 </html>

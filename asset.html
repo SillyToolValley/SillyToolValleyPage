@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,39 +14,27 @@
     <meta property="og:type" content="website">
     <title>UTerminal | Silly Tool Valley</title>
     <link rel="icon" type="image/png" href="Profile.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+
+
+
+    <link rel="stylesheet" href="css/style.css?v=c18b9381c9f6">
+    <link rel="stylesheet" href="css/site.css?v=c18b9381c9f6">
+<link rel="preload" href="fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css?v=c18b9381c9f6">
 </head>
-<body>
+<body class="asset-page">
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <nav class="site-nav" id="nav" aria-label="Primary navigation">
-        <div class="container nav-inner">
-            <a href="index.html" class="brand" aria-label="Silly Tool Valley home">
-                <img src="Profile.png" alt="" class="brand-mark">
-                <span>Silly Tool Valley</span>
-                <em>/ studio</em>
-            </a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="nav-menu" id="navMenu">
-                <a href="index.html">Home</a>
-                <a href="assets.html" class="is-active">Catalog</a>
-                <a href="ebooks.html">E-Book</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#contact">Contact</a>
-                <a href="https://github.com/SillyToolValley" class="nav-cta" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                    GitHub
-                </a>
-            </div>
-        </div>
-    </nav>
+    <header class="site-header" id="nav">
+  <a class="site-wordmark" href="index.html" aria-label="Silly Tool Valley 홈">Silly Tool<br>Valley</a>
+  <nav class="top-nav" aria-label="주 메뉴">
+    <a href="index.html#games" data-section="games">게임</a>
+    <a href="assets.html" data-section="tools" aria-current="page">개발 도구</a>
+    <a href="ebooks.html" data-section="books" >전자책</a>
+    <a href="index.html#studio" data-section="studio">스튜디오</a>
+  </nav>
+</header>
+
 
     <main id="main">
         <header class="asset-hero">
@@ -54,25 +42,25 @@
                 <div class="asset-hero-copy">
                     <a href="assets.html" class="back-link">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-                        Catalog
+                        개발 도구
                     </a>
                     <div class="asset-title-row">
                         <img src="images/uterminal/icon.png" alt="" class="asset-icon">
                         <div class="card-meta">
                             <span class="pill pill-unity">unity</span>
-                            <span class="status"><span class="status-dot soon"></span>coming soon</span>
+                            <span class="status"><span class="status-dot soon"></span>출시 준비 중</span>
                             <span class="mono">v1.0.0</span>
                         </div>
                     </div>
                     <h1>UTerminal</h1>
-                    <p class="asset-subtitle">Real terminal for Unity Editor</p>
+                    <p class="asset-subtitle">실제 터미널을 Unity 안으로.</p>
                     <p class="asset-lede">
-                        PowerShell, Bash, vim, Claude CLI, Codex CLI, and MCP-connected workflows running inside a dockable Unity EditorWindow with a real PTY backend.
+                        익숙한 셸과 AI CLI를 프로젝트 바로 옆에. 실제 PTY 기반 터미널을 Unity 에디터에 도킹해 사용합니다.
                     </p>
                     <div class="asset-actions">
-                        <button class="btn btn-primary is-disabled" type="button" disabled>Coming soon on Asset Store</button>
+                        <button class="btn btn-primary is-disabled" type="button" disabled>Asset Store 출시 준비 중</button>
                         <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=aEw74kIf5lE" target="_blank" rel="noopener">
-                            Watch tutorial
+                            튜토리얼 보기
                             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><path d="m9.75 15.02 5.75-3.27-5.75-3.27v6.54z"/></svg>
                         </a>
                     </div>
@@ -91,18 +79,18 @@
 
         <nav class="subnav" aria-label="Asset sections">
             <div class="container subnav-inner" id="subnav">
-                <a href="#overview" class="is-active">Overview</a>
-                <a href="#features">Highlights</a>
-                <a href="#profiles">Profiles</a>
-                <a href="#tutorials">Tutorials</a>
-                <a href="#changelog">Changelog</a>
+                <a href="#overview" class="is-active">소개</a>
+                <a href="#features">주요 기능</a>
+                <a href="#profiles">프로필</a>
+                <a href="#tutorials">튜토리얼</a>
+                <a href="#changelog">업데이트</a>
             </div>
         </nav>
 
         <section class="section" id="overview">
             <div class="container">
                 <span class="section-num">01 / overview</span>
-                <h2>What it does.</h2>
+                <h2>작업은 에디터 안에서 계속됩니다.</h2>
                 <p class="block-lede">
                     UTerminal brings a real terminal workflow into Unity. PowerShell, CMD, Bash, Zsh, Git Bash, WSL, and interactive TUI apps run in a dockable EditorWindow without leaving the project. Shell sessions survive Unity domain reloads, editor close, and even editor crashes because they live in a small project-local .NET server.
                 </p>
@@ -126,7 +114,7 @@
         <section class="section section-alt" id="features">
             <div class="container">
                 <span class="section-num">02 / highlights</span>
-                <h2>Not a text box. A real terminal.</h2>
+                <h2>터미널에서 하던 일을 그대로.</h2>
                 <div class="highlights-grid">
                     <article class="highlight fade-in">
                         <span>01</span>
@@ -198,7 +186,7 @@
             <div class="container profiles-grid">
                 <div>
                     <span class="section-num">03 / profiles</span>
-                    <h2>Spin up a tab. Pick a profile. Run anything.</h2>
+                    <h2>프로필을 고르고, 바로 시작하세요.</h2>
                     <p class="block-lede">
                         Each profile is a complete preset: executable path, arguments, environment variables, working directory, and color theme. Built-in profiles cover common shells; optional AI CLI presets handle Claude, Codex, and Gemini.
                     </p>
@@ -239,8 +227,8 @@
         <section class="section section-alt" id="tutorials">
             <div class="container">
                 <span class="section-num">04 / tutorials</span>
-                <h2>Watch the walkthrough.</h2>
-                <p class="block-lede">Click a clip to jump to that point in the video below.</p>
+                <h2>직접 살펴보세요.</h2>
+                <p class="block-lede">주제를 선택하면 영상의 해당 부분으로 이동합니다.</p>
                 <div class="video-embed fade-in">
                     <iframe
                         id="tutorialPlayer"
@@ -263,7 +251,7 @@
         <section class="section" id="changelog">
             <div class="container">
                 <span class="section-num">05 / changelog</span>
-                <h2>What's changed.</h2>
+                <h2>업데이트 기록</h2>
                 <div class="changelog">
                     <div class="changelog-row fade-in">
                         <span>v1.0.0</span>
@@ -276,56 +264,27 @@
 
         <section class="cta-block">
             <div class="container">
-                <h2>Currently in review.</h2>
-                <p>UTerminal is awaiting Asset Store review. Watch the tutorial or check back when it goes live.</p>
+                <h2>출시를 준비하고 있습니다.</h2>
+                <p>UTerminal은 Asset Store 심사를 기다리고 있습니다. 튜토리얼에서 사용 방법을 먼저 만나보세요.</p>
                 <div class="cta-actions">
-                    <button class="btn btn-primary is-disabled" type="button" disabled>Coming soon on Asset Store</button>
-                    <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=aEw74kIf5lE" target="_blank" rel="noopener">Watch tutorial</a>
-                    <a class="btn btn-ghost" href="assets.html">Back to catalog</a>
+                    <button class="btn btn-primary is-disabled" type="button" disabled>Asset Store 출시 준비 중</button>
+                    <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=aEw74kIf5lE" target="_blank" rel="noopener">튜토리얼 보기</a>
+                    <a class="btn btn-ghost" href="assets.html">도구 목록으로</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container footer-main">
-            <div>
-                <a href="index.html" class="footer-brand">
-                    <img src="Profile.png" alt="">
-                    <span>Silly Tool Valley</span>
-                </a>
-                <p>A small studio shipping editor utilities and oddly specific dev tools.</p>
-            </div>
-            <div class="footer-cols">
-                <div>
-                    <h3>Site</h3>
-                    <a href="index.html">Home</a>
-                    <a href="assets.html">Catalog</a>
-                    <a href="ebooks.html">E-Book</a>
-                    <a href="index.html#about">About</a>
-                </div>
-                <div>
-                    <h3>Tools</h3>
-                    <a href="asset.html?id=uterminal">UTerminal</a>
-                    <a href="assets.html?cat=gameengine">Unity tools</a>
-                </div>
-                <div>
-                    <h3>Connect</h3>
-                    <a href="https://github.com/SillyToolValley" target="_blank" rel="noopener">GitHub</a>
-                    <a href="mailto:lukechodev@gmail.com">Email</a>
-                </div>
-            </div>
-        </div>
-        <div class="container footer-bottom">
-            <span>&copy; 2026 Silly Tool Valley</span>
-            <span>v1.0 / static build</span>
-        </div>
-    </footer>
+    <footer class="site-footer">
+  <div class="footer-top"><a class="site-wordmark" href="index.html">Silly Tool<br>Valley</a><p>게임과 도구를 만들고,<br>그 과정에서 배운 것을 나눕니다.</p><a class="footer-contact" href="mailto:lukechodev@gmail.com">lukechodev@gmail.com ↗</a></div>
+  <div class="footer-bottom"><span>© 2026 Silly Tool Valley</span><nav aria-label="하단 메뉴"><a href="index.html#games">게임</a><a href="assets.html">개발 도구</a><a href="ebooks.html">전자책</a><a href="https://github.com/SillyToolValley" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav></div>
+</footer>
 
-    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+
+    <button class="scroll-top" id="scrollTop" aria-label="맨 위로">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
     </button>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=c18b9381c9f6"></script>
 </body>
 </html>

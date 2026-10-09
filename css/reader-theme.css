@@ -1,0 +1,14 @@
+/* The reading workspace shares the studio palette; document pages stay white. */
+:root{--bg:#e4e7e1;--bg-deep:#d8ddd5;--toolbar-bg:#f6f5f1;--toolbar-border:#d5d9d2;--sidebar-bg:#eeefe9;--ink:#232a2c;--muted:#626c66;--line:#cdd4ca;--accent:#46676a;--accent-strong:#304f53;--page-shadow:0 3px 16px #26312a20;--thumb-active-shadow:0 0 0 2px var(--accent);color-scheme:light}
+body{font-family:'Pretendard',system-ui,sans-serif;font-size:15px;-webkit-font-smoothing:antialiased;text-rendering:auto;font-synthesis:none}
+button,select,input[type=number],.control-group,.icon-button,.fit-toggle,.fullscreen-button{border-radius:3px}
+button:hover:not(:disabled),.fit-toggle:hover:not(:disabled),.fullscreen-button:hover:not(:disabled){background:#e5e9e2}
+.reader-home{flex-shrink:0;color:var(--ink);text-decoration:none;border-right:1px solid var(--line);padding:8px 14px 8px 0;font-size:15px;white-space:nowrap}
+.reader-home:hover{text-decoration:underline;text-underline-offset:4px}
+.title{font-size:15px}.subtitle{font-size:12px;overflow:hidden;text-overflow:ellipsis}
+.control-group{background:transparent}.segmented button[aria-pressed=true],.fit-toggle[data-mode=width],.fit-toggle[data-mode=page],.fullscreen-button[aria-pressed=true]{background:#dfe8df;border-color:#b8c9be;color:var(--accent-strong)}
+input[type=range]{accent-color:var(--accent)}select:hover,input:hover{border-color:#82978a}.page-input{background:#e9ece6}
+.status{background:var(--toolbar-bg);border-radius:3px}.chrome-show,.page-indicator{background:#f6f5f1f5;border:1px solid var(--line);border-radius:3px;color:var(--ink);box-shadow:0 2px 10px #26312a16}.chrome-show:hover{background:#e5e9e2}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:1100px){.subtitle{display:none}.title{font-size:14px}.toolbar-left{gap:10px}}
+@media(max-width:640px){.reader-home{padding-right:10px;font-size:14px}.toolbar-inner{padding:8px;gap:8px}.toolbar-center{gap:5px}.control-group{padding:2px}.segmented button{min-width:35px;padding:0 5px}.zoom{width:60px}.sidebar{width:76px}.title{font-size:13px}.page-total{min-width:32px}.page-input{width:40px}}

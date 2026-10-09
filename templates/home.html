@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="게임도, 만드는 도구도. Silly Tool Valley의 게임, Unity 개발 도구와 전자책. Grenade! Steam 무료 데모 공개.">
+<meta name="robots" content="index, follow, noarchive"><meta name="tdm-reservation" content="1"><meta name="ai-training" content="disallow">
+<meta name="ai-policy" content="Public reading and citation are allowed. Automated scraping, dataset inclusion, AI training, and AI answer ingestion are not permitted without written permission.">
+<meta name="theme-color" content="#f5f2e9"><meta property="og:title" content="Silly Tool Valley — Games, Tools & Books"><meta property="og:description" content="Grenade! 무료 데모 공개. 실리툴밸리의 게임, 개발 도구와 책을 만나보세요."><meta property="og:image" content="https://sillytoolvalley.github.io/SillyToolValleyPage/images/games/grenade-hero.webp"><meta property="og:type" content="website">
+<title>Silly Tool Valley — Games, Tools & Books</title><link rel="icon" href="Profile.png">
+
+<link rel="preload" as="image" href="{{FEATURED_IMAGE}}"><link rel="stylesheet" href="css/home.css?v={{ASSET_REV}}"><link rel="stylesheet" href="css/site.css?v={{ASSET_REV}}"><link rel="stylesheet" href="css/showcase.css?v={{ASSET_REV}}"><script src="js/home.js?v={{ASSET_REV}}" defer></script>
+<link rel="preload" href="fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css?v={{ASSET_REV}}">
+</head>
+<body class="homepage">
+<a class="skip-link" href="#games">게임 목록으로 건너뛰기</a>
+{{SITE_HEADER}}
+<main>
+<section class="featured" id="welcome" aria-labelledby="featured-title">
+<div class="feature-journey" id="feature-journey"><div class="feature-stage" id="feature-stage">
+<div class="hero-art"><img src="{{FEATURED_IMAGE}}" alt="{{FEATURED_TITLE}} 공식 키 아트" fetchpriority="high" width="1800" height="581"><div id="hero-canvas" aria-hidden="true"></div></div>
+<div class="stage-top"><span class="stage-label"><span class="live-dot"></span> FEATURED GAME</span><span class="stage-platform">{{FEATURED_PLATFORM}}</span></div>
+<h1 id="featured-title" class="hero-logo"><span class="sr-only">{{FEATURED_TITLE}} {{FEATURED_SUBTITLE}}</span><img src="{{FEATURED_LOGO}}" alt="" width="1280" height="720" fetchpriority="high"></h1>
+
+<a class="film-link" href="#room-{{FEATURED_ID}}"><span class="play-icon" aria-hidden="true">▶</span><span>어떤 게임인지 궁금하다면<strong>게임 & 공식 영상 보기</strong></span></a>
+<button id="motion-toggle" type="button" aria-pressed="false" hidden><span aria-hidden="true">Ⅱ</span><span class="motion-label">모션 끄기</span></button>
+<div class="scene-navigation" aria-label="Grenade 장면"><button type="button" data-scene="0" aria-pressed="true">01 <span>GRENADE!</span></button><button type="button" data-scene="1" aria-pressed="false">02 <span>IN THE AIR</span></button><button type="button" data-scene="2" aria-pressed="false">03 <span>IN PLAY</span></button></div><p class="scene-scroll">스크롤로 둘러보기 <span aria-hidden="true">↓</span></p>
+</div></div>
+<div class="feature-info"><div><p class="eyebrow">{{FEATURED_TAGS}}</p><h2>{{FEATURED_PITCH}}</h2><p>{{FEATURED_SUMMARY}}</p></div><div class="feature-actions"><div class="actions">{{FEATURED_LINKS}}</div><a class="quiet-link" href="#room-{{FEATURED_ID}}">{{FEATURED_MILESTONE}} <span aria-hidden="true">↗</span></a></div></div>
+</section>
+
+
+<section class="games-section section-pad" id="games" aria-labelledby="games-title">
+<div class="section-heading"><div><p class="eyebrow">PICK YOUR NEXT PLAY</p><h2 id="games-title">OUR GAMES<span class="heading-dot">.</span></h2></div><p>지금 플레이할 게임부터. <br>준비 중인 다음 작품까지.</p><span class="section-count">{{GAME_COUNT}} GAMES</span></div>
+<div class="game-grid">{{PROJECT_SCENES}}</div>
+<a class="archive-strip" href="#room-castaway-cove"><span class="archive-icon" aria-hidden="true">↳</span><span>작은 실험도 게임이 됩니다.<strong>Castaway Cove <span>— 1.44MB 게임잼</span></strong></span><span class="round-arrow" aria-hidden="true">↗</span></a>
+</section>
+<section class="library-section section-pad" id="library" aria-labelledby="library-title">
+<div class="section-heading"><div><p class="eyebrow">FOR THE MAKERS</p><h2 id="library-title">TOOLS & BOOKS<span class="heading-dot">.</span></h2></div><p>게임도, 만드는 도구도. <br>개발하며 쌓인 지식까지.</p></div>
+<div class="library-grid">
+<article class="tool-product"><a class="product-visual terminal-visual" href="asset.html?id=uterminal" aria-label="UTerminal 자세히 보기"><div class="terminal-top"><span><i></i><i></i><i></i></span><span>UTerminal / Unity Editor</span><span>↗</span></div><img src="images/uterminal/hero.png" alt="Unity 에디터에서 실행 중인 UTerminal" loading="lazy"><span class="product-corner">MADE FOR UNITY</span></a><div class="product-title"><h3>UTerminal</h3><span>UNITY TOOL</span></div><p>에디터를 떠나지 않는 터미널.<br>셸과 AI CLI 작업을 Unity 안에서 이어가세요.</p><div class="product-links"><a class="button paper" href="asset.html?id=uterminal">UTerminal 자세히 보기 <span>↗</span></a><a href="assets.html">개발 도구 전체 ↗</a></div></article>
+<article class="book-product"><a class="product-visual book-visual" href="ebooks.html" aria-label="전자책 서재 열기"><span class="book-caption">OFF THE SCREEN.<br>ON THE PAGE.</span><div class="book-covers"><img src="images/ebooks/ai-practitioner-handbook-en-cover.png" alt="AI Practitioner Handbook 표지" loading="lazy"><img src="images/ebooks/unity-dots-introduction-en-cover.png" alt="Unity DOTS Introduction 표지" loading="lazy"></div><span class="product-corner">THE BOOKSHELF ↗</span></a><div class="product-title"><h3>개발자의 책장</h3><span>EBOOKS</span></div><p>AI 실무부터 Unity DOTS까지.<br>직접 개발하며 정리한 지식과 경험을 담았습니다.</p><div class="product-links"><a class="button paper" href="ebooks.html">전자책 둘러보기 <span>↗</span></a></div></article>
+</div>
+</section>
+<section class="records-section section-pad" id="milestones" aria-labelledby="records-title"><div class="section-heading"><div><p class="eyebrow">OUT IN THE WORLD</p><h2 id="records-title">작업의 발자국<span class="heading-dot">.</span></h2></div><p>게임잼에서 본선 무대까지. <br>계속 만들고, 도전합니다.</p></div><div class="milestone-list">{{MILESTONES}}</div></section>
+<div id="about" class="section-anchor"></div><div id="contact" class="section-anchor"></div>
+<section class="studio-section section-pad" id="studio" aria-labelledby="studio-title"><div class="studio-intro"><p class="eyebrow">INDEPENDENT STUDIO · SEOUL, KR</p><p>작은 팀의 커다란 호기심.<br>서울에서 게임과 도구를 만드는 1인 스튜디오입니다.</p><a class="button ink" href="mailto:lukechodev@gmail.com">이야기 나누기 <span>↗</span></a></div><h2 id="studio-title">SILLY TOOL<br><span>VALLEY</span></h2></section>
+<div class="game-details" id="game-details">{{DETAILS}}</div>
+</main>
+{{SITE_FOOTER}}
+<dialog class="room-dialog" id="room-dialog" aria-labelledby="room-title"><button type="button" class="room-close" aria-label="게임 상세 닫기">닫기 <span aria-hidden="true">×</span></button><div class="room-content"></div></dialog>
+<script type="application/json" id="world-data">{{WORLD_DATA}}</script>
+</body>
+</html>
