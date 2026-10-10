@@ -9,7 +9,7 @@ Grenade!를 메인으로 게임, 개발 도구, 전자책을 함께 전시하는
 3. `python tooling/build_site.py`를 실행합니다.
 4. 데이터, 이미지, 생성된 `index.html`을 함께 커밋합니다.
 
-`featured`는 첫 화면의 게임 ID입니다. 게임마다 고유한 `id`, `title`, `platform`, `status`, `description`, `links`를 입력하면 카탈로그 카드·작품 수·상세가 함께 생성됩니다. `image`, `heroImage`, `logo`, `gallery`, `video: {youtubeId, label}`은 선택 항목입니다. 이미지가 없는 게임은 제목과 개발 상태를 표시합니다. `archive: true`는 메인 카탈로그에서 제외하고 공모전 기록의 상세로 연결합니다. 미정 출시일이나 확인되지 않은 성과는 넣지 않습니다.
+`featured`는 첫 화면의 게임 ID입니다. 게임마다 고유한 `id`, `title`, `platform`, `status`, `description`, `links`를 입력하면 카탈로그 카드·작품 수·상세가 함께 생성됩니다. `image`, `heroImage`, `logo`, `gallery`, `videos: [{youtubeId, label}]`은 선택 항목입니다. 이미지가 없는 게임은 제목과 개발 상태를 표시합니다. `archive: true`는 메인 카탈로그에서 제외하고 공모전 기록의 상세로 연결합니다. 미정 출시일이나 확인되지 않은 성과는 넣지 않습니다.
 
 메인 소개는 `home.pitch`, `home.summary`, 대표 표기는 `displayTitle`, `subtitle`에서 관리합니다. 새 게임 추가에 3D 모델링 작업은 필요하지 않습니다.
 
@@ -40,7 +40,7 @@ python -m http.server 4173 --bind 127.0.0.1
 - [Panic](https://panic.com/), [inkle](https://www.inklestudios.com/): 게임·툴·책을 독립적인 제품군으로 전시하는 구성.
 - [Aggro Crab](https://aggrocrab.com/), [Chibig](https://chibig.com/): 큰 공식 키 아트, 과감한 글자와 색, 여러 게임을 모으는 카탈로그 구성. 사이트의 코드나 에셋을 복사하지 않았습니다.
 
-- Grenade!: [Steam 스토어](https://store.steampowered.com/app/5151370/), [데모](https://store.steampowered.com/app/5327260/), [사용자가 제공한 공식 티저](https://www.youtube.com/watch?v=fnFhyuxTK6k).
+- Grenade!: [Steam 스토어](https://store.steampowered.com/app/5151370/), [데모](https://store.steampowered.com/app/5327260/), [게임플레이 영상](https://www.youtube.com/watch?v=z3WOYKJOa5E), [공식 티저](https://www.youtube.com/watch?v=fnFhyuxTK6k).
 - 티저 0:19와 1:05에서 확인한 수류탄은 매끈한 짙은 몸체, 아래쪽 붉은 띠, 회색 상단 부품을 사용합니다. 영상만으로 숨겨진 면을 확정하지 않았습니다. 임의로 만든 격자형 수류탄과 절차적 마을은 현재 홈페이지에서 사용하지 않습니다. Meshy 생성은 실행하지 않았습니다.
 - 슈피겔만의 뮤직 카니발: [공식 사이트](https://musiccarnival.vercel.app/).
 - I'm a Pianist Too: [Google Play](https://play.google.com/store/apps/details?id=com.sillytoolvalley.imapianisttoo).

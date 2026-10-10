@@ -61,11 +61,17 @@
           "alt": "Grenade!의 실제 대전 화면"
         }
       ],
-      "video": {
-        "youtubeId": "fnFhyuxTK6k",
-        "label": "공식 오프닝 필름"
-      },
-      "logo": "images/games/grenade-logo.webp"
+      "logo": "images/games/grenade-logo.webp",
+      "videos": [
+        {
+          "youtubeId": "z3WOYKJOa5E",
+          "label": "게임플레이 영상"
+        },
+        {
+          "youtubeId": "fnFhyuxTK6k",
+          "label": "공식 오프닝 필름"
+        }
+      ]
     },
     {
       "id": "music-carnival",

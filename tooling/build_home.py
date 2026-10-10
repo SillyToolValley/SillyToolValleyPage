@@ -34,11 +34,13 @@ def main():
         shots = ''.join(f'<figure><a href="{e(s["image"])}" target="_blank" rel="noopener noreferrer"><img src="{e(s["image"])}" alt="{e(s["alt"])}" loading="lazy"></a><figcaption>{e(s["alt"])}</figcaption></figure>' for s in g.get('gallery',[]))
         achievements = ''.join(f'<li>{e(m["event"])}<strong>{e(m["result"])}</strong><small>{e(m.get("note",""))}</small></li>' for m in data['milestones'] if m['game']==g['id'])
         video = ''
-        if g.get('video'):
-            vid = g['video']['youtubeId']
-            if not re.fullmatch(r'[A-Za-z0-9_-]{11}',vid):
+        films = g.get('videos', [g['video']] if g.get('video') else [])
+        for film in films:
+            vid = film['youtubeId']
+            if not re.fullmatch(r'[A-Za-z0-9_-]{11}', vid):
                 raise ValueError('Invalid YouTube ID')
-            video = f'<div class="film"><p class="eyebrow">OFFICIAL OPENING FILM</p><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/{vid}" title="{e(g["title"])} 공식 오프닝" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe><a href="https://www.youtube.com/watch?v={vid}" target="_blank" rel="noopener noreferrer">YouTube에서 보기 ↗</a></div>'
+            label = film.get('label', '공식 영상')
+            video += f'<div class="film"><p class="eyebrow">{e(label)}</p><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/{vid}" title="{e(g["title"])} {e(label)}" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe><a href="https://www.youtube.com/watch?v={vid}" target="_blank" rel="noopener noreferrer">{e(label)} · YouTube에서 보기 ↗</a></div>'
         details.append(f'<article class="game-detail" id="room-{e(g["id"])}" data-game="{e(g["id"])}"><div class="detail-intro"><p class="eyebrow">{e(g["platform"])}</p><h2>{e(g["title"])}</h2><span class="detail-status">{e(g["status"])}</span><p class="detail-description">{e(g["description"])}</p><div class="actions">{"".join(link(l,i==0) for i,l in enumerate(g["links"]))}</div>{"<h3>참여 기록</h3><ul class=\"detail-achievements\">"+achievements+"</ul>" if achievements else ""}<a class="back-link" href="#games">← 작품 목록으로</a></div><div class="detail-media">{photo}{video}<div class="detail-gallery">{shots}</div></div></article>')
     for i,g in enumerate(ordered):
         fallback = f'<img src="{e(g["image"])}" alt="{e(g.get("imageAlt",g["title"]))}" loading="lazy">' if g.get('image') else f'<div class="unreleased-art"><strong>{e(g["title"])}</strong><small>다음 이야기를 준비하고 있습니다.</small></div>'
@@ -56,7 +58,8 @@ def main():
         'MILESTONES':''.join(milestones), 'WORLD_DATA':world_data
     }
     featured_milestone = next((m for m in data['milestones'] if m['game']==featured['id']),None)
-    film = featured.get('video',{})
+    featured_films = featured.get('videos', [featured['video']] if featured.get('video') else [])
+    film = featured_films[0] if featured_films else {}
     replacements['FEATURED_LOGO'] = e(featured.get('logo',featured.get('image','Profile.png')))
     home = featured.get('home', {})
     replacements['FEATURED_DEMO'] = e(featured['links'][home.get('spotlightLink',0)]['url'])
